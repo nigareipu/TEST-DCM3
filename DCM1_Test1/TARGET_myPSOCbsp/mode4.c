@@ -5,7 +5,7 @@
  *      Author: jkrynski1
  */
 
-#include "mode4.h"
+#include "mode2.h"
 
 void mode4program()
 {

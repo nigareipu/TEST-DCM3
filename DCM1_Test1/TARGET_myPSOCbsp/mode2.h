@@ -41,5 +41,7 @@ extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
 extern float *AnDET;
 
 void mode2program();
+void mode3program();
+void mode4program();
 
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_MODE2_H_ */

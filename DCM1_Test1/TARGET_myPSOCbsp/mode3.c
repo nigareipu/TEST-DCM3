@@ -5,7 +5,7 @@
  *      Author: jkrynski1
  */
 
-#include "mode3.h"
+#include "mode2.h"
 
 void mode3program()
 {

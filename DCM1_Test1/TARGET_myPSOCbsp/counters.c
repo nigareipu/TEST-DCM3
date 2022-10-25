@@ -435,7 +435,13 @@ void GetSingles0Counts()
 {
 
 	char Singles0_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	SinglesCounter0_Read(&prevCount0);
+	//these are new lines
+	Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
+		uint32_t readcount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
+		//Singles0_CountRate = readcount0 - *prevCount0;
+		Singles0_CountRate = readcount0;
+
+	//SinglesCounter0_Read(&prevCount0);
 	sprintf(Singles0_CountRateArray, "%lu,", Singles0_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Singles0_CountRateArray, strlen(Singles0_CountRateArray));
 }
