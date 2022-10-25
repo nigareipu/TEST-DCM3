@@ -258,12 +258,6 @@ int main(void)
 					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 6\r\n");
 					mode6program();
 				}
-				else if (*mode == 5)
-				{
-					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 6\r\n");
-					mode5program();
-				}
 				else if (*mode == 7)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
