@@ -26,6 +26,7 @@
 #include "mode1.h"
 #include "mode2.h"
 #include "mode3.h"
+#include "mode4.h"
 #include "table.h"
 #include "commands.h"
 //#include "allocate.h"
@@ -176,48 +177,8 @@ int main(void)
 	mode1program();
 
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nRight Before allocation fucntion");
+	Cy_SCB_UART_PutString(UART_HW, "\r\nRight Before allocation function");
 	default_hashtable();
-
-	// Initialize our table, function returns a pointer to our array
-	//hash_table = initialize_table(table_size);
-	// Allocating space to each Key
-	/*mode = allocate_node(hash_table, table_size, sizeof(float), "mode");  //this is a pointer to a node not a
-	VDET0 = allocate_node(hash_table, table_size, sizeof(float), "VDET0");
-    VDET1 = allocate_node(hash_table, table_size, sizeof(float), "VDET1");
-    VDET2 = allocate_node(hash_table, table_size, sizeof(float), "VDET2");
-	VDET3 = allocate_node(hash_table, table_size, sizeof(float), "VDET3");
-    TDET0 = allocate_node(hash_table, table_size, sizeof(float), "TDET0");
-	TDET1 = allocate_node(hash_table, table_size, sizeof(float), "TDET1");
-	TDET2 = allocate_node(hash_table, table_size, sizeof(float), "TDET2");
-	TDET3 = allocate_node(hash_table, table_size, sizeof(float), "TDET3");
-	RTime = allocate_node(hash_table, table_size, sizeof(float), "length");
-	DThrs = allocate_node(hash_table, table_size, sizeof(float), "DThrs");
-	DlayDET0 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET0");
-	DlayDET1 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET1");
-	DlayDET2 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET2");
-	DlayDET3 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET3");
-	CoWin = allocate_node(hash_table, table_size, sizeof(float), "CoWin");
-
-	*mode = 2;
-	*VDET0 = 312;
-	*VDET1 = 337;
-	*VDET2 = 376;
-	*VDET3 = 373;
-	*TDET0 = 0.85;
-	*TDET1 = 0.85;
-	*TDET2 = 0.85;
-	*TDET3 = 0.85;
-	*RTime = 60;
-	*DThrs = 0.05;
-	*DlayDET0 = 1;
-	*DlayDET1= 1;
-	*DlayDET2= 1;
-	*DlayDET3= 1;
-	*CoWin = 1;*/
-
-	discrThresh=0.05;
-
 
 	Cy_SCB_UART_PutString(UART_HW, "I'm here after table\r\n");
 	Cy_SCB_UART_PutString(UART_HW, "\r\n About to go into modes = ");
@@ -279,7 +240,14 @@ int main(void)
 				else if (*mode == 3)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 3\r\n");
 					mode3program();
+				}
+				else if (*mode == 4)
+				{
+					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 4\r\n");
+					mode4program();
 				}
 
 				else
