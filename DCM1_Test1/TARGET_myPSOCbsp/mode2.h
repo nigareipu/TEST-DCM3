@@ -30,14 +30,12 @@
 #include "discr.h"
 #include "mode1.h"
 
-
-
 extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
 extern volatile int count;
 extern char confirmValue[32];
 extern float discrThresh;
-extern float* mode;
 
+extern float* mode;
 extern float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
 

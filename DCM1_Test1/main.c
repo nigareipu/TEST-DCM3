@@ -27,6 +27,7 @@
 #include "mode2.h"
 #include "mode3.h"
 #include "mode4.h"
+#include "mode7.h"
 #include "table.h"
 #include "commands.h"
 //#include "allocate.h"
@@ -249,6 +250,13 @@ int main(void)
 					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 4\r\n");
 					mode4program();
 				}
+				else if (*mode == 7)
+				{
+					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 4\r\n");
+					mode4program();
+				}
+
 
 
 				else
