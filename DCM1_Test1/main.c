@@ -25,6 +25,7 @@
 #include "delay.h"
 #include "mode1.h"
 #include "mode2.h"
+#include "mode3.h"
 #include "table.h"
 #include "commands.h"
 //#include "allocate.h"
@@ -89,16 +90,12 @@ float fvalue;
 
 
 /*New hashtable variables*/
-
 float* mode;
 float* VDET0;
 float* VDET1;
 float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
-
 /*end of hashtable variable declaration*/
-
-
 
 volatile bool coincWindowSetFlag = 0;
 int coincWindowValue;
@@ -115,12 +112,9 @@ char temperatureArray[3];
 char discrThreshArray[4];
 char lengthArray[4];
 
-
-
 unsigned int table_size = 50;
 struct node *hash_table;
 char HashValue[20];
-int testm;
 
 int main(void)
 {
@@ -281,9 +275,12 @@ int main(void)
 					// CODE RUNNING TWO SIDE COINCIDENCE COUNTING MODE
 					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 2\r\n");
 					mode2program();
-
 				}
-
+				else if (*mode == 3)
+				{
+					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					mode3program();
+				}
 
 				else
 				{
