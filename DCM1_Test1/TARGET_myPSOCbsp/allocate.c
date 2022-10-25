@@ -28,6 +28,7 @@ hash_table = initialize_table(table_size);
 	DlayDET2 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET2");
 	DlayDET3 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET3");
 	CoWin = allocate_node(hash_table, table_size, sizeof(float), "CoWin");
+	AnDET = allocate_node(hash_table, table_size, sizeof(float), "AnDET");
 
 
 
@@ -47,6 +48,7 @@ hash_table = initialize_table(table_size);
 	*DlayDET2= 1;
 	*DlayDET3= 1;
 	*CoWin = 1;
+	*AnDET = 0;
 
 }
 

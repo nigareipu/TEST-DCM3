@@ -27,6 +27,7 @@
 #include "mode2.h"
 #include "mode3.h"
 #include "mode4.h"
+#include "mode6.h"
 #include "mode7.h"
 #include "table.h"
 #include "commands.h"
@@ -97,6 +98,7 @@ float* VDET0;
 float* VDET1;
 float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
+float* AnDET;
 /*end of hashtable variable declaration*/
 
 volatile bool coincWindowSetFlag = 0;
@@ -250,10 +252,16 @@ int main(void)
 					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 4\r\n");
 					mode4program();
 				}
+				else if (*mode == 6)
+				{
+					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 6\r\n");
+					mode4program();
+				}
 				else if (*mode == 7)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 4\r\n");
+					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 7\r\n");
 					mode4program();
 				}
 
