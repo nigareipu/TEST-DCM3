@@ -99,6 +99,10 @@ float* VDET1;
 float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
 float* AnDET;
+float *DthrEd, *DthrSt;
+float *TempSt,*TempEd;
+float *VoltSt, *VoltEd;
+
 /*end of hashtable variable declaration*/
 
 volatile bool coincWindowSetFlag = 0;
@@ -215,7 +219,6 @@ int main(void)
 								Cy_SCB_UART_PutString(UART_HW, confirmValue);
 								Cy_SCB_UART_PutString(UART_HW, " V\r\n");
 
-
 				// Divide incoming buffer into command and value sections (ex. first 4 bits are for command and last 4 are for value)
 				// Will only work with terminal connected to it, without it tho all default values should still go through
 				// commandBuffer = strtok(storeBuffer, ";");
@@ -223,9 +226,7 @@ int main(void)
 				// fvalue = atof(valueBuffer);
 				//*command = fvalue;
 				// update_table(commandBuffer, fvalue);
-
 				// String comparison. List of possible commands and values are compared to invoke the proper function and arguments.
-
 				// float* mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
 
 				if (*mode == 1)
@@ -252,6 +253,12 @@ int main(void)
 					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 4\r\n");
 					mode4program();
 				}
+				else if (*mode == 5)
+				{
+					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 5\r\n");
+					mode5program();
+				}
 				else if (*mode == 6)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
@@ -264,8 +271,6 @@ int main(void)
 					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 7\r\n");
 					mode7program();
 				}
-
-
 
 				else
 				{

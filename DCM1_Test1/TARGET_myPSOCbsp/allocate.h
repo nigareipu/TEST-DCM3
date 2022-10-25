@@ -41,6 +41,9 @@ extern float* VDET1;
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
 extern float *AnDET;
+extern float *DthrEd, *DthrSt;
+extern float *TempSt,*TempEd;
+extern float *VoltSt, *VoltEd;
 
 extern struct node *hash_table;
 extern unsigned int table_size;

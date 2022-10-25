@@ -9,7 +9,7 @@
 void default_hashtable()
 {
 
-hash_table = initialize_table(table_size);
+	hash_table = initialize_table(table_size);
 
 	// Allocating space to each Key
     mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
@@ -29,8 +29,10 @@ hash_table = initialize_table(table_size);
 	DlayDET3 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET3");
 	CoWin = allocate_node(hash_table, table_size, sizeof(float), "CoWin");
 	AnDET = allocate_node(hash_table, table_size, sizeof(float), "AnDET");
-
-
+	DthrEd = allocate_node(hash_table, table_size, sizeof(float), "DthrEd");
+	DthrSt = allocate_node(hash_table, table_size, sizeof(float), "DthrSt");
+	TempSt = allocate_node(hash_table, table_size, sizeof(float), "TempSt");
+	TempEd = allocate_node(hash_table, table_size, sizeof(float), "TempEd");
 
 	*mode = 2;
 	*VDET0 = 312;
@@ -49,6 +51,12 @@ hash_table = initialize_table(table_size);
 	*DlayDET3= 1;
 	*CoWin = 1;
 	*AnDET = 0;
+	*DthrEd = 0.2;
+	*DthrSt = 1.10;
+	*TempSt = 0.9 ;
+	*TempEd = 1.35 + 0.01;
+	*VoltSt = 260;
+	*VoltEd = 370;
 
 }
 

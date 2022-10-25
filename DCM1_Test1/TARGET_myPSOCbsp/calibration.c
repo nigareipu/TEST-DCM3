@@ -28,16 +28,16 @@ DCM2: Det 0 - 260
  * @desc For each detector 0-3, does a voltage scan and prints counts at a range of temps
  * @returns Nothing
  */
-/*
+
 void calibrateBreakdownvTemp()
 {
 
-	float startVoltage;
-	float endVoltage;
+	//float startVoltage; //added table
+	//float endVoltage;	//added table
 	float currentVoltage = 0;
 
 	// Threshold chosen here to be 50 mV because it reflects closer breakdown voltage as compared with oscilloscope.
-	discrThresh = 0.05;
+	//discrThresh = 0.05;
 
 	printThermalInfo = 1;
 
@@ -49,10 +49,10 @@ void calibrateBreakdownvTemp()
 	TEC_SW2_Status(ON);
 	TEC_SW3_Status(ON);
 
-	setDiscr0Thresh(discrThresh);
-	setDiscr1Thresh(discrThresh);
-	setDiscr2Thresh(discrThresh);
-	setDiscr3Thresh(discrThresh);
+	setDiscr0Thresh(*DThrs);
+	setDiscr1Thresh(*DThrs);
+	setDiscr2Thresh(*DThrs);
+	setDiscr3Thresh(*DThrs);
 
 	for (int d = 0; d <= 3; d++)
 	{
@@ -63,48 +63,11 @@ void calibrateBreakdownvTemp()
 			return;
 		}
 
-		// Pick a detector
-		if (d == 0)
-		{
-			detector = DET0;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 0 Calibration\r\n");
-			startVoltage = 340; // DCM1: 240; DCM2:
-			endVoltage = 370;	// DCM1:290;
-			currentVoltage = 0;
-		}
-		else if (d == 1)
-		{
-
-			detector = DET1;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 1 Calibration\r\n");
-			startVoltage = 340; // DCM1: 240; DCM2:
-			endVoltage = 370;	// DCM1:290;
-			currentVoltage = 0;
-			SetDetectorVoltage(DET0, 0);
-		}
-		else if (d == 2)
-		{
-			detector = DET2;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 2 Calibration\r\n");
-			startVoltage = 300; // DCM1: 238; DCM2:
-			endVoltage = 330;	// DCM1:288;
-			currentVoltage = 0;
-			SetDetectorVoltage(DET1, 0);
-		}
-		else if (d == 3)
-		{
-
-			detector = DET3;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 3 Calibration\r\n");
-			startVoltage = 270; // DCM1: 247; DCM2:
-			endVoltage = 300;	// DCM1: 297; DCM2:
-			currentVoltage = 0;
-			SetDetectorVoltage(DET2, 0);
-		}
+		//Now one voltage set for all detectors
 
 		// Set temperature loop.. make sure to print also what the temperature is.
 		// Range should be 0.9-1.36 corresponds to 16 degrees to -20 degrees (celsius)
-		for (float temp = 0.9; temp <= 1.35 + 0.01; temp = temp + 0.1)
+		for (float temp = *TempSt; temp <= *TempEd; temp = temp + 0.1)
 		{
 
 			if (*rxBuffer == 'q' || *rxBuffer == 'a')
@@ -137,16 +100,16 @@ void calibrateBreakdownvTemp()
 			//	}
 
 			// Slowly ramp up bias voltage
-			while (currentVoltage < startVoltage)
+			while (currentVoltage < *VoltSt)
 			{
 				SetDetectorVoltage(detector, currentVoltage);
 				currentVoltage = currentVoltage + 10;
 				cyhal_system_delay_ms(10);
 			}
-			SetDetectorVoltage(detector, startVoltage);
+			SetDetectorVoltage(detector, *VoltSt);
 
 			// Do a voltage scan at each temperature
-			VoltageScan(detector, startVoltage, endVoltage);
+			VoltageScan(detector, *VoltSt, *VoltEd);
 		}
 	}
 
@@ -163,13 +126,11 @@ void calibrateBreakdownvTemp()
 	uartRxCompleteFlag = 0;
 	count = 0;
 }
-*/
 /*
  * @desc At -20c and 20v above breakdown, prints counts for a range of discr thresh
  * @returns Nothing
  */
 
-/*
 void calibrateCountsvDiscThresh()
 {
 
@@ -177,13 +138,6 @@ void calibrateCountsvDiscThresh()
 	float volt1 = 0;
 	float volt2 = 0;
 	float volt3 = 0;
-	// Should be 20v above breakdown, see datasheet for approx breakdown
-	float DET0_voltage = 381.5;
-	float DET1_voltage = 379.5;
-	float DET2_voltage = 344;
-	float DET3_voltage = 315.5;
-	// Temperature at -12
-	float temp = 0.9;
 
 	printThermalInfo = 1;
 
@@ -195,7 +149,7 @@ void calibrateCountsvDiscThresh()
 	TEC_SW2_Status(ON);
 	TEC_SW3_Status(ON);
 
-	StabilizeAllTemp(temp);
+	StabilizeAllTemp(*TDET0);
 
 	if (*rxBuffer == 'q' || *rxBuffer == 'b')
 	{
@@ -204,40 +158,40 @@ void calibrateCountsvDiscThresh()
 	}
 
 	// Set voltage of detectors gradually
-	while (volt0 < DET0_voltage)
+	while (volt0 < *VDET0)
 	{
 		SetDetectorVoltage(DET0, volt0);
 		volt0 = volt0 + 10;
 		cyhal_system_delay_ms(10);
 	}
-	SetDetectorVoltage(DET0, DET0_voltage);
+	SetDetectorVoltage(DET0, *VDET0);
 
-	while (volt1 < DET1_voltage)
+	while (volt1 < *VDET1)
 	{
 		SetDetectorVoltage(DET1, volt1);
 		volt1 = volt1 + 10;
 		cyhal_system_delay_ms(10);
 	}
-	SetDetectorVoltage(DET1, DET1_voltage);
+	SetDetectorVoltage(DET1, *VDET1);
 
-	while (volt2 < DET2_voltage)
+	while (volt2 < *VDET2)
 	{
 		SetDetectorVoltage(DET2, volt2);
 		volt2 = volt2 + 10;
 		cyhal_system_delay_ms(10);
 	}
-	SetDetectorVoltage(DET2, DET2_voltage);
+	SetDetectorVoltage(DET2, *VDET2);
 
-	while (volt3 < DET3_voltage)
+	while (volt3 < *VDET3)
 	{
 		SetDetectorVoltage(DET3, volt3);
 		volt3 = volt3 + 10;
 		cyhal_system_delay_ms(10);
 	}
-	SetDetectorVoltage(DET3, DET3_voltage);
+	SetDetectorVoltage(DET3, *VDET3);
 
 	// Threshold less than 0.14 V can lead to double counting noisy falling edge of avalanche.
-	for (float thresh = 0.20; thresh < 1.10; thresh = thresh + 0.01)
+	for (float thresh = *DthrSt; thresh < *DthrEd; thresh = thresh + 0.01)
 	{
 
 		if (*rxBuffer == 'q' || *rxBuffer == 'b')
@@ -270,7 +224,7 @@ void calibrateCountsvDiscThresh()
 			GetSingles1Counts();
 			GetSingles2Counts();
 			GetSingles3Counts();
-			UpdateAllTemp(temp);
+			UpdateAllTemp(*TDET0);
 			Cy_SCB_UART_PutString(UART_HW, "\r\n");
 			cyhal_system_delay_ms(1000);
 		}
@@ -285,12 +239,12 @@ void calibrateCountsvDiscThresh()
 	TEC_Driver0_Status(OFF);
 	TEC_Driver1_Status(OFF);
 }
-*/
+
 /*
  * @desc For each detector 0-3, does a voltage scan starting at breakdown at 0c
  * @returns Nothing
  */
-/*
+
 void calibrateCountsvBiasVolt()
 {
 
@@ -300,20 +254,19 @@ void calibrateCountsvBiasVolt()
 	}
 
 	// choose start at previously found Breakdown
-	float startVoltage = 0;
-	float endVoltage = 0;
+	//float startVoltage = 0;
+	//float endVoltage = 0;
 	float currentVoltage = 0;
-	float temp = 1.15;
-	discrThresh = 0.20;
+	//float temp = 1.15;
 
 	// Cy_SCB_UART_Enable(UART_HW);
 
 	printThermalInfo = 1;
 
-	setDiscr0Thresh(discrThresh);
-	setDiscr1Thresh(discrThresh);
-	setDiscr2Thresh(discrThresh);
-	setDiscr3Thresh(discrThresh);
+	setDiscr0Thresh(*DThrs);
+	setDiscr1Thresh(*DThrs);
+	setDiscr2Thresh(*DThrs);
+	setDiscr3Thresh(*DThrs);
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nTurning on TEC Drivers\r\n");
 	TEC_Driver0_Status(ON);
@@ -334,69 +287,21 @@ void calibrateCountsvBiasVolt()
 
 		currentVoltage = 0;
 
-		if (d == 0)
-		{
-
-			detector = DET0;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 0 Calibration\r\n");
-
-			startVoltage = 360;
-			endVoltage = 365;
-			// startVoltage = 350; //Vbr = 354
-			// endVoltage = 380;
-		}
-		else if (d == 1)
-		{
-
-			detector = DET1;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 1 Calibration\r\n");
-
-			startVoltage = 375;
-			endVoltage = 380;
-
-			// startVoltage = 347; // Vbr=351.5
-			// endVoltage = 377;
-		}
-		else if (d == 2)
-		{
-
-			detector = DET2;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 2 Calibration\r\n");
-
-			startVoltage = 330;
-			endVoltage = 335;
-
-			// startVoltage = 310;//Vbr=314
-			// endVoltage = 340;
-		}
-		else if (d == 3)
-		{
-
-			detector = DET3;
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDetector 3 Calibration\r\n");
-
-			startVoltage = 314;
-			endVoltage = 320;
-
-			// startVoltage = 288;//Vbr = 291
-			// endVoltage = 318;
-		}
-
 		// Slowly ramp up bias voltage
-		while (currentVoltage < startVoltage)
+		while (currentVoltage < *VoltSt)
 		{
 			SetDetectorVoltage(detector, currentVoltage);
 			currentVoltage = currentVoltage + 10;
 			cyhal_system_delay_ms(10);
 		}
 
-		SetDetectorVoltage(detector, startVoltage);
+		SetDetectorVoltage(detector, *VoltSt);
 
 		// Stabilize temp for 30 s
 		Cy_SCB_UART_PutString(UART_HW, "Stabilizing temperatures for 30 s\r\n");
-		StabilizeAllTemp(temp);
+		StabilizeAllTemp(*TDET0);
 
-		VoltageScan(detector, startVoltage, endVoltage);
+		VoltageScan(detector, *VoltSt, *VoltEd);
 	}
 
 	Cy_SCB_UART_PutString(UART_HW, "Turning off all TECs\r\n\r\n");
@@ -409,4 +314,4 @@ void calibrateCountsvBiasVolt()
 	TEC_Driver0_Status(OFF);
 	TEC_Driver1_Status(OFF);
 }
-*/
+
