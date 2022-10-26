@@ -26,7 +26,7 @@ void Init_Hardware()
 }
 
 
-void setLengthCommand()
+/*void setLengthCommand() // don't need this command
 {
 
 	// Storing the temperature value
@@ -57,7 +57,7 @@ void setLengthCommand()
 		uartRxCompleteFlag = 0;
 		count = 0;
 	}
-}
+}*/
 
 /*
 void setMasterTEC(){
@@ -85,7 +85,7 @@ void setMasterTEC(){
 
 }*/
 
-void setTECCommand()
+/*void setTECCommand() //don't need it, a
 {
 
 	// Storing the temperature value
@@ -197,13 +197,13 @@ void setTECCommand()
 		uartRxCompleteFlag = 0;
 		count = 0;
 	}
-}
+}*/
 
 /*
  * @desc Stores detector voltage variable.  DOES NOT SET VOLTAGE ITSELF.
  * @returns Nothing
  */
-void setVoltageCommand()
+/*void setVoltageCommand()
 {
 
 	// To check which detector, only compare first elements of value buffer
@@ -237,7 +237,7 @@ void setVoltageCommand()
 		// Change remaining array into float and set detector voltage
 		/*Since only can PutArray into serial buffer, must do trick of sprintf the float value
 		into confirmValue and then print the confirmValue array*/
-
+/*
 		DET0_voltage = atof(voltageArray);
 		if (DET0_voltage > 500)
 		{
@@ -386,7 +386,7 @@ void setVoltageCommand()
 		uartRxCompleteFlag = 0;
 		count = 0;
 	}
-}
+}*/
 
 /*
  * @desc Command that checks if value for coincidence window is valid
@@ -395,31 +395,25 @@ void setVoltageCommand()
 void setCoincidenceWindowCommand(float ConcidanceWindow)
 {
 
-	/*Cy_SCB_UART_PutString(UART_HW, "\r\n Command = ");
-	Cy_SCB_UART_PutArray(UART_HW, commandBuffer, sizeof(commandBuffer));
-	Cy_SCB_UART_PutString(UART_HW, "\r\n Value = ");
-	Cy_SCB_UART_PutArray(UART_HW, valueBuffer, 4);*/
-
-	//if (strncmp(valueBuffer, "0000", sizeof(valueBuffer)) == 0)
 	if (ConcidanceWindow == 0)
 
 	{
-
 		CoincidenceWindow_Set(0, 0);
-
+		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 0\r\n");
 	}
-	//else if (strncmp(valueBuffer, "0001", sizeof(valueBuffer)) == 0)
+
 	else if (ConcidanceWindow == 1)
 	{
 
 		CoincidenceWindow_Set(0, 1);
-
+		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 1\r\n");
 	}
-	//else if (strncmp(valueBuffer, "0010", sizeof(valueBuffer)) == 0)
+
 	else if (ConcidanceWindow == 2)
 	{
 
 		CoincidenceWindow_Set(1, 0);
+		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 2\r\n");
 
 	}
 	//else if (strncmp(valueBuffer, "0011", sizeof(valueBuffer)) == 0)
@@ -427,6 +421,7 @@ void setCoincidenceWindowCommand(float ConcidanceWindow)
 	{
 
 		CoincidenceWindow_Set(1, 1);
+		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 3\r\n");
 
 	}
 	else
@@ -446,32 +441,32 @@ void setCoincidenceWindowCommand(float ConcidanceWindow)
 void setDelay0Command(float DelayValue)
 {
 
-	/*Cy_SCB_UART_PutString(UART_HW, "\r\n Command = ");
-	Cy_SCB_UART_PutArray(UART_HW, commandBuffer, sizeof(commandBuffer));
-	Cy_SCB_UART_PutString(UART_HW, "\r\n Value = ");*/
-
 	if (DelayValue == 0)
 	{
 
 		Delay0_Set(0, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 0\r\n");
 
 	}
 	else if (DelayValue == 1)
 	{
 
 		Delay0_Set(0, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 1\r\n");
 
 	}
 	else if (DelayValue == 2)
 	{
 
 		Delay0_Set(1, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 2\r\n");
 
 	}
 	else if (DelayValue == 3)
 	{
 
 		Delay0_Set(1, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 3\r\n");
 
 	}
 }
@@ -481,20 +476,24 @@ void setDelay1Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay1_Set(0, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay1_Set(0, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 
 		Delay1_Set(1, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 2\r\n");
 
 	}
 	else if (DelayValue == 3)
 	{
 		Delay1_Set(1, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 3\r\n");
 
 	}
 }
@@ -504,20 +503,24 @@ void setDelay2Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay2_Set(0, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay2_Set(0, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 
 		Delay2_Set(1, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 2\r\n");
 
 	}
 	else if (DelayValue == 3)
 	{
 		Delay2_Set(1, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 3\r\n");
 
 	}
 }
@@ -527,20 +530,24 @@ void setDelay3Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay3_Set(0, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay3_Set(0, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 
 		Delay3_Set(1, 0);
+		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 2\r\n");
 
 	}
 	else if (DelayValue == 3)
 	{
 		Delay3_Set(1, 1);
+		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 3\r\n");
 
 	}
 }
@@ -551,7 +558,7 @@ void setDelay3Command(float DelayValue)
  * @desc Checks the temperature value is valid and stores it
  * @returns Nothing
  */
-void setTempCommand()
+/*void setTempCommand()
 {
 
 	// Storing the temperature value
@@ -587,13 +594,13 @@ void setTempCommand()
 		uartRxCompleteFlag = 0;
 		count = 0;
 	}
-}
+}*/
 
 /*
  * @desc Gets discriminator threshold value and sets all discriminators
  * @returns Nothing
  */
-void setDiscrThreshCommand()
+/*void setDiscrThreshCommand()
 {
 
 	float discrThresh;
@@ -624,4 +631,4 @@ void setDiscrThreshCommand()
 	Cy_SCB_UART_PutString(UART_HW, "\r\n Choose another command and value \r\n ");
 	uartRxCompleteFlag = 0;
 	count = 0;
-}
+}*/

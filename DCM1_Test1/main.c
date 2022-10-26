@@ -8,7 +8,9 @@
 
 #include "mainheader.h"
 
-
+/*
+ * Check if all the header declaration in a separate .h file. does it make any difference?
+ */
 
 /***************************  DEFINITIONS  *************************************/
 
@@ -63,7 +65,7 @@ int main(void)
 	CoincidenceCounter2_Init();
 	CoincidenceCounter3_Init();
 
-	StartCounters();
+	//StartCounters();
 
 	// Upon RESET, re-iterate that in IDLE MODE
 	// Should probably check in actuality if in Idle mode..

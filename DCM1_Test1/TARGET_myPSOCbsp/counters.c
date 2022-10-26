@@ -198,15 +198,20 @@ void CoincidenceCounter3_Init(void)
  */
 void SinglesCounter0_Read(uint32_t *prevCount0)
 {
-
 	uint32_t readcount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
 	Singles0_CountRate = readcount0 - *prevCount0;
-
 	*prevCount0 = readcount0;
 
-	// Cy_SCB_UART_PutString(UART_HW,"SinglesCounter0_Read = ");
-	// sprintf(confirmValue,"%lu",Singles0_CountRate);
-	// Cy_SCB_UART_PutArray(UART_HW,confirmValue,10);
+	/*
+	 * if(*prevCount0> 4294900000)
+	 * {
+	 * Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
+	   Cy_TCPWM_TriggerStart_Single(Singles_0_HW, Singles_0_NUM);
+	   prevCount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
+	   }
+
+	 */
+
 }
 
 /*
@@ -218,15 +223,11 @@ void SinglesCounter0_Read(uint32_t *prevCount0)
 void SinglesCounter1_Read(uint32_t *prevCount1)
 {
 
-	// printf("prevCount0 = %lu\r\n",*prevCount0);
-	uint32_t readcount1 = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
-	// printf("readcount0 = %lu\r\n",readcount0);
-	Singles1_CountRate = readcount1 - *prevCount1;
-	// printf("Singles 0 count rate = %lu\r\n",Singles0_CountRate);
-	*prevCount1 = readcount1;
-	// printf("new prevCount0 = %lu\r\n",*prevCount0);
 
-	// return Singles1_CountRate;
+	uint32_t readcount1 = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
+	Singles1_CountRate = readcount1 - *prevCount1;
+	*prevCount1 = readcount1;
+
 }
 
 /*
@@ -239,12 +240,10 @@ void SinglesCounter2_Read(uint32_t *prevCount2)
 {
 
 	uint32_t readcount2 = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
-
 	Singles2_CountRate = readcount2 - *prevCount2;
-
 	*prevCount2 = readcount2;
 
-	// return Singles2_CountRate;
+	// updates Singles2_CountRate;
 }
 
 /*
@@ -257,12 +256,10 @@ void SinglesCounter3_Read(uint32_t *prevCount3)
 {
 
 	uint32_t readcount3 = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
-
 	Singles3_CountRate = readcount3 - *prevCount3;
-
 	*prevCount3 = readcount3;
 
-	// return Singles3_CountRate;
+	// updates Singles3_CountRate;
 }
 
 /*
@@ -275,16 +272,11 @@ void CoincidenceCounter0_Read(uint32_t *prevCoinCount0)
 {
 
 	uint32_t readCoincount0 = Cy_TCPWM_Counter_GetCounter(Coinc_0_HW, Coinc_0_NUM);
-
 	Coincidence0_CountRate = readCoincount0 - *prevCoinCount0;
-
 	*prevCoinCount0 = readCoincount0;
 
-	/*char coin0_readArray[10] = {0,0,0,0,0,0,0,0,0,0};
-	sprintf(coin0_readArray,",%lu,",readCoincount0);
-	Cy_SCB_UART_PutArray(UART_HW,coin0_readArray,5);*/
 
-	// return Coincidence0_CountRate;
+	// updates Coincidence0_CountRate;
 }
 
 /*
@@ -297,16 +289,11 @@ void CoincidenceCounter1_Read(uint32_t *prevCoinCount1)
 {
 
 	uint32_t readCoincount1 = Cy_TCPWM_Counter_GetCounter(Coinc_1_HW, Coinc_1_NUM);
-
 	Coincidence1_CountRate = readCoincount1 - *prevCoinCount1;
-
 	*prevCoinCount1 = readCoincount1;
 
-	/*char coin1_readArray[10] = {0,0,0,0,0,0,0,0,0,0};
-	sprintf(coin1_readArray,",%lu,",readCoincount1);
-	Cy_SCB_UART_PutArray(UART_HW,coin1_readArray,5);*/
 
-	// return Coincidence1_CountRate;
+	// updates Coincidence1_CountRate;
 }
 
 /*
@@ -319,16 +306,11 @@ void CoincidenceCounter2_Read(uint32_t *prevCoinCount2)
 {
 
 	uint32_t readCoincount2 = Cy_TCPWM_Counter_GetCounter(Coinc_2_HW, Coinc_2_NUM);
-
 	Coincidence2_CountRate = readCoincount2 - *prevCoinCount2;
-
 	*prevCoinCount2 = readCoincount2;
 
-	/*char coin2_readArray[10] = {0,0,0,0,0,0,0,0,0,0};
-	sprintf(coin2_readArray,",%lu,",readCoincount2);
-	Cy_SCB_UART_PutArray(UART_HW,coin2_readArray,5);*/
 
-	// return Coincidence2_CountRate;
+	// updates Coincidence2_CountRate;
 }
 
 /*
@@ -341,16 +323,10 @@ void CoincidenceCounter3_Read(uint32_t *prevCoinCount3)
 {
 
 	uint32_t readCoincount3 = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
-
 	Coincidence3_CountRate = readCoincount3 - *prevCoinCount3;
-
 	*prevCoinCount3 = readCoincount3;
 
-	/*char coin3_readArray[10] = {0,0,0,0,0,0,0,0,0,0};
-	sprintf(coin3_readArray,",%lu,",readCoincount3);
-	Cy_SCB_UART_PutArray(UART_HW,coin3_readArray,5);*/
-
-	// return Coincidence3_CountRate;
+	// updates Coincidence3_CountRate;
 }
 
 /*
@@ -371,13 +347,10 @@ void SysTick_Init()
 void getSysTick(uint32_t *prevTick)
 {
 
-	// printf("prevTick = %lu\r\n",*prevTick);
 	sysTick = Cy_SysTick_GetValue();
-	// printf("sysTick = %lu\r\n",sysTick);
 	deltaTick = sysTick - *prevTick + 10000000;
-	// printf("deltaTick = %lu\r\n", deltaTick);
 	*prevTick = sysTick;
-	// printf("new prevTick = %lu\r\n",*prevTick);
+
 }
 
 /*
@@ -396,16 +369,6 @@ void StartCounters()
 	char prevCoinCount1Array[10];
 	char prevCoinCount2Array[10];
 	char prevCoinCount3Array[10];*/
-
-	// uint8_t test[5] = {1,2,3,4,5};
-
-	// char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
-	//next four lines added by Nigar to see if the initial random counts goes to zero
-	Cy_TCPWM_Counter_Init(Singles_0_HW, Singles_0_NUM, &Singles_0_config);
-	Cy_TCPWM_Counter_Init(Singles_1_HW, Singles_1_NUM, &Singles_1_config);
-	Cy_TCPWM_Counter_Init(Singles_2_HW, Singles_2_NUM, &Singles_2_config);
-	Cy_TCPWM_Counter_Init(Singles_3_HW, Singles_3_NUM, &Singles_3_config);
-
 
 
 	prevCount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
@@ -435,13 +398,24 @@ void GetSingles0Counts()
 {
 
 	char Singles0_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//these are new lines
-	Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
-		uint32_t readcount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
-		//Singles0_CountRate = readcount0 - *prevCount0;
-		Singles0_CountRate = readcount0;
+	     SinglesCounter0_Read(&prevCount0);
 
-	//SinglesCounter0_Read(&prevCount0);
+
+	//Nigar new codes for counter testing after commenting the previous line SinglesCounter0_Read(&prevCount0);
+	/*two things to deal:i) first random count ii) counter overflow
+	 * code1: idea is this snippet will set the counter to zero first and will trigger the counter. If this
+	 * works then remove Cy_TCPWM_TriggerStart_Single from the startcounter() and will not need prevCount*/
+	 /* Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
+	   Cy_TCPWM_TriggerStart_Single(Singles_0_HW, Singles_0_NUM);
+	   cyhal_system_delay_ms(1000);
+		uint32_t readcount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
+		Singles0_CountRate = readcount0;
+	 */
+	  /*
+	   * code2: if code1 doesn't work, then try next. include _Counter_SetCounter and  TriggerStart_Single inside Startcounter
+	   * (). add few line of code inside SinglesCounter0_Read
+	   */
+
 	sprintf(Singles0_CountRateArray, "%lu,", Singles0_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Singles0_CountRateArray, strlen(Singles0_CountRateArray));
 }

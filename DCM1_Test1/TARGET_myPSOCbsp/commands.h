@@ -41,20 +41,20 @@ extern float fvalue;
 extern char* command;
 
 void Init_Hardware();
-void setTECCommand();
-void setLengthCommand();
-void setVoltageCommand();
+//void setTECCommand();// actually not sure
+//void setLengthCommand();
+//void setVoltageCommand();
 void setCoincidenceWindowCommand(float ConcidanceWindow);
 void setDelay0Command(float DelayValue);
 void setDelay1Command(float DelayValue);
 void setDelay2Command(float DelayValue);
 void setDelay3Command(float DelayValue);
-void setTempCommand();
-void setAnnealingTempCommand();
-void setDiscrThreshCommand();
+//void setTempCommand();
+//void setAnnealingTempCommand();
+//void setDiscrThreshCommand();
 
 // Updating Hash Table Values
-void* inout();
-void update_table(char* command, float value);
+//void* inout();
+//void update_table(char* command, float value);
 
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_COMMANDS_H_ */
