@@ -58,7 +58,7 @@ void default_hashtable()
 	*DthrSt = 1.10;
 	*TempSt = 0.9 ;
 	*TempEd = 1.35 + 0.01;
-	*Exit=1;
+	*Exit=0;
 	//*VoltSt = 260;
 	//*VoltEd = 370;
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after value assignement \r\n");
