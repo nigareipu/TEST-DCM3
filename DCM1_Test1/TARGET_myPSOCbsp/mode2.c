@@ -127,7 +127,7 @@ void mode2program()
 
 		Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
 
-		SingleSide_Set(1, 1);
+		SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 
 			UpdateAllTemp(*TDET0);
 
@@ -143,7 +143,7 @@ void mode2program()
 					break;
 				}
 
-				UpdateAllTemp(*TDET0); //why PID loop is called twice?
+				UpdateAllTemp(*TDET0); //Nigar: why PID loop is called twice?
 				GetSingles0Counts();
 				GetSingles1Counts();
 				GetSingles2Counts();

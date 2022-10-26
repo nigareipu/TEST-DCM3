@@ -15,6 +15,13 @@ void mode3program()
 	float volt2 = 0;
 	float volt3 = 0;
 
+	/*
+	 * float DET_gradual_variable[] = {0,0,0,0} ;
+       float DET_bias[] = {*VDET0,*VDET1, *VDET2, *VDET3};
+       unsigned int DET[]={DET0,DET1,DET2,DET3};
+	 *
+	 */
+
 	Cy_SCB_UART_PutString(UART_HW, "SET MODE to ACCIDENTAL COUNTING\r\n");
 	printThermalInfo = 1;
 
@@ -86,6 +93,26 @@ void mode3program()
 
 	// Slowly ramp up voltages
 	// Set voltage of detectors gradually
+	/*
+	 * test code for gradual increase
+	 * for(int i=0; i<=3; i++)
+   {
+    while (DET_gradual_variable[i] < DET_bias[i])
+		{
+
+            SetDetectorVoltage(DET[i], DET_gradual_variable[i]);
+			DET_gradual_variable[i] = DET_gradual_variable[i] + 10;
+            cyhal_system_delay_ms(1);
+		}
+           Cy_SCB_UART_PutString(UART_HW, "detector voltage :");
+		sprintf(confirmValue, "%f", DET_bias[i]);
+		Cy_SCB_UART_PutString(UART_HW, confirmValue);
+		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+
+          SetDetectorVoltage(DET[i], DET_bias[i]);
+    }
+	 */
+
 	while (volt0 < *VDET0)
 	{
 		SetDetectorVoltage(DET0, volt0);
@@ -125,7 +152,7 @@ void mode3program()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
 
-	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3;
+	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but Want 12, 01, 23, 03
 	/*setCoincidenceWindowCommand(*CoWin);
 	 *setDelay0Command(*DlayDET0);
 	 *setDelay1Command(*DlayDET1);

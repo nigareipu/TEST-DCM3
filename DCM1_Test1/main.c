@@ -6,7 +6,7 @@
  *******************************************************************************/
 
 
-#include "mainheader.h"
+#include "dcmmain.h"
 
 /*
  * Check if all the header declaration in a separate .h file. does it make any difference?

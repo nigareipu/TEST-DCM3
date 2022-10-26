@@ -19,7 +19,7 @@ void mode4program()
 
 	// CODE FOR RUNNING  MODE
 
-	SingleSide_Set(0, 0);
+	SingleSide_Set(0, 0); //sets coin0-> 0&2 and coin1->1&2; but // Want coin between 0&2 and 1&3
 
 	printThermalInfo = 1;
 
