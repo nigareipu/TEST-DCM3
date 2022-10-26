@@ -54,26 +54,38 @@ void calibrateBreakdownvTemp()
 	setDiscr2Thresh(*DThrs);
 	setDiscr3Thresh(*DThrs);
 
-	for (int d = 0; d <= 3; d++)
+    unsigned int DET[] = {DET0, DET1, DET2, DET3};
+
+    for (int d = 0; d < 4; d++)
 	{
 
-		if (*rxBuffer == 'q' || *rxBuffer == 'a')
+		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-			return;
+			break;//should it be break or return
 		}
 
 		//Now one voltage set for all detectors
 
 		// Set temperature loop.. make sure to print also what the temperature is.
 		// Range should be 0.9-1.36 corresponds to 16 degrees to -20 degrees (celsius)
+		Cy_SCB_UART_PutString(UART_HW, "StartTemp = ");
+		printFloat(*TempSt);
+		Cy_SCB_UART_PutString(UART_HW, "EndTemp = ");
+		printFloat(*TempEd);
+
+		Cy_SCB_UART_PutString(UART_HW, "StartVolt = ");
+		printFloat(*VoltSt);
+		Cy_SCB_UART_PutString(UART_HW, "EndVolt = ");
+		printFloat(*VoltEd);
+
 		for (float temp = *TempSt; temp <= *TempEd; temp = temp + 0.1)
 		{
 
-			if (*rxBuffer == 'q' || *rxBuffer == 'a')
+			if (*Exit == 1)
 			{
 				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-				return;
+				break;
 			}
 
 			Cy_SCB_UART_PutString(UART_HW, "SetTemp = ");
@@ -88,30 +100,35 @@ void calibrateBreakdownvTemp()
 			// stabilize temperature
 			StabilizeAllTemp(temp);
 
-			if (*rxBuffer == 'q' || *rxBuffer == 'a')
+			if (*Exit == 1)
 			{
-				return;
+				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+				break;
 			}
-			//	if (d == 0 || d == 1){
-			//		TEC0_StabilizeTemp(temp);
-			//	}
-			//	else{
-			//		TEC1_StabilizeTemp(temp);
-			//	}
 
-			// Slowly ramp up bias voltage
 			while (currentVoltage < *VoltSt)
 			{
-				SetDetectorVoltage(detector, currentVoltage);
+				SetDetectorVoltage(DET[d], currentVoltage);
 				currentVoltage = currentVoltage + 10;
 				cyhal_system_delay_ms(10);
+
+				Cy_SCB_UART_PutString(UART_HW, "Setting Bias = ");
+				printFloat(currentVoltage);
 			}
-			SetDetectorVoltage(detector, *VoltSt);
+
+			Cy_SCB_UART_PutString(UART_HW, "Detector set to = ");
+			sprintf(txBuffer, "%i", DET[d]);
+			Cy_SCB_UART_Transmit(UART_HW, txBuffer, 8, &uartContext);
+			Cy_SCB_UART_PutString(UART_HW, "\r\n\r\n");
+
+			SetDetectorVoltage(DET[d], *VoltSt);
 
 			// Do a voltage scan at each temperature
-			VoltageScan(detector, *VoltSt, *VoltEd);
+			VoltageScan(DET[d], *VoltSt, *VoltEd);
+
 		}
 	}
+
 
 	SetDetectorVoltage(DET3, 0);
 	// Turn off TECs

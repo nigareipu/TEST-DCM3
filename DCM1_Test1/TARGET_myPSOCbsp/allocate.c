@@ -33,11 +33,13 @@ void default_hashtable()
 	DthrSt = allocate_node(hash_table, table_size, sizeof(float), "DthrSt");
 	TempSt = allocate_node(hash_table, table_size, sizeof(float), "TempSt");
 	TempEd = allocate_node(hash_table, table_size, sizeof(float), "TempEd");
+	VoltSt = allocate_node(hash_table, table_size, sizeof(float), "VoltSt");
+	VoltEd = allocate_node(hash_table, table_size, sizeof(float), "VoltEd");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
 
-	*mode = 2;
+	*mode = 5;
 	*VDET0 = 312;
 	*VDET1 = 337;
 	*VDET2 = 376;
@@ -56,11 +58,11 @@ void default_hashtable()
 	*AnDET = 0;
 	*DthrEd = 0.2;
 	*DthrSt = 1.10;
-	*TempSt = 0.9 ;
-	*TempEd = 1.35 + 0.01;
+	*TempSt = 0.85 ;
+	*TempEd = 1.05;
 	*Exit=0;
-	//*VoltSt = 260;
-	//*VoltEd = 370;
+	*VoltSt = 300;
+	*VoltEd = 310;
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after value assignement \r\n");
 
 }

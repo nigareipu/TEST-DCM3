@@ -30,6 +30,7 @@
 #include "mode2.h"
 #include "mode3.h"
 #include "mode4.h"
+#include "mode5.h"
 #include "mode6.h"
 #include "mode7.h"
 #include "table.h"
