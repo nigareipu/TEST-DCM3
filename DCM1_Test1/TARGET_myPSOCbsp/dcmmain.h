@@ -34,6 +34,7 @@
 #include "mode7.h"
 #include "table.h"
 #include "commands.h"
+#include "allocate.h"
 
 
 /************************  FUNCTION DECLARATIONS  *********************************/
@@ -102,6 +103,7 @@ float* AnDET;
 float *DthrEd, *DthrSt;
 float *TempSt,*TempEd;
 float *VoltSt, *VoltEd;
+float *Exit;
 
 /*end of hashtable variable declaration*/
 

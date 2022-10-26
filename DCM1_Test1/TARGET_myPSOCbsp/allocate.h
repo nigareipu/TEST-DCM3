@@ -43,7 +43,7 @@ extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
 extern float *AnDET;
 extern float *DthrEd, *DthrSt;
 extern float *TempSt,*TempEd;
-extern float *VoltSt, *VoltEd;
+extern float *VoltSt, *VoltEd, *Exit;
 
 extern struct node *hash_table;
 extern unsigned int table_size;

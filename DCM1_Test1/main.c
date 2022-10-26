@@ -8,11 +8,6 @@
 
 #include "dcmmain.h"
 
-/*
- * Check if all the header declaration in a separate .h file. does it make any difference?
- */
-
-/***************************  DEFINITIONS  *************************************/
 
 
 int main(void)
@@ -33,7 +28,7 @@ int main(void)
 
   // Read the current timer value, which should be close to the amount of delay in ms * 10 (5000)
 
-  Cy_SCB_UART_PutString(UART_HW, "Timer interrupt testing\n ");
+  //Cy_SCB_UART_PutString(UART_HW, "Timer interrupt testing\n ");
 
 
 	/*****************************************************************
@@ -100,25 +95,15 @@ int main(void)
 			if (*rxBuffer == '\n' || *rxBuffer == '\r')
 			{
 
-				Cy_SCB_UART_PutString(UART_HW, "*VDET0: \r\n");
-				sprintf(confirmValue, "%f", *VDET0);
-				Cy_SCB_UART_PutString(UART_HW, confirmValue);
-				Cy_SCB_UART_PutString(UART_HW, " V\r\n");
-
-				Cy_SCB_UART_PutString(UART_HW, "DiscrThresh: \r\n");
-								sprintf(confirmValue, "%f", discrThresh);
-								Cy_SCB_UART_PutString(UART_HW, confirmValue);
-								Cy_SCB_UART_PutString(UART_HW, " V\r\n");
 
 				// Divide incoming buffer into command and value sections (ex. first 4 bits are for command and last 4 are for value)
 				// Will only work with terminal connected to it, without it tho all default values should still go through
-				// commandBuffer = strtok(storeBuffer, ";");
-				// valueBuffer = strtok(NULL, ";");
-				// fvalue = atof(valueBuffer);
+				commandBuffer = strtok(storeBuffer, ";");
+				valueBuffer = strtok(NULL, ";");
+			    //fvalue = atof(valueBuffer);
 				//*command = fvalue;
 				// update_table(commandBuffer, fvalue);
-				// String comparison. List of possible commands and values are compared to invoke the proper function and arguments.
-				// float* mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
+
 
 				if (*mode == 1)
 				{

@@ -632,3 +632,24 @@ void setDelay3Command(float DelayValue)
 	uartRxCompleteFlag = 0;
 	count = 0;
 }*/
+
+void startCounting()
+{
+	       GetSingles0Counts();
+			GetSingles1Counts();
+			GetSingles2Counts();
+			GetSingles3Counts();
+			// Want 12, 01, 23, 03
+			GetCoincidence1Counts();
+			GetCoincidence0Counts();
+			GetCoincidence3Counts();
+			GetCoincidence2Counts();
+			Cy_SCB_UART_PutString(UART_HW, "\r\n");
+}
+
+void printFloat(float message)
+{
+	sprintf(confirmValue, "%f", message);
+	Cy_SCB_UART_PutString(UART_HW, confirmValue);
+	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+}

@@ -27,43 +27,27 @@ void mode2program()
 
 	/*****************************Test values for printing*************************/
 	// if (printfeedbackFlag == 1){
-		Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
-		sprintf(confirmValue, "%f", *VDET0);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	// if (printfeedbackFlag == 1){
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
+	    printFloat(*VDET0);
 
-		Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
-		sprintf(confirmValue, "%f", *VDET1);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
+	    printFloat(*VDET1);
 
-		Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
-		sprintf(confirmValue, "%f", *VDET2);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
+	    printFloat(*VDET2);
 
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
+	    printFloat(*VDET3);
 
-		Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
-		sprintf(confirmValue, "%f", *VDET3);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
+	    printFloat(*TDET0);
 
+	    Cy_SCB_UART_PutString(UART_HW, "Runtime :");
+	    printFloat(*RTime);
 
-		Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
-		sprintf(confirmValue, "%f", *TDET0);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
-
-
-		Cy_SCB_UART_PutString(UART_HW, "Runtime :");
-		sprintf(confirmValue, "%f", *RTime);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
-
-		Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
-		sprintf(confirmValue, "%f\r\n", *DThrs);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
+	    printFloat(*DThrs);
 
 
 	/*****************************End of test values for printing***************************/
@@ -135,25 +119,14 @@ void mode2program()
 			{
 				// Press q to exit; must exist within a loop to function.
 
-				if (*rxBuffer == 'q')
+				if (*Exit == 1)
 				{
 					Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-					uartRxCompleteFlag = 0;
-					count = 0;
 					break;
 				}
 
 				UpdateAllTemp(*TDET0); //Nigar: why PID loop is called twice?
-				GetSingles0Counts();
-				GetSingles1Counts();
-				GetSingles2Counts();
-				GetSingles3Counts();
-				// Want 12, 01, 23, 03
-				GetCoincidence1Counts();
-				GetCoincidence0Counts();
-				GetCoincidence3Counts();
-				GetCoincidence2Counts();
-				Cy_SCB_UART_PutString(UART_HW, "\r\n");
+				startCounting();
 				cyhal_system_delay_ms(1000);//Must be kept for accumulating counts/sec
 			}
 

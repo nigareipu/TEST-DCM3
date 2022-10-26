@@ -29,43 +29,27 @@ void mode4program()
 	setDiscr3Thresh(*DThrs);
 
 	/*****************************Test Pritning*************************/
-	Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
-	sprintf(confirmValue, "%f", *VDET0);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	// if (printfeedbackFlag == 1){
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
+	    printFloat(*VDET0);
 
-	Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
-	sprintf(confirmValue, "%f", *VDET1);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
+	    printFloat(*VDET1);
 
-	Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
-	sprintf(confirmValue, "%f", *VDET2);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
+	    printFloat(*VDET2);
 
+	    Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
+	    printFloat(*VDET3);
 
-	Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
-	sprintf(confirmValue, "%f", *VDET3);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
+	    printFloat(*TDET0);
 
+	    Cy_SCB_UART_PutString(UART_HW, "Runtime :");
+	    printFloat(*RTime);
 
-	Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
-	sprintf(confirmValue, "%f", *TDET0);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
-
-
-	Cy_SCB_UART_PutString(UART_HW, "Runtime :");
-	sprintf(confirmValue, "%f", *RTime);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
-
-	Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
-	sprintf(confirmValue, "%f\r\n", *DThrs);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	    Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
+	    printFloat(*DThrs);
 
 	/*****************************TEst printing***************************/
 
@@ -131,7 +115,7 @@ void mode4program()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSingles 0, Singles 1, Singles 2,  Singles 3, Coincidence 0&2, Coincidence 1&3\r\n");
 	//////Noura: Does this need to be commented out
-	StartCounters();
+	//StartCounters();
 
 	for (int k = 0; k < *RTime; k++)
 	{

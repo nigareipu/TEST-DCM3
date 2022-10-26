@@ -49,6 +49,8 @@ void setDelay0Command(float DelayValue);
 void setDelay1Command(float DelayValue);
 void setDelay2Command(float DelayValue);
 void setDelay3Command(float DelayValue);
+void startCounting();
+void printFloat(float message);
 //void setTempCommand();
 //void setAnnealingTempCommand();
 //void setDiscrThreshCommand();
