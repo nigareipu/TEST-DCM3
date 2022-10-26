@@ -111,18 +111,14 @@ void calibrateBreakdownvTemp()
 				SetDetectorVoltage(DET[d], currentVoltage);
 				currentVoltage = currentVoltage + 10;
 				cyhal_system_delay_ms(10);
-
+					/***/
 				Cy_SCB_UART_PutString(UART_HW, "Setting Bias = ");
 				printFloat(currentVoltage);
 			}
 
-			Cy_SCB_UART_PutString(UART_HW, "Detector set to = ");
-			sprintf(txBuffer, "%i", DET[d]);
-			Cy_SCB_UART_Transmit(UART_HW, txBuffer, 8, &uartContext);
 			Cy_SCB_UART_PutString(UART_HW, "\r\n\r\n");
 
 			SetDetectorVoltage(DET[d], *VoltSt);
-
 			// Do a voltage scan at each temperature
 			VoltageScan(DET[d], *VoltSt, *VoltEd);
 
