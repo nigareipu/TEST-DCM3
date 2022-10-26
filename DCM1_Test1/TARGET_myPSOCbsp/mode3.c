@@ -125,7 +125,14 @@ void mode3program()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
 
-	SingleSide_Set(1, 1);
+	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3;
+	/*setCoincidenceWindowCommand(*CoWin);
+	 *setDelay0Command(*DlayDET0);
+	 *setDelay1Command(*DlayDET1);
+	 *setDelay2Command(*DlayDET2);
+	 *setDelay3Command(*DlayDET3);
+	 *
+	 */
 
 	for (int k = 0; k < *RTime; k++)
 	{

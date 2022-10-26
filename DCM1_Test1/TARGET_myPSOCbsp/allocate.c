@@ -45,9 +45,9 @@ void default_hashtable()
 	*TDET3 = 0.85;
 	*RTime = 120;
 	*DThrs = 0.05;
-	*DlayDET0 = 1;
+	*DlayDET0 = 0;
 	*DlayDET1= 1;
-	*DlayDET2= 1;
+	*DlayDET2= 0;
 	*DlayDET3= 1;
 	*CoWin = 1;
 	*AnDET = 0;
