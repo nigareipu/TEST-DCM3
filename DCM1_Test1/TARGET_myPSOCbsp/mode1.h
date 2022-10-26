@@ -31,13 +31,13 @@ extern float discrThresh;
 extern float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
 extern float DET0_temp, DET1_temp, DET2_temp, DET3_temp;
 extern float length;
-//extern volatile bool timer_interrupt_flag;
+// extern volatile bool timer_interrupt_flag;
 
 /*
  *
  * This mode goes into automated turning off all active device
-*
-*/
+ *
+ */
 void mode1program(void);
 
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_MODE1_H_ */

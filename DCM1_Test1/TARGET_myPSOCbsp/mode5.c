@@ -9,7 +9,7 @@
 
 void mode5program()
 {
-	//Need to check the delays
+	// Need to check the delays
 	Cy_SCB_UART_PutString(UART_HW, "SET MODE to CALIBRATION\r\n");
 
 	cyhal_system_delay_ms(3000);

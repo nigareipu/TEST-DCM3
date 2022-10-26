@@ -45,11 +45,11 @@ void mode1program(void)
 	Delay2_Set(0, 0);
 	Delay3_Set(0, 0);
 
-	//timer_interrupt_flag = false;
+	// timer_interrupt_flag = false;
 
-	//Threshold chosen to be low, but above noisy falling edge of avalanche.
+	// Threshold chosen to be low, but above noisy falling edge of avalanche.
 	discrThresh = 0.20;
-	//Change DEFAULT TEMPERATURE here. Vtherm = 0.85 is about room temperature.
+	// Change DEFAULT TEMPERATURE here. Vtherm = 0.85 is about room temperature.
 	DET0_temp = 0.85;
 
 	Cy_SCB_UART_PutString(UART_HW, "Choose another command and value \r\n ");

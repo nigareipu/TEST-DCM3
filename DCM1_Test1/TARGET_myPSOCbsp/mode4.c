@@ -19,7 +19,7 @@ void mode4program()
 
 	// CODE FOR RUNNING  MODE
 
-	SingleSide_Set(0, 0); //sets coin0-> 0&2 and coin1->1&2; but // Want coin between 0&2 and 1&3
+	SingleSide_Set(0, 0); // sets coin0-> 0&2 and coin1->1&2; but // Want coin between 0&2 and 1&3
 
 	printThermalInfo = 1;
 
@@ -30,26 +30,26 @@ void mode4program()
 
 	/*****************************Test Pritning*************************/
 	// if (printfeedbackFlag == 1){
-	    Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
-	    printFloat(*VDET0);
+	Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
+	printFloat(*VDET0);
 
-	    Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
-	    printFloat(*VDET1);
+	Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
+	printFloat(*VDET1);
 
-	    Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
-	    printFloat(*VDET2);
+	Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
+	printFloat(*VDET2);
 
-	    Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
-	    printFloat(*VDET3);
+	Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
+	printFloat(*VDET3);
 
-	    Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
-	    printFloat(*TDET0);
+	Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
+	printFloat(*TDET0);
 
-	    Cy_SCB_UART_PutString(UART_HW, "Runtime :");
-	    printFloat(*RTime);
+	Cy_SCB_UART_PutString(UART_HW, "Runtime :");
+	printFloat(*RTime);
 
-	    Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
-	    printFloat(*DThrs);
+	Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
+	printFloat(*DThrs);
 
 	/*****************************TEst printing***************************/
 
@@ -105,17 +105,14 @@ void mode4program()
 	}
 	SetDetectorVoltage(DET3, *VDET3);
 
-
-
 	HV0_Monitor();
-	cyhal_system_delay_ms(500);//required delay
+	cyhal_system_delay_ms(500); // required delay
 	HV3_Monitor();
-	cyhal_system_delay_ms(500);//required delay
-
+	cyhal_system_delay_ms(500); // required delay
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSingles 0, Singles 1, Singles 2,  Singles 3, Coincidence 0&2, Coincidence 1&3\r\n");
 	//////Noura: Does this need to be commented out
-	//StartCounters();
+	// StartCounters();
 
 	for (int k = 0; k < *RTime; k++)
 	{

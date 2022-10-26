@@ -29,9 +29,9 @@ extern float DET0_temp, DET1_temp, DET2_temp, DET3_temp;
 extern float length;
 extern float discrThresh;
 
-extern float* mode;
-extern float* VDET0;
-extern float* VDET1;
+extern float *mode;
+extern float *VDET0;
+extern float *VDET1;
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
 
