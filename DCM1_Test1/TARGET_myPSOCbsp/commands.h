@@ -19,6 +19,7 @@
 #include "coin_window.h"
 #include "tec.h"
 #include "discr.h"
+#include "mode2.h"
 
 extern int idx;
 extern char voltageArray[3];
@@ -51,6 +52,7 @@ void setDelay2Command(float DelayValue);
 void setDelay3Command(float DelayValue);
 void startCounting();
 void printFloat(float message);
+void settingParameters();
 //void setTempCommand();
 //void setAnnealingTempCommand();
 //void setDiscrThreshCommand();
