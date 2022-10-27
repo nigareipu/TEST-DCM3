@@ -56,8 +56,8 @@ void default_hashtable()
 	*DlayDET3= 1;
 	*CoWin = 3;
 	*AnDET = 0;
-	*DthrEd = 0.2;
-	*DthrSt = 1.10;
+	*DthrEd = 1.10;
+	*DthrSt = 0.2;
 	*TempSt = 0.85 ;
 	*TempEd = 1.05;
 	*Exit=0;

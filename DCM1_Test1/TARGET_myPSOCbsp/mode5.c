@@ -23,9 +23,9 @@ void mode5program()
 	if (*Exit == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		return;
+		mode1program();
 	}
-/*
+
 	Cy_SCB_UART_PutString(UART_HW, "\r\nRunning Detector Counts versus Discriminator Threshold test\r\n");
 
 	calibrateCountsvDiscThresh();
@@ -33,7 +33,7 @@ void mode5program()
 	if (*Exit == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		return;
+		mode1program();
 	}
 
 	cyhal_system_delay_ms(3000);
@@ -45,9 +45,9 @@ void mode5program()
 	if (*Exit == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		return;
+		mode1program();
 	}
-	}*/
+
 
 	mode1program();
 }

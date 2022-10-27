@@ -28,6 +28,7 @@ extern float *AnDET;
 extern float *DthrEd, *DthrSt;
 extern float *TempSt,*TempEd;
 extern float *VoltSt, *VoltEd;
+extern float *Exit;
 
 void calibrateBreakdownvTemp();
 void calibrateCountsvDiscrThresh();
