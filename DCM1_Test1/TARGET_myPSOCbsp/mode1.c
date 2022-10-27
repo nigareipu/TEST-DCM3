@@ -9,7 +9,7 @@
 
 void mode1program(void)
 {
-
+	timer_interrupt_flag = false;
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to IDLE");
 
 	// CODE FOR RUNNING IDLE MODE

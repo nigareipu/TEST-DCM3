@@ -24,8 +24,10 @@
 #include "functions.h"
 #include "tec.h"
 
+
 extern volatile int count;
 extern volatile bool uartRxCompleteFlag;
+extern volatile bool timer_interrupt_flag;
 
 extern float discrThresh;
 extern float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;

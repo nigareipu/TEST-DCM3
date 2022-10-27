@@ -20,7 +20,9 @@
 extern char temperatureArray[3];
 
 // declaration of global PID Coeficients
-extern float kp, ki, kd, k1, k2, k3;
+extern float  k1, k2, k3;
+extern float *kp, *ki, *kd; //PID coefficients
+extern float *PIDLoopDlay;;
 
 // Error parameters
 extern double e, e1, e2, e3, e4, e5; // Error = (SetPoint - Feedback)
