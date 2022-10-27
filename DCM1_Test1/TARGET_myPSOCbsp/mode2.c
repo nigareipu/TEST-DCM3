@@ -48,8 +48,7 @@ void mode2program()
 
 	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 	settingParameters();
-	timer_interrupt_flag == true;
-
+	TEC_controller1ActiveFlag = true;
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
 
 

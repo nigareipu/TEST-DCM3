@@ -9,7 +9,9 @@
 
 void mode1program(void)
 {
-	timer_interrupt_flag = false;
+	TEC_controller1ActiveFlag = false;
+	TEC_controller2ActiveFlag = false;
+
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to IDLE");
 
 	// CODE FOR RUNNING IDLE MODE

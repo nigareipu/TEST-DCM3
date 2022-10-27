@@ -38,10 +38,7 @@ float thermRead3 = 0.0;
 
 float ITEC0_V, ITEC1_V, ITEC0, ITEC1;
 
-bool tecDriver0StatusFlag;
-bool tecDriver1StatusFlag;
-bool targetDetectorFlag;
-bool targetDetectorFlag2;
+
 
 void TEC_Driver0_Init(uint8 status)
 {

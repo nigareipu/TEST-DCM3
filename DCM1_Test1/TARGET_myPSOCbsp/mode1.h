@@ -27,7 +27,8 @@
 
 extern volatile int count;
 extern volatile bool uartRxCompleteFlag;
-extern volatile bool timer_interrupt_flag;
+extern volatile bool TEC_controller1ActiveFlag;
+extern volatile bool TEC_controller2ActiveFlag;
 
 extern float discrThresh;
 extern float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;

@@ -14,7 +14,7 @@ volatile bool DetectorSetFlag;
 void mode6program()
 {
 
-	Cy_SCB_UART_PutString(UART_HW, "SET MODE to Annealing\r\n");
+	Cy_SCB_UART_PutString(UART_HW, "SET MODE to Thermal Annealing\r\n");
 
 	// CODE FOR RUNNING  MODE
 		printThermalInfo = 1;

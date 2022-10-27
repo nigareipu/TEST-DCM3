@@ -32,7 +32,8 @@
 
 extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
 extern volatile int count;
-extern volatile bool timer_interrupt_flag;
+extern volatile bool TEC_controller1ActiveFlag;
+extern volatile bool TEC_controller2ActiveFlag;
 extern char confirmValue[32];
 extern float discrThresh;
 

@@ -30,6 +30,7 @@
 #include "mode2.h"
 #include "mode3.h"
 #include "mode4.h"
+#include "mode5.h"
 #include "mode6.h"
 #include "mode7.h"
 #include "table.h"
@@ -49,11 +50,11 @@ char interpBuffer[8];
 char *commandBuffer;
 char *valueBuffer;
 char confirmValue[32];
-char confirmInputValue[32];
-char confirmConvertedValue[32];
-char confirmdacValue[32];
-char *ptr;
-uint32_t value;
+//char confirmInputValue[32];
+//char confirmConvertedValue[32];
+//char confirmdacValue[32];
+//char *ptr;
+//uint32_t value;
 
 int idx;
 volatile int count;
@@ -61,7 +62,8 @@ volatile bool uartRxCompleteFlag; // flag for notifying that the rx buffer is no
 volatile bool flag_1;			  // flag for notifying that the rx buffer is full and receiving is complete.
 volatile bool printThermalInfo;	  // option to print all thermread data
 volatile bool ThermStabilize;	  // option to do 30 s thermal stabilization. Must be set to 1 initially during first measurements.
-volatile bool timer_interrupt_flag = false;// flag for timer interrupt
+volatile bool TEC_controller1ActiveFlag = false;// flag for timer interrupt
+volatile bool TEC_controller2ActiveFlag = false;
 volatile bool warningFlag = 1; // flag for printing warnings before mode is set. Must be set to 1 to print information.
 
 cyhal_spi_t DiscrDAC_obj;
@@ -106,6 +108,12 @@ float *TempSt,*TempEd;
 float *VoltSt, *VoltEd;
 float *kp, *ki, *kd; //PID coefficients
 float *PIDLoopDlay;
+float tecDriver0StatusFlag;
+float tecDriver1StatusFlag;
+float targetDetectorFlag;
+float targetDetectorFlag0;
+float targetDetectorFlag1;
+float targetDetectorFlag2;
 float *Exit;
 
 /*end of hashtable variable declaration*/
