@@ -22,7 +22,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
     {
 		PID_loop1(*TDET0);
 
-		//Cy_SCB_UART_PutString(UART_HW, "1s Timer interrupt testing\n\r ");
+		Cy_SCB_UART_PutString(UART_HW, "1s Timer interrupt testing\n\r ");
     }
 
 
@@ -105,9 +105,9 @@ void PID_loop1(float tempSet)
 {
 	// Function for cooling down all detectors
 
-	 k1 = *kp + *ki + *kd;
-	 k2 = -*kp - 2 * (*kd);
-	 k3 = *kd;
+	 float k1 = *kp + *ki + *kd;
+	 float k2 = -*kp - 2 * (*kd);
+	 float k3 = *kd;
 
 	 Therm0_Read();
 	 Therm1_Read();
@@ -148,6 +148,8 @@ void PID_loop1(float tempSet)
 	 		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_C, AD56x8_WR_IN_UPD_ALL);
 	 		transmitToHVDAC(dacDataPacket);
 
+	 		Cy_SCB_UART_PutString(UART_HW, "inside PID loop1\n\r ");
+
 	 		printFloat(thermRead0);
 	 		Cy_SCB_UART_PutString(UART_HW, ",");
 
@@ -162,9 +164,9 @@ void PID_loop1(float tempSet)
 
 void PID_loop2(float tempSet)
 {
-	     k1 = *kp + *ki + *kd;
-		 k2 = -*kp - 2 * (*kd);
-		 k3 = *kd;
+	     float k1 = *kp + *ki + *kd;
+		 float k2 = -*kp - 2 * (*kd);
+		 float k3 = *kd;
 
 		Cy_SCB_UART_PutString(UART_HW, "thermRead2 (V), thermRead3 (V), TEC 1 Current (A)\r\n");
 

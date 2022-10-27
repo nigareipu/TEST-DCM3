@@ -20,7 +20,7 @@
 extern char temperatureArray[3];
 
 // declaration of global PID Coeficients
-extern float  k1, k2, k3;
+//extern float  k1, k2, k3;
 extern float *kp, *ki, *kd; //PID coefficients
 extern float *PIDLoopDlay;;
 

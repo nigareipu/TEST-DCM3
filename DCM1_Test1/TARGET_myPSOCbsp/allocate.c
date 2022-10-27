@@ -34,16 +34,17 @@ void default_hashtable()
 	TempSt = allocate_node(hash_table, table_size, sizeof(float), "TempSt");
 	TempEd = allocate_node(hash_table, table_size, sizeof(float), "TempEd");
 	VoltSt = allocate_node(hash_table, table_size, sizeof(float), "VoltSt");
+	VoltEd = allocate_node(hash_table, table_size, sizeof(float), "VoltEd");
 	kp = allocate_node(hash_table, table_size, sizeof(float), "kp");
 	ki = allocate_node(hash_table, table_size, sizeof(float), "ki");
 	kd = allocate_node(hash_table, table_size, sizeof(float), "kd");
-	PIDLoopDlay = allocate_node(hash_table, table_size, sizeof(float), "PIDLoopDlay");
+	//PIDLoopDlay = allocate_node(hash_table, table_size, sizeof(float), "PIDLoopDlay");
 	//targetDetectorFlag= allocate_node(hash_table, table_size, sizeof(float), "targetDetectorFlag");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
 
-	*mode = 5;
+	*mode = 2;
 	*VDET0 = 312;
 	*VDET1 = 337;
 	*VDET2 = 376;
@@ -70,7 +71,7 @@ void default_hashtable()
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;
 	//*targetDetectorFlag=1;
-	*PIDLoopDlay = 1000;
+	//*PIDLoopDlay = 1000;
 	*Exit=0;
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after value assignement \r\n");
