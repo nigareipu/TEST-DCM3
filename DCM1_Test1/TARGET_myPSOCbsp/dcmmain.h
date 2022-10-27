@@ -62,8 +62,8 @@ volatile bool uartRxCompleteFlag; // flag for notifying that the rx buffer is no
 volatile bool flag_1;			  // flag for notifying that the rx buffer is full and receiving is complete.
 volatile bool printThermalInfo;	  // option to print all thermread data
 volatile bool ThermStabilize;	  // option to do 30 s thermal stabilization. Must be set to 1 initially during first measurements.
-volatile bool TEC_controller1ActiveFlag = false;// flag for timer interrupt
-volatile bool TEC_controller2ActiveFlag = false;
+volatile bool TEC_controller1ActiveFlag;// flag for timer interrupt
+volatile bool TEC_controller2ActiveFlag;
 volatile bool warningFlag = 1; // flag for printing warnings before mode is set. Must be set to 1 to print information.
 
 cyhal_spi_t DiscrDAC_obj;

@@ -9,8 +9,10 @@
 
 void mode1program(void)
 {
-	TEC_controller1ActiveFlag = false;
-	TEC_controller2ActiveFlag = false;
+	TEC_controller1ActiveFlag = 1;
+	TEC_controller2ActiveFlag = 1;
+	targetDetectorFlag0 = 0;
+	targetDetectorFlag1 =0;
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to IDLE");
 

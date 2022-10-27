@@ -21,14 +21,6 @@ int main(void)
 	__enable_irq();
 
 
-	 /* ***********Timer code******************************
-	 ************************************************** */
-
-	cyhal_timer_event_interrupt();
-
-  // Read the current timer value, which should be close to the amount of delay in ms * 10 (5000)
-
-  //Cy_SCB_UART_PutString(UART_HW, "Timer interrupt testing\n ");
 
 
 	/*****************************************************************
@@ -59,6 +51,20 @@ int main(void)
 	CoincidenceCounter1_Init();
 	CoincidenceCounter2_Init();
 	CoincidenceCounter3_Init();
+
+
+ /* ***********Timer code******************************
+	 ************************************************** */
+	TEC_controller1ActiveFlag = 1;
+	TEC_controller2ActiveFlag = 1;
+	targetDetectorFlag0 = 0;
+	targetDetectorFlag1 =0;
+	cyhal_timer_event_interrupt();
+
+	  // Read the current timer value, which should be close to the amount of delay in ms * 10 (5000)
+
+	  //Cy_SCB_UART_PutString(UART_HW, "Timer interrupt testing\n ");
+
 
 	//StartCounters();
 

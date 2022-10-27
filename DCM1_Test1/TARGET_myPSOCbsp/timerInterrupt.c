@@ -5,7 +5,7 @@
  *      Author: n6sultan
  */
 #include "timerInterrupt.h"
-#include "tec.h"
+
 
 double e_0 = 0; // Error = (SetPoint - Feedback)
 double e1_0 = 0;
@@ -14,12 +14,27 @@ double e_1 = 0;
 double e1_1 = 0;
 double e2_1 = 0;
 
+//double C_output = 0.0;
+//double prev_output = 1.5;
+/*double prev_output0 = 1.5;
+double prev_output1 = 1.5;
+double C_output0 = 0.0;
+double C_output1 = 0.0;
+
+float thermRead = 0.0;
+float thermRead0 = 0.0; // System output temperature in voltage for Tec 0
+float thermRead1 = 0.0; // System output temperature in voltage for Tec 1
+float thermRead2 = 0.0; // System output temperature in voltage for Tec 2
+float thermRead3 = 0.0;*/
+
 
 void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 {
  //First TEC controller
-	if(TEC_controller1ActiveFlag == true)
+	if(TEC_controller1ActiveFlag == 1)
     {
+	Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
+			    printFloat(*TDET0);
 		PID_loop1(*TDET0);
 
 		Cy_SCB_UART_PutString(UART_HW, "1s Timer interrupt testing\n\r ");
@@ -41,7 +56,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
     	}
 
 	//Second TEC controller
-	if(TEC_controller1ActiveFlag == true)
+	/*if(TEC_controller1ActiveFlag == 1)
 	    {
 			PID_loop2(*TDET0);
 
@@ -58,7 +73,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 	    	 prev_output1 = 1.5;
 	    	 C_output1 = 0.0;
 	    	Cy_SCB_UART_PutString(UART_HW, "do nothing\n\r ");
-	    	}
+	    	}*/
 
 
 }
@@ -105,12 +120,21 @@ void PID_loop1(float tempSet)
 {
 	// Function for cooling down all detectors
 
+	Cy_SCB_UART_PutString(UART_HW, "inside PID loop1 start\n\r ");
+
+
 	 float k1 = *kp + *ki + *kd;
-	 float k2 = -*kp - 2 * (*kd);
+	 float k2 = -*kp -  2* (*kd);
 	 float k3 = *kd;
+
+	 printFloat(k1);
+	 printFloat(k2);
+	 printFloat(k3);
 
 	 Therm0_Read();
 	 Therm1_Read();
+
+	 Cy_SCB_UART_PutString(UART_HW, "read therm value \n\r ");
 
 	 		if (targetDetectorFlag0 == 0)
 	 		{
@@ -126,11 +150,17 @@ void PID_loop1(float tempSet)
 	 			thermRead0 = 0;
 	 		}
 
+            printFloat(targetDetectorFlag0);
+	 		//Cy_SCB_UART_PutString(UART_HW, "passed thermRead selection \n\r ");
+
 	 		// PID Controller
 	 		e2_0 = e1_0;
 	 		e1_0 = e_0;
 	 		e_0 = tempSet - thermRead0;							 // Calculating the error
 	 		C_output0 = prev_output0 + k1 * e_0 + k2 * e1_0 + k3 * e2_0; // Adjusting Correction Value
+
+	 		//printFloat(C_output0);
+	 		//Cy_SCB_UART_PutString(UART_HW, "passed thermRead selection \n\r ");
 
 	 		if (C_output0 > 1.95)
 	 		{
@@ -142,13 +172,19 @@ void PID_loop1(float tempSet)
 	 		}
 
 	 		prev_output0 = C_output0; // Correction value stored in prev_output
+	 		Cy_SCB_UART_PutString(UART_HW, "prev_output0: \n\r ");
+	 		printFloat(prev_output0);
 
 	 		// Applying correction to minimize error
-	 		dacValue = convertTempSetVoltagetoDACVoltage(C_output);
-	 		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_C, AD56x8_WR_IN_UPD_ALL);
-	 		transmitToHVDAC(dacDataPacket);
+	 		dacValue = convertTempSetVoltagetoDACVoltage(C_output0);
 
-	 		Cy_SCB_UART_PutString(UART_HW, "inside PID loop1\n\r ");
+	 		sprintf(confirmValue, "%d", dacValue);
+	 		Cy_SCB_UART_PutString(UART_HW, confirmValue);
+
+	 		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_C, AD56x8_WR_IN_UPD_ALL);
+	 		//transmitToHVDAC(dacDataPacket);
+
+	 		//Cy_SCB_UART_PutString(UART_HW, "after packet transmit\n\r ");
 
 	 		printFloat(thermRead0);
 	 		Cy_SCB_UART_PutString(UART_HW, ",");
@@ -159,6 +195,7 @@ void PID_loop1(float tempSet)
 	 		// TEC Driver Current reading
 	 		monitorITEC0();
 	 		Cy_SCB_UART_PutString(UART_HW, ",\r\n");
+	 		 Cy_SCB_UART_PutString(UART_HW, " PID loop1 ends\n\r ");
 
 }
 
@@ -167,6 +204,9 @@ void PID_loop2(float tempSet)
 	     float k1 = *kp + *ki + *kd;
 		 float k2 = -*kp - 2 * (*kd);
 		 float k3 = *kd;
+
+		 Cy_SCB_UART_PutString(UART_HW, "inside PID loop2 start\n\r ");
+
 
 		Cy_SCB_UART_PutString(UART_HW, "thermRead2 (V), thermRead3 (V), TEC 1 Current (A)\r\n");
 
@@ -208,7 +248,7 @@ void PID_loop2(float tempSet)
 
 			dacValue = convertTempSetVoltagetoDACVoltage(C_output);
 			dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_D, AD56x8_WR_IN_UPD_ALL);
-			transmitToHVDAC(dacDataPacket);
+			//transmitToHVDAC(dacDataPacket);
 
 			printFloat(thermRead2);
 			Cy_SCB_UART_PutString(UART_HW, ",");
@@ -218,4 +258,5 @@ void PID_loop2(float tempSet)
 
 			monitorITEC1();
 			Cy_SCB_UART_PutString(UART_HW, ",\r\n");
+			Cy_SCB_UART_PutString(UART_HW, " PID loop2 ends\n\r ");
 		}

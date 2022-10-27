@@ -75,5 +75,6 @@ void TEC1_updateTemp(float tempSet);
 void StabilizeAllTemp(float tempSet);
 void UpdateAllTemp(float tempSet);
 void Annealing(uint16_t detector, float length, float Annealing_temp);
+void PID_loop1(float tempSet);
 
 #endif /* TARGET_MYPSOCBSP_TEC_H_ */

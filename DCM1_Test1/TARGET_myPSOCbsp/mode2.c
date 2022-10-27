@@ -48,8 +48,8 @@ void mode2program()
 
 	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 	settingParameters();
-	TEC_controller1ActiveFlag = true;
-	TEC_controller1ActiveFlag = false;
+	TEC_controller1ActiveFlag = 1;
+	TEC_controller2ActiveFlag = 1;
 	targetDetectorFlag0 = 0;
 	targetDetectorFlag1 =0;
 
@@ -70,6 +70,7 @@ void mode2program()
 				}
 
 				UpdateAllTemp(*TDET0); //
+
 				startCounting();
 				cyhal_system_delay_ms(1000);//Must be kept for accumulating counts/sec
 			}
