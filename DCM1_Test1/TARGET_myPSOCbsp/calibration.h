@@ -31,7 +31,7 @@ extern float *VoltSt, *VoltEd;
 extern float *Exit;
 
 void calibrateBreakdownvTemp();
-void calibrateCountsvDiscrThresh();
+void calibrateCountsvDiscThresh();
 void calibrateCountsvBiasVolt();
 
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_CALIBRATION_H_ */

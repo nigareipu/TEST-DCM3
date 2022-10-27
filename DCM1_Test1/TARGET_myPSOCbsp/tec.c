@@ -520,7 +520,7 @@ void StabilizeAllTemp(float tempSet)
 
 	Cy_SCB_UART_PutString(UART_HW, "thermRead0 (V), thermRead1 (V), thermRead2 (V), thermRead3 (V), TEC 0 Current (A), TEC 1 Current (A)\r\n");
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 30; i++)
 	{
 
 		if (*rxBuffer == 'q')

@@ -24,7 +24,7 @@ int main(void)
 	 /* ***********Timer code******************************
 	 ************************************************** */
 
-	cyhal_timer_event_interrupt();
+	//cyhal_timer_event_interrupt();
 
   // Read the current timer value, which should be close to the amount of delay in ms * 10 (5000)
 

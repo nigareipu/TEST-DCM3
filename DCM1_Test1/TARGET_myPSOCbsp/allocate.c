@@ -44,7 +44,7 @@ void default_hashtable()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
 
-	*mode = 2;
+	*mode = 5;
 	*VDET0 = 312;
 	*VDET1 = 337;
 	*VDET2 = 376;
@@ -64,7 +64,7 @@ void default_hashtable()
 	*DthrEd = 1.10;
 	*DthrSt = 0.2;
 	*TempSt = 0.85 ;
-	*TempEd = 1.05;
+	*TempEd = 1.36;
 	*VoltSt = 300;
 	*VoltEd = 310;
 	*kp = 1.63; // PID Proportional Gain
