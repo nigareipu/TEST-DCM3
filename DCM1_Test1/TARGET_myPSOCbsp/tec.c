@@ -16,9 +16,6 @@ It has e as loop input and u at loop output  */
 
 // Defining global variables
 // PID tuning parameters
-float kp = 1.63; // Proportional Gain
-float ki = 0.45; // Integral Gain
-float kd = 0.15; // Derivative Gain
 
 double e = 0; // Error = (SetPoint - Feedback)
 double e1 = 0;
@@ -41,10 +38,7 @@ float thermRead3 = 0.0;
 
 float ITEC0_V, ITEC1_V, ITEC0, ITEC1;
 
-bool tecDriver0StatusFlag;
-bool tecDriver1StatusFlag;
-bool targetDetectorFlag;
-bool targetDetectorFlag2;
+
 
 void TEC_Driver0_Init(uint8 status)
 {
@@ -171,9 +165,9 @@ void TEC0_StabilizeTemp(float tempSet)
 	// EXPLAIN the function
 
 	// PID Loop Coefficeints
-	float k1 = kp + ki + kd;
-	float k2 = -kp - 2 * kd;
-	float k3 = kd;
+	float k1 = *kp + *ki + *kd;
+	float k2 = -*kp - 2 * (*kd);
+	float k3 = *kd;
 
 	Cy_SCB_UART_PutString(UART_HW, "time (s), thermRead0 (V), thermRead1 (V), TEC 0 Current (A)\r\n");
 
@@ -254,9 +248,9 @@ void TEC0_StabilizeTemp(float tempSet)
 void TEC1_StabilizeTemp(float tempSet)
 {
 
-	float k1 = kp + ki + kd;
-	float k2 = -kp - 2 * kd;
-	float k3 = kd;
+	float k1 = *kp + *ki + *kd;
+	float k2 = -*kp - 2 * (*kd);
+	float k3 = *kd;
 
 	Cy_SCB_UART_PutString(UART_HW, "time (s), thermRead2 (V), thermRead3 (V), TEC 1 Current (A)\r\n");
 
@@ -365,9 +359,9 @@ void GetAllTECCurrent(void)
 void TEC0_updateTemp(float tempSet)
 {
 
-	float k1 = kp + ki + kd;
-	float k2 = -kp - 2 * kd;
-	float k3 = kd;
+	float k1 = *kp + *ki + *kd;
+	float k2 = -*kp - 2 * (*kd);
+	float k3 = *kd;
 
 	// Cy_SCB_UART_PutString(UART_HW,"thermRead0 (V), thermRead1 (V), TEC 0 Current (A)\r\n");
 
@@ -442,9 +436,9 @@ void TEC0_updateTemp(float tempSet)
 void TEC1_updateTemp(float tempSet)
 {
 
-	float k1 = kp + ki + kd;
-	float k2 = -kp - 2 * kd;
-	float k3 = kd;
+	float k1 = *kp + *ki + *kd;
+	float k2 = -*kp - 2 * (*kd);
+	float k3 = *kd;
 
 	// Cy_SCB_UART_PutString(UART_HW,"time (s), thermRead2 (V), thermRead3 (V), TEC 1 Current (A)\r\n");
 
@@ -520,9 +514,9 @@ void StabilizeAllTemp(float tempSet)
 {
 	// Function for cooling down all detectors
 
-	float k1 = kp + ki + kd;
-	float k2 = -kp - 2 * kd;
-	float k3 = kd;
+	float k1 = *kp + *ki + *kd;
+	float k2 = -*kp - 2 * (*kd);
+	float k3 = *kd;
 
 	Cy_SCB_UART_PutString(UART_HW, "thermRead0 (V), thermRead1 (V), thermRead2 (V), thermRead3 (V), TEC 0 Current (A), TEC 1 Current (A)\r\n");
 
@@ -667,9 +661,9 @@ void StabilizeAllTemp(float tempSet)
 void Annealing(uint16_t detector, float length, float DET0_temp)
 {
 
-	float k1 = kp + ki + kd;
-	float k2 = -kp - 2 * kd;
-	float k3 = kd;
+	float k1 = *kp + *ki + *kd;
+	float k2 = -*kp - 2 * (*kd);
+	float k3 = *kd;
 
 	Cy_SCB_UART_PutString(UART_HW, "Thermistor (V), TEC Current (A)\r\n");
 

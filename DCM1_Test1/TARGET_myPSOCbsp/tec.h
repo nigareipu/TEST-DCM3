@@ -20,10 +20,13 @@
 extern char temperatureArray[3];
 
 // declaration of global PID Coeficients
-extern float kp, ki, kd, k1, k2, k3;
+//extern float  k1, k2, k3;
+extern float *kp, *ki, *kd; //PID coefficients
+extern float *PIDLoopDlay;;
 
 // Error parameters
-extern double e, e1, e2, e3, e4, e5; // Error = (SetPoint - Feedback)
+extern double e_1, e1_1, e2_1, e_1, e1_1, e2_1; // Error = (SetPoint - Feedback)
+extern double e, e1, e2, e3, e4, e5;
 extern double C_output, prev_output;
 extern double prev_output0, prev_output1, C_output0, C_output1;
 
@@ -41,10 +44,12 @@ extern uint16_t detector;
 extern char adcBuffer[10];
 extern char adcBuffer0[16];
 
-extern bool tecDriver0StatusFlag;
-extern bool tecDriver1StatusFlag;
-extern bool targetDetectorFlag;
-extern bool targetDetectorFlag2;
+extern float tecDriver0StatusFlag;
+extern float tecDriver1StatusFlag;
+extern float targetDetectorFlag;
+extern float targetDetectorFlag2;
+extern float targetDetectorFlag0;
+extern float targetDetectorFlag1;
 extern volatile bool DetectorSetFlag;
 extern volatile bool printThermalInfo;
 

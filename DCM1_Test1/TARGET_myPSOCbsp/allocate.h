@@ -44,6 +44,9 @@ extern float *AnDET;
 extern float *DthrEd, *DthrSt;
 extern float *TempSt,*TempEd;
 extern float *VoltSt, *VoltEd, *Exit;
+extern float *kp; // PID Proportional Gain
+extern float *ki;// PID Integral Gain
+extern float *kd;
 
 extern struct node *hash_table;
 extern unsigned int table_size;

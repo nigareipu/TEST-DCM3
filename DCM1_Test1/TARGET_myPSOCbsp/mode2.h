@@ -32,13 +32,16 @@
 
 extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
 extern volatile int count;
+extern volatile bool TEC_controller1ActiveFlag;
+extern volatile bool TEC_controller2ActiveFlag;
 extern char confirmValue[32];
 extern float discrThresh;
 
 extern float *mode;
 extern float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin, *Exit;
-extern float *AnDET;
+extern float *AnDET, *kp, *ki, *kd;
+
 
 void mode2program();
 void mode3program();
