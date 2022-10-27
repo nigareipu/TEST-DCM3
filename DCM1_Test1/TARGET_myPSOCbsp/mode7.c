@@ -16,7 +16,7 @@ void mode7program()
 	Cy_SCB_UART_PutString(UART_HW, "thermRead0, thermRead1, thermRead2, thermRead3\r\n ");
 	for (int t = 0; t < *RTime; t++)
 	{
-		if (*rxBuffer == 'q')
+		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;

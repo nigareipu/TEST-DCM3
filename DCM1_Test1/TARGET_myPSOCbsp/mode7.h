@@ -26,6 +26,7 @@
 
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
+extern float *Exit;
 
 void mode7program();
 

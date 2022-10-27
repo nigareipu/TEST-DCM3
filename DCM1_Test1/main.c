@@ -24,7 +24,7 @@ int main(void)
 	 /* ***********Timer code******************************
 	 ************************************************** */
 
-	//cyhal_timer_event_interrupt();
+	cyhal_timer_event_interrupt();
 
   // Read the current timer value, which should be close to the amount of delay in ms * 10 (5000)
 
@@ -73,13 +73,6 @@ int main(void)
 	Cy_SCB_UART_PutString(UART_HW, "\r\nRight Before allocation function");
 	default_hashtable();
 
-	Cy_SCB_UART_PutString(UART_HW, "I'm here after table\r\n");
-	Cy_SCB_UART_PutString(UART_HW, "\r\n About to go into modes = ");
-	sprintf(confirmValue, "%f\r\n", *mode);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
-
-
 	// Setting the Communication Input Mode to Automated or Manual
 
 	for (;;)
@@ -108,49 +101,42 @@ int main(void)
 				if (*mode == 1)
 				{
 					// CODE RUNNING IDLE MODE
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to 1\r\n");
 					mode1program();
 				}
 				else if (*mode == 2)
 				{
 					// CODE RUNNING TWO SIDE COINCIDENCE COUNTING MODE
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 2\r\n");
 					mode2program();
 				}
 				else if (*mode == 3)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 3\r\n");
 					mode3program();
 				}
 				else if (*mode == 4)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 4\r\n");
 					mode4program();
 				}
 				else if (*mode == 5)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 5\r\n");
 					mode5program();
 				}
 				else if (*mode == 6)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 6\r\n");
 					mode6program();
 				}
 				else if (*mode == 7)
 				{
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-					Cy_SCB_UART_PutString(UART_HW, "I was able to pass to mode 7\r\n");
 					mode7program();
 				}
 
 				else
 				{
-					//mode1program();
+					mode1program();
 					Cy_SCB_UART_PutString(UART_HW, "\r\n Not valid value\r\n");
 					Cy_SCB_UART_PutString(UART_HW, "Choose command and value\r\n");
 					uartRxCompleteFlag = 0;
