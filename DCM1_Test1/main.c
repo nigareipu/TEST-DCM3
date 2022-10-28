@@ -51,8 +51,8 @@ int main(void)
 	/* ***********Timer code******************************
 	 ************************************************** */
 
-	TEC_controller0ActiveFlag = 1;
-	TEC_controller1ActiveFlag = 1;
+	//TEC_controller0ActiveFlag = 1;
+	//TEC_controller1ActiveFlag = 1;
 
 	cyhal_timer_event_interrupt();
 

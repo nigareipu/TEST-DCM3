@@ -46,7 +46,7 @@ void default_hashtable()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
 
-	*mode = 2;
+	*mode = 1;
 	*mode5Calibration=0;
 	*VDET0 = 312;
 	*VDET1 = 337;
