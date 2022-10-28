@@ -5,7 +5,7 @@
  *      Author: jkrynski1
  */
 
-#include "mode7.h"
+#include "modes.h"
 
 void mode7program()
 {

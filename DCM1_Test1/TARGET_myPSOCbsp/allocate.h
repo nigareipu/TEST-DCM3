@@ -1,9 +1,3 @@
-/*
- * allocate.h
- *
- *  Created on: Oct. 25, 2022
- *      Author: n6sultan
- */
 
 #ifndef TARGET_MYPSOCBSP_ALLOCATE_H_
 #define TARGET_MYPSOCBSP_ALLOCATE_H_
@@ -28,7 +22,6 @@
 #include "spi.h"
 #include "det_bias.h"
 #include "counters.h"
-#include "functions.h"
 #include "tec.h"
 #include "table.h"
 
@@ -41,14 +34,14 @@ extern float* VDET0;
 extern float* VDET1;
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
-extern float *AnDET;
+extern float *CntTEC, *AnDET;
 extern float *DthrEd, *DthrSt;
 extern float *TempSt,*TempEd;
 extern float *VoltSt, *VoltEd, *Exit;
 extern float *kp; // PID Proportional Gain
 extern float *ki;// PID Integral Gain
 extern float *kd;
-extern float *countingDlay;
+extern float *countTime;
 extern float *targetTECFlag0;
 extern float *targetTECFlag1;
 

@@ -8,6 +8,15 @@
 #ifndef TARGET_MYPSOCBSP_COIN_WINDOW_H_
 #define TARGET_MYPSOCBSP_COIN_WINDOW_H_
 
+
+#include "cy_pdl.h"
+#include "cyhal.h"
+#include "cybsp.h"
+#include "cy_retarget_io.h"
+#include <stdio.h>
+#include "string.h"
+#include <stdlib.h>
+
 extern volatile bool coincWindowSetFlag;
 
 // Functions

@@ -182,75 +182,105 @@ void setDelay3Command(float DelayValue)
 }
 
 
-void settingParameters()
-   {
-    setDiscr0Thresh(*DThrs);
-    setDiscr1Thresh(*DThrs);
-    setDiscr2Thresh(*DThrs);
-    setDiscr3Thresh(*DThrs);
+void setParameters()
+{
+	setDiscr0Thresh(*DThrs);
+	setDiscr1Thresh(*DThrs);
+	setDiscr2Thresh(*DThrs);
+	setDiscr3Thresh(*DThrs);
 
-    // Turns on TEC driver and switches
+	// Turns on TEC driver and switches
+	TEC_controller0ActiveFlag = 1;
+	TEC_controller1ActiveFlag = 0;
 
-    TEC_SW0_Status(ON);
-    TEC_SW1_Status(ON);
-    TEC_SW2_Status(ON);
-    TEC_SW3_Status(ON);
-    TEC_Driver0_Status(ON); // 0 OFF, 1 ON; changes status of tecStatusFlag
-    TEC_Driver1_Status(ON);
+	TEC_SW0_Status(ON);
+	TEC_SW1_Status(ON);
+	TEC_SW2_Status(ON);
+	TEC_SW3_Status(ON);
+	TEC_Driver0_Status(ON); // 0 OFF, 1 ON; changes status of tecStatusFlag
+	TEC_Driver1_Status(ON);
+}
 
-     if (*Exit == 1)
+
+
+// Slowly ramp up voltages
+// Set voltage of detectors gradually
+void setDetectorBias()
+{
+	float DET_gradual_increase[] = {0, 0, 0, 0};
+	float DET_bias[] = {*VDET0, *VDET1, *VDET2, *VDET3};
+	unsigned int DET[] = {DET0, DET1, DET2, DET3};
+	for (int i = 0; i <= 3; i++)
+	{
+		while (DET_gradual_increase[i] < DET_bias[i])
+		{
+
+			SetDetectorVoltage(DET[i], DET_gradual_increase[i]);
+			DET_gradual_increase[i] = DET_gradual_increase[i] + 10;
+			cyhal_system_delay_ms(1);
+		}
+		Cy_SCB_UART_PutString(UART_HW, "detector voltage :");
+		printFloat(DET_bias[i]);
+		SetDetectorVoltage(DET[i], DET_bias[i]);
+	}
+
+	if (*Exit == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 		mode1program();
 	}
 
-    // Slowly ramp up voltages
-    // Set voltage of detectors gradually
+	HV0_Monitor();
+	cyhal_system_delay_ms(500); // required delay
+	HV3_Monitor();
+	cyhal_system_delay_ms(500); // required delay
 
-    float DET_gradual_increase[] = {0, 0, 0, 0};
-    float DET_bias[] = {*VDET0, *VDET1, *VDET2, *VDET3};
-    unsigned int DET[] = {DET0, DET1, DET2, DET3};
-    for (int i = 0; i <= 3; i++)
-    {
-        while (DET_gradual_increase[i] < DET_bias[i])
-        {
+}
 
-            SetDetectorVoltage(DET[i], DET_gradual_increase[i]);
-            DET_gradual_increase[i] = DET_gradual_increase[i] + 10;
-            cyhal_system_delay_ms(1);
-        }
-        Cy_SCB_UART_PutString(UART_HW, "detector voltage :");
-        printFloat(DET_bias[i]);
-        SetDetectorVoltage(DET[i], DET_bias[i]);
-    }
+void turnOFF_TECs()
+{
+	TEC_controller0ActiveFlag = 0;
+	TEC_controller1ActiveFlag = 0;
+	TEC_SW0_Status(OFF);
+	TEC_SW1_Status(OFF);
+	TEC_SW2_Status(OFF);
+	TEC_SW3_Status(OFF);
 
-    HV0_Monitor();
-    cyhal_system_delay_ms(500); // required delay
-    HV3_Monitor();
-    cyhal_system_delay_ms(500); // required delay
+	TEC_Driver0_Status(OFF);
+	TEC_Driver1_Status(OFF);
+}
 
-   }
-
+void turnON_TECs()
+{
+	TEC_controller0ActiveFlag = 1;
+	TEC_controller1ActiveFlag = 1;
+	TEC_SW0_Status(ON);
+	TEC_SW1_Status(ON);
+	TEC_SW2_Status(ON);
+	TEC_SW3_Status(ON);
+	TEC_Driver0_Status(ON); // 0 OFF, 1 ON; changes status of tecStatusFlag
+	TEC_Driver1_Status(ON);
+}
 void startSinglesCounting()
 {
-	       GetSingles0Counts();
-			GetSingles1Counts();
-			GetSingles2Counts();
-			GetSingles3Counts();
+	GetSingles0Counts();
+	GetSingles1Counts();
+	GetSingles2Counts();
+	GetSingles3Counts();
 }
 
 void startCoincidenceCounting()
 {
 	// Want 12, 01, 23, 03
-			GetCoincidence1Counts();
-			GetCoincidence0Counts();
-			GetCoincidence3Counts();
-			GetCoincidence2Counts();
+	GetCoincidence1Counts();
+	GetCoincidence0Counts();
+	GetCoincidence3Counts();
+	GetCoincidence2Counts();
 }
 
 void printFloat(float message)
 {
 	sprintf(confirmValue, "%f", message);
 	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-	Cy_SCB_UART_PutString(UART_HW, "V\r\n");
+	Cy_SCB_UART_PutString(UART_HW, ",");
 }

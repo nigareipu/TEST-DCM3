@@ -1,9 +1,4 @@
-/*
- * uartInterrupt.c
- *
- *  Created on: May 19, 2022
- *      Author: jkrynski1
- */
+
 
 #include "uartInterrupt.h"
 

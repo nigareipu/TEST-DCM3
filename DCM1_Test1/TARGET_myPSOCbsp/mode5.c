@@ -9,9 +9,6 @@
 
 void mode5program()
 {
-	TEC_controller0ActiveFlag = 1;
-	TEC_controller1ActiveFlag = 1;
-
 
 	Cy_SCB_UART_PutString(UART_HW, "SET MODE to CALIBRATION\r\n");
 

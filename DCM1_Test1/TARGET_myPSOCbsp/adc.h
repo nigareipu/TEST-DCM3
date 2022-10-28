@@ -12,7 +12,6 @@
 #include "cy_pdl.h"
 #include "cyhal.h"
 #include "cybsp.h"
-#include "functions.h"
 #include <stdio.h>
 
 // ADC channels

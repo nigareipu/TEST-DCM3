@@ -21,66 +21,28 @@
  */
 void Delays_Init()
 {
-	cy_rslt_t result;
+
 	// Delay 0, bit 1
-	result = cyhal_gpio_init(P11_1, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-	/*if (result!= CY_RSLT_SUCCESS)
-			{
-				 Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 0,0 Did not initialize\r\n");
-									CY_ASSERT(0);
-			}
-	else {Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 0, 0 initialized\r\n");}*/
+	cyhal_gpio_init(P11_1, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
+
 	// Delay  0, bit 2
 	cyhal_gpio_init(P11_4, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-	/*if (result!= CY_RSLT_SUCCESS)
-			{
-				 Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 0,1 Did not initialize\r\n");
-									CY_ASSERT(0);
-			}
-	else {Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 0, 1 initialized\r\n");}*/
 
 	// Delay 1, bit 1
 	cyhal_gpio_init(P0_0, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-	/*if (result!= CY_RSLT_SUCCESS)
-			{
-				 Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 1,0 Did not initialize\r\n");
-									CY_ASSERT(0);
-			}
-	else {Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 1, 0 initialized\r\n");}*/
+
 	// Delay 1, bit 2
 	cyhal_gpio_init(P0_1, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-	/*if (result!= CY_RSLT_SUCCESS)
-			{
-				 Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 1,1 Did not initialize\r\n");
-									CY_ASSERT(0);
-			}
-	else {Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 1, 1 initialized\r\n");}*/
 
 	// Delay 2, bit 1 CHANGE PIN HERE
 	cyhal_gpio_init(P0_2, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-	/*if (result!= CY_RSLT_SUCCESS)
-			{
-				 Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 2,0 Did not initialize\r\n");
-									CY_ASSERT(0);
-			}
-	else {Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 2, 0 initialized\r\n");}*/
+
 	// Delay 2, bit 2 CHANGE PIN HERE
 	cyhal_gpio_init(P0_3, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-	/*if (result!= CY_RSLT_SUCCESS)
-			{
-				 Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 2,1 Did not initialize\r\n");
-									CY_ASSERT(0);
-			}
-	else {Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 2, 1 initialized\r\n");}*/
 
 	// Delay 3, bit 1 CHANGE PIN HERE
 	cyhal_gpio_init(P0_4, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-	/*if (result!= CY_RSLT_SUCCESS)
-			{
-				 Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 3,0 Did not initialize\r\n");
-									CY_ASSERT(0);
-			}
-	else {Cy_SCB_UART_PutString(UART_HW,"\r\n Delay 3, 0 initialized\r\n");}*/
+
 	// Delay 3, bit 2 CHANGE PIN HERE
 	cyhal_gpio_init(P2_1, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
 }
@@ -94,7 +56,7 @@ void Delays_Init()
 void Delay0_Set(bool Delay0Bit1, bool Delay0Bit2)
 {
 
-	// initalize GPIO for first bit of Delay setting
+	// Initialize GPIO for first bit of Delay setting
 	cyhal_gpio_write(P11_1, Delay0Bit1);
 
 	// initialize GPIO for second bit of Delay setting

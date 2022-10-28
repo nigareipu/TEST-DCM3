@@ -10,7 +10,7 @@
 
 #include "uartInterrupt.h"
 #include "modes.h"
-#include "tec.h"
+
 
 void isr_timer(void *callback_arg, cyhal_timer_event_t event);
 void cyhal_timer_event_interrupt();
@@ -24,6 +24,8 @@ extern float targetDetectorFlag1;
 extern cyhal_timer_t timer_obj;
 extern double e_0, e1_0, e2_0, e_1, e1_1, e2_1;
 extern double prev_output0, prev_output1, C_output0, C_output1;
+
+
 
 
 

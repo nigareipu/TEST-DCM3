@@ -35,12 +35,11 @@ void ADC_Init()
 
 	status_aref = Cy_SysAnalog_Init(&Cy_SysAnalog_Fast_Local);
 	Cy_SysAnalog_Enable();
-
 	// ADC Settings
 	Cy_SAR_Init(SAR_ADC_HW, &SAR_ADC_config);
 	Cy_SAR_Enable(SAR_ADC_HW);
 
-	// Cy_SCB_UART_PutString(UART_HW,"ADC Initalized \r\n");
+
 }
 
 /* @desc Read voltage from HV 0 feedback line. Value of HVMoni will be between 0 and Vref (2.048V) and must be converted to read
@@ -62,15 +61,6 @@ void HV0_Monitor(void)
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 
-	/*sprintf(adcBuffer0,"%lu",HVMoni0Counts);
-	//Cy_SCB_UART_PutString(UART_HW,"\r\nHVMoni_0Counts = ");
-	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 16, &uartContext);
-	Cy_SCB_UART_PutString(UART_HW,", ");
-
-	sprintf(adcBuffer0,"%f",HVMoni0Volts);
-	//Cy_SCB_UART_PutString(UART_HW,"\r\nHVMoni_0Volts = ");
-	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 16, &uartContext);
-	Cy_SCB_UART_PutString(UART_HW,", ");*/
 
 	sprintf(adcBuffer0, "%f", HVMoni0ConvertedVolts);
 	Cy_SCB_UART_PutString(UART_HW, "\r\nHVMoni_0 = ");
@@ -94,15 +84,6 @@ void HV3_Monitor(void)
 		HVMoni3ConvertedVolts = HVMoni3Volts * 10039.2 / 39.2;
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-
-	// sprintf(adcBuffer0,"%f",HVMoni3Counts);
-	// Cy_SCB_UART_PutString(UART_HW,"\r\nHVMoni_3Counts = ");
-	// Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 16, &uartContext);
-	// Cy_SCB_UART_PutString(UART_HW,"\r\n");
-
-	/*sprintf(adcBuffer0,"%f",HVMoni3Volts);
-	Cy_SCB_UART_PutString(UART_HW,"\r\nHVMoni_3Volts = ");
-	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 10, &uartContext);*/
 
 	sprintf(adcBuffer0, "%f", HVMoni3ConvertedVolts);
 	Cy_SCB_UART_PutString(UART_HW, "\r\nHVMoni_3 = ");
@@ -136,10 +117,7 @@ void Therm1_Read(void)
 	THERM1 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel);
 	ThermRead1 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread1channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-	// sprintf(adcBuffer0,"%lu",THERM1);
-	// Cy_SCB_UART_PutString(UART_HW,"\r\nHVMoni_0ConvertedVolts = ");
-	// Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 16, &uartContext);
-	// Cy_SCB_UART_PutString(UART_HW,"\r\n");
+
 }
 
 /*
@@ -182,7 +160,6 @@ void GetAllThermRead(void)
 	ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
-
 
 
 /*

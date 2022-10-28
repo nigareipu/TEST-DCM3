@@ -48,34 +48,21 @@ int main(void)
 	CoincidenceCounter3_Init();
 
 
-	/* ***********Timer code******************************
-	 ************************************************** */
-
-	//TEC_controller0ActiveFlag = 1;
-	//TEC_controller1ActiveFlag = 1;
-
+	/* ***********Timer setup******************************/
 	cyhal_timer_event_interrupt();
 
-
-	/************Table Allocation*********************/
-
-	mode1program();
+	/************Set default values*********************/
 	default_hashtable();
-
+	mode1program();
 
 	for (;;)
 	{
-
-		// If something has been typed, show that character on the terminal
 		if (uartRxCompleteFlag == 1)
 		{
 			echoInput();
-
 			// If the user starts a new line, process the command
 			if (*rxBuffer == '\n' || *rxBuffer == '\r')
 			{
-
-
 				// Divide incoming buffer into command and value sections (ex. first 4 bits are for command and last 4 are for value)
 				// Will only work with terminal connected to it, without it tho all default values should still go through
 				commandBuffer = strtok(storeBuffer, ";");
@@ -135,7 +122,5 @@ int main(void)
 				fillBuffer();
 			}
 		}
-
-
 	}
 }

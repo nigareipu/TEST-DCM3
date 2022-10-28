@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include "serialUART.h"
 #include "uartInterrupt.h"
-#include "functions.h"
 #include "AD56x8.h"
 #include "dac.h"
 #include "spi.h"
@@ -26,11 +25,7 @@
 #include "discr.h"
 #include "coin_window.h"
 #include "delay.h"
-#include "mode1.h"
 #include "modes.h"
-#include "mode5.h"
-#include "mode6.h"
-#include "mode7.h"
 #include "table.h"
 #include "commands.h"
 #include "allocate.h"
@@ -98,12 +93,12 @@ float* VDET0;
 float* VDET1;
 float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
-float* AnDET;
+float *CntTEC, *AnDET;
 float *DthrEd, *DthrSt;
 float *TempSt,*TempEd;
 float *VoltSt, *VoltEd;
 float *kp, *ki, *kd; //PID coefficients
-float *countingDlay;
+float *countTime;
 float *targetTECFlag0;
 float *targetTECFlag1;
 float *Exit;

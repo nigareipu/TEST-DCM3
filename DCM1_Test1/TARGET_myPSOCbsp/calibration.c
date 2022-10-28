@@ -1,9 +1,3 @@
-/*
- * calibration.c
- *
- *  Created on: May 20, 2022
- *      Author: jkrynski1
- */
 
 #include "modes.h"
 
@@ -17,19 +11,8 @@ void calibrateBreakdownvTemp()
 
 	float currentVoltage = 0;
 	printThermalInfo = 1;
-
+	setParameters();
 	// Turn on TECs
-	TEC_Driver0_Status(ON);
-	TEC_Driver1_Status(ON);
-	TEC_SW0_Status(ON);
-	TEC_SW1_Status(ON);
-	TEC_SW2_Status(ON);
-	TEC_SW3_Status(ON);
-
-	setDiscr0Thresh(*DThrs);
-	setDiscr1Thresh(*DThrs);
-	setDiscr2Thresh(*DThrs);
-	setDiscr3Thresh(*DThrs);
 
     unsigned int DET[] = {DET0, DET1, DET2, DET3};
 
@@ -77,12 +60,10 @@ void calibrateBreakdownvTemp()
 				*TDET3 = temp;
 				*targetTECFlag1=1;
 			}
+			/***************************************************************************
+			 * *******************This is required to settle temperature before counting*************
+			 **************************************************************************/
 			cyhal_system_delay_ms(10000);
-
-
-			// stabilize temperature
-
-
 
 			if (*Exit == 1)
 			{
@@ -97,7 +78,6 @@ void calibrateBreakdownvTemp()
 				cyhal_system_delay_ms(10);
 			}
 
-
 			SetDetectorVoltage(DET[d], *VoltSt);
 			// Do a voltage scan at each temperature
 			VoltageScan(DET[d], *VoltSt, *VoltEd);
@@ -107,13 +87,7 @@ void calibrateBreakdownvTemp()
 
 	//SetDetectorVoltage(DET3, 0);
 	// Turn off TECs
-	TEC_SW0_Status(OFF);
-	TEC_SW1_Status(OFF);
-	TEC_SW2_Status(OFF);
-	TEC_SW3_Status(OFF);
-
-	TEC_Driver0_Status(OFF);
-	TEC_Driver1_Status(OFF);
+    turnOFF_TECs();
 
 	uartRxCompleteFlag = 0;
 	count = 0;
@@ -126,21 +100,9 @@ void calibrateBreakdownvTemp()
 void calibrateCountsvDiscThresh()
 {
 
-	float volt0 = 0;
-	float volt1 = 0;
-	float volt2 = 0;
-	float volt3 = 0;
-
 	printThermalInfo = 1;
-
 	// Set temp and stabilize
-	TEC_Driver0_Status(ON);
-	TEC_Driver1_Status(ON);
-	TEC_SW0_Status(ON);
-	TEC_SW1_Status(ON);
-	TEC_SW2_Status(ON);
-	TEC_SW3_Status(ON);
-
+	turnON_TECs();
 	//StabilizeAllTemp(*TDET0);
 
 	if (*Exit == 1)
@@ -150,37 +112,7 @@ void calibrateCountsvDiscThresh()
 	}
 
 	// Set voltage of detectors gradually
-	while (volt0 < *VDET0)
-	{
-		SetDetectorVoltage(DET0, volt0);
-		volt0 = volt0 + 10;
-		cyhal_system_delay_ms(10);
-	}
-	SetDetectorVoltage(DET0, *VDET0);
-
-	while (volt1 < *VDET1)
-	{
-		SetDetectorVoltage(DET1, volt1);
-		volt1 = volt1 + 10;
-		cyhal_system_delay_ms(10);
-	}
-	SetDetectorVoltage(DET1, *VDET1);
-
-	while (volt2 < *VDET2)
-	{
-		SetDetectorVoltage(DET2, volt2);
-		volt2 = volt2 + 10;
-		cyhal_system_delay_ms(10);
-	}
-	SetDetectorVoltage(DET2, *VDET2);
-
-	while (volt3 < *VDET3)
-	{
-		SetDetectorVoltage(DET3, volt3);
-		volt3 = volt3 + 10;
-		cyhal_system_delay_ms(10);
-	}
-	SetDetectorVoltage(DET3, *VDET3);
+	setDetectorBias();
 
 	// Threshold less than 0.14 V can lead to double counting noisy falling edge of avalanche.
 	for (float thresh = *DthrSt; thresh < *DthrEd; thresh = thresh + 0.01)
@@ -221,13 +153,7 @@ void calibrateCountsvDiscThresh()
 	}
 
 	// Turn off TECs
-	TEC_SW0_Status(OFF);
-	TEC_SW1_Status(OFF);
-	TEC_SW2_Status(OFF);
-	TEC_SW3_Status(OFF);
-
-	TEC_Driver0_Status(OFF);
-	TEC_Driver1_Status(OFF);
+	turnOFF_TECs();
 }
 
 /*
@@ -252,20 +178,7 @@ void calibrateCountsvBiasVolt()
 
 	printThermalInfo = 1;
 
-	setDiscr0Thresh(*DThrs);
-	setDiscr1Thresh(*DThrs);
-	setDiscr2Thresh(*DThrs);
-	setDiscr3Thresh(*DThrs);
-
-	Cy_SCB_UART_PutString(UART_HW, "\r\nTurning on TEC Drivers\r\n");
-	TEC_Driver0_Status(ON);
-	TEC_Driver1_Status(ON);
-
-	Cy_SCB_UART_PutString(UART_HW, "Turning on all TECs\r\n");
-	TEC_SW0_Status(ON);
-	TEC_SW1_Status(ON);
-	TEC_SW2_Status(ON);
-	TEC_SW3_Status(ON);
+	setParameters();
 
     unsigned int DET[] = {DET0, DET1, DET2, DET3};
 
@@ -296,14 +209,6 @@ void calibrateCountsvBiasVolt()
 		VoltageScan(DET[d], *VoltSt, *VoltEd);
 	}
 
-	Cy_SCB_UART_PutString(UART_HW, "Turning off all TECs\r\n\r\n");
-	TEC_SW0_Status(OFF);
-	TEC_SW1_Status(OFF);
-	TEC_SW2_Status(OFF);
-	TEC_SW3_Status(OFF);
-
-	Cy_SCB_UART_PutString(UART_HW, "Turning off TEC Drivers\r\n\r\n");
-	TEC_Driver0_Status(OFF);
-	TEC_Driver1_Status(OFF);
+	turnOFF_TECs();
 }
 

@@ -26,14 +26,10 @@ void SetDetectorVoltage(uint16_t detector, float voltage)
 {
 
 	float inputVoltage;
-
-	char confirmValue[32];
-
 	inputVoltage = voltage;
 
 	if (detector == DET0)
 	{
-
 		dacValue = convertHighVoltagetoDACVoltage(inputVoltage);
 		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_A, AD56x8_WR_IN_UPD_ALL);
 		transmitToHVDAC(dacDataPacket);
@@ -114,7 +110,7 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage)
 				GetSingles3Counts();
 			}
 			Cy_SCB_UART_PutString(UART_HW, "\r\n");
-			cyhal_system_delay_ms(1000);
+			cyhal_system_delay_ms(*countTime);
 		}
 	}
 }

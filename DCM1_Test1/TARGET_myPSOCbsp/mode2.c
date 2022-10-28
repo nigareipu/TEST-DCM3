@@ -48,9 +48,8 @@ void mode2program()
 	/********settings for MODE2***********************/
 
 	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
-	settingParameters();
-	TEC_controller0ActiveFlag = 1;
-	TEC_controller1ActiveFlag = 1;
+	setParameters();
+	setDetectorBias();
 
 
 
@@ -68,7 +67,7 @@ void mode2program()
 		startSinglesCounting();
 		startCoincidenceCounting();
 		Cy_SCB_UART_PutString(UART_HW, "\r\n");
-		cyhal_system_delay_ms(*countingDlay);//Must be kept for accumulating counts/sec
+		cyhal_system_delay_ms(*countTime);//Must be kept for accumulating counts/sec
 	}
 	mode1program();
 }

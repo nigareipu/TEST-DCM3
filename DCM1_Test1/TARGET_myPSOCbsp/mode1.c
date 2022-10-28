@@ -5,11 +5,11 @@
  *      Author: jkrynski1
  */
 
-#include "mode1.h"
+#include "modes.h"
 
-void mode1program(void)
+void mode1program()
 {
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to IDLE");
+	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to IDLE\r\n");
 
 	// SETTINGS FOR RUNNING IDLE MODE
 

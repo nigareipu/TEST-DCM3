@@ -29,6 +29,7 @@ void default_hashtable()
 	DlayDET2 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET2");
 	DlayDET3 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET3");
 	CoWin = allocate_node(hash_table, table_size, sizeof(float), "CoWin");
+	CntTEC = allocate_node(hash_table, table_size, sizeof(float), "CntTEC");
 	AnDET = allocate_node(hash_table, table_size, sizeof(float), "AnDET");
 	DthrEd = allocate_node(hash_table, table_size, sizeof(float), "DthrEd");
 	DthrSt = allocate_node(hash_table, table_size, sizeof(float), "DthrSt");
@@ -39,20 +40,20 @@ void default_hashtable()
 	kp = allocate_node(hash_table, table_size, sizeof(float), "kp");
 	ki = allocate_node(hash_table, table_size, sizeof(float), "ki");
 	kd = allocate_node(hash_table, table_size, sizeof(float), "kd");
-	countingDlay = allocate_node(hash_table, table_size, sizeof(float), "countingDlay");
+	countTime = allocate_node(hash_table, table_size, sizeof(float), "countTime");
 	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag0");
 	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag1");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
 
-	*mode = 1;
+	*mode = 2;
 	*mode5Calibration=0;
 	*VDET0 = 312;
 	*VDET1 = 337;
 	*VDET2 = 376;
 	*VDET3 = 373;
-	*TDET0 = 0.85;
+	*TDET0 = 0.95;
 	*TDET1 = 0.85;
 	*TDET2 = 0.95;
 	*TDET3 = 0.95;
@@ -63,7 +64,8 @@ void default_hashtable()
 	*DlayDET2= 2;
 	*DlayDET3= 1;
 	*CoWin = 3;
-	*AnDET = 0;
+	*CntTEC = 0;
+	*AnDET=0;
 	*DthrEd = 1.10;
 	*DthrSt = 0.2;
 	*TempSt = 0.85 ;
@@ -74,8 +76,8 @@ void default_hashtable()
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;
 	*targetTECFlag0=0;
-	*targetTECFlag1=0;
-	*countingDlay = 1000;
+	*targetTECFlag1=1;
+	*countTime = 1000;
 	*Exit=0;
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after value assignement \r\n");

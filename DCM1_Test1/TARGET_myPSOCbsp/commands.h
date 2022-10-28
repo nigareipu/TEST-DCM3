@@ -50,7 +50,10 @@ void setDelay3Command(float DelayValue);
 void startSinglesCounting();
 void startCoincidenceCounting();
 void printFloat(float message);
-void settingParameters();
+void setParameters();
+void setDetectorBias();
+void turnON_TECs();
+void turnOFF_TECs();
 
 // Updating Hash Table Values
 //void* inout();

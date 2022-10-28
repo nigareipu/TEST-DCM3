@@ -47,9 +47,9 @@ void mode3program()
 	setDelay3Command(*DlayDET3);
 
 	// sets discriminator threshold, turns on switches and bias voltages
-	settingParameters();
-	TEC_controller0ActiveFlag = 1;
-	TEC_controller1ActiveFlag = 1;
+	setParameters();
+	setDetectorBias();
+
 
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
@@ -65,7 +65,7 @@ void mode3program()
 		startSinglesCounting();
 		startCoincidenceCounting();
 		Cy_SCB_UART_PutString(UART_HW, "\r\n");
-		cyhal_system_delay_ms(*countingDlay);//Must be kept for accumulating counts/sec
+		cyhal_system_delay_ms(*countTime);//Must be kept for accumulating counts/sec
 	}
 
 	mode1program();
