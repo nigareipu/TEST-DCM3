@@ -46,7 +46,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 	 printFloat(ThermRead3);
 
 
-	if(TEC_controller1ActiveFlag == 1)
+	if(TEC_controller0ActiveFlag == 1)
     {
 	Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
 			    printFloat(*TDET0);
@@ -70,7 +70,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
     	}
 
 	//Second TEC controller
-	if(TEC_controller2ActiveFlag == 1)
+	if(TEC_controller1ActiveFlag == 1)
 	    {
 			PID_loop1();
 
@@ -154,7 +154,7 @@ void PID_loop0()
 
 	 //Cy_SCB_UART_PutString(UART_HW, "read therm value \n\r ");
 
-	 		if (targetDetectorFlag0 == 0)
+	 		if (*targetTECFlag0 == 0)
 	 		{
 	 			tempSet = *TDET0;
 	 			thermRead0 = ThermRead0;
@@ -242,7 +242,7 @@ void PID_loop1()
 			 //printFloat(*TDET0);
 				 printFloat(ThermRead2);
 				 printFloat(ThermRead3);
-			if (targetDetectorFlag1 == 0)
+			if (*targetTECFlag1 == 0)
 			{
 				tempSet = *TDET2;
 				thermRead1 = ThermRead2;

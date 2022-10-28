@@ -79,10 +79,11 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage)
 	// Voltage scan loop for each temperature
 	for (float voltage = startVoltage; voltage < endVoltage + 0.5; voltage = voltage + 0.5)
 	{
-		// if(*rxBuffer == 'q'){
-		// Cy_SCB_UART_PutString(UART_HW,"Exiting\r\n");
-		// break;
-		//}
+		if (*Exit == 1)
+		{
+			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			break;
+		}
 
 		SetDetectorVoltage(detector, voltage);
 
@@ -94,22 +95,22 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage)
 			// should be an if statement dependent on det chosen
 			if (detector == DET0)
 			{
-				TEC0_updateTemp(DET0_temp);
+				//TEC0_updateTemp(DET0_temp);
 				GetSingles0Counts();
 			}
 			if (detector == DET1)
 			{
-				TEC0_updateTemp(DET0_temp);
+				//TEC0_updateTemp(DET0_temp);
 				GetSingles1Counts();
 			}
 			if (detector == DET2)
 			{
-				TEC1_updateTemp(DET0_temp);
+				//TEC1_updateTemp(DET0_temp);
 				GetSingles2Counts();
 			}
 			if (detector == DET3)
 			{
-				TEC1_updateTemp(DET0_temp);
+				//TEC1_updateTemp(DET0_temp);
 				GetSingles3Counts();
 			}
 			Cy_SCB_UART_PutString(UART_HW, "\r\n");

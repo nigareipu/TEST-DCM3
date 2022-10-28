@@ -27,9 +27,7 @@
 #include "coin_window.h"
 #include "delay.h"
 #include "mode1.h"
-#include "mode2.h"
-#include "mode3.h"
-#include "mode4.h"
+#include "modes.h"
 #include "mode5.h"
 #include "mode6.h"
 #include "mode7.h"
@@ -50,11 +48,7 @@ char interpBuffer[8];
 char *commandBuffer;
 char *valueBuffer;
 char confirmValue[32];
-//char confirmInputValue[32];
-//char confirmConvertedValue[32];
-//char confirmdacValue[32];
-//char *ptr;
-//uint32_t value;
+
 
 int idx;
 volatile int count;
@@ -62,9 +56,14 @@ volatile bool uartRxCompleteFlag; // flag for notifying that the rx buffer is no
 volatile bool flag_1;			  // flag for notifying that the rx buffer is full and receiving is complete.
 volatile bool printThermalInfo;	  // option to print all thermread data
 volatile bool ThermStabilize;	  // option to do 30 s thermal stabilization. Must be set to 1 initially during first measurements.
-volatile bool TEC_controller1ActiveFlag;// flag for timer interrupt
-volatile bool TEC_controller2ActiveFlag;
+volatile bool TEC_controller0ActiveFlag;// flag for timer interrupt
+volatile bool TEC_controller1ActiveFlag;
 volatile bool warningFlag = 1; // flag for printing warnings before mode is set. Must be set to 1 to print information.
+
+float tecDriver0StatusFlag;
+float tecDriver1StatusFlag;
+float targetDetectorFlag;
+float targetDetectorFlag2;
 
 cyhal_spi_t DiscrDAC_obj;
 cyhal_spi_t HVDAC_obj;
@@ -75,14 +74,10 @@ uint16_t dacValue;
 float inputVoltage;
 
 uint8_t receive_data[SPI_BUFFER_SIZE];
-
 cy_stc_scb_uart_context_t uartContext;
-
 cy_rslt_t result;
 cyhal_timer_t timer_obj;
-
-// ADC and channel object//
-cyhal_adc_t adc_obj;
+cyhal_adc_t adc_obj;// ADC and channel object//
 
 char adcBuffer[10];
 char adcBuffer0[16];
@@ -96,8 +91,9 @@ float length;
 float fvalue;
 
 
-/*New hashtable variables*/
+/*hashtable variables*/
 float* mode;
+float *mode5Calibration;
 float* VDET0;
 float* VDET1;
 float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
@@ -107,13 +103,9 @@ float *DthrEd, *DthrSt;
 float *TempSt,*TempEd;
 float *VoltSt, *VoltEd;
 float *kp, *ki, *kd; //PID coefficients
-float *PIDLoopDlay;
-float tecDriver0StatusFlag;
-float tecDriver1StatusFlag;
-float targetDetectorFlag;
-float targetDetectorFlag0;
-float targetDetectorFlag1;
-float targetDetectorFlag2;
+float *countingDlay;
+float *targetTECFlag0;
+float *targetTECFlag1;
 float *Exit;
 
 /*end of hashtable variable declaration*/
@@ -121,11 +113,8 @@ float *Exit;
 volatile bool coincWindowSetFlag = 0;
 int coincWindowValue;
 volatile bool TerminalCommunicationFlag = 1;
-
 float startVoltage, endVoltage;
-
 volatile bool delay0SetFlag = 0, delay1SetFlag = 0, delay2SetFlag = 0, delay3SetFlag = 0;
-
 int delay0Value, delay1Value, delay2Value, delay3Value;
 
 char voltageArray[3];

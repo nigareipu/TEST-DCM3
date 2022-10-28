@@ -5,42 +5,65 @@
  *      Author: jkrynski1
  */
 
-#include "mode5.h"
+#include "modes.h"
 
 void mode5program()
 {
-	// Need to check the delays
+	TEC_controller0ActiveFlag = 1;
+	TEC_controller1ActiveFlag = 1;
+
+
 	Cy_SCB_UART_PutString(UART_HW, "SET MODE to CALIBRATION\r\n");
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nRunning Breakdown Voltage versus Temperature test\r\n");
-
-	calibrateBreakdownvTemp();
-
-
-	if (*Exit == 1)
+	if (*mode5Calibration==0)
 	{
-		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		mode1program();
+
+		Cy_SCB_UART_PutString(UART_HW, "\r\nRunning Breakdown Voltage versus Temperature test\r\n");
+
+		calibrateBreakdownvTemp();
+
+		if (*Exit == 1)
+		{
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			mode1program();
+		}
 	}
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nRunning Detector Counts versus Discriminator Threshold test\r\n");
-
-	calibrateCountsvDiscThresh();
-
-	if (*Exit == 1)
+	else if (*mode5Calibration==1)
 	{
-		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		mode1program();
+
+		Cy_SCB_UART_PutString(UART_HW, "\r\nRunning Detector Counts versus Discriminator Threshold test\r\n");
+
+		calibrateCountsvDiscThresh();
+
+		if (*Exit == 1)
+		{
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			mode1program();
+		}
 	}
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nRunning Detector Counts versus Bias Voltage test\r\n");
-
-	calibrateCountsvBiasVolt();
-
-	if (*Exit == 1)
+	else if (*mode5Calibration==1)
 	{
-		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		mode1program();
+
+		Cy_SCB_UART_PutString(UART_HW, "\r\nRunning Detector Counts versus Bias Voltage test\r\n");
+
+		calibrateCountsvBiasVolt();
+
+		if (*Exit == 1)
+		{
+			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			mode1program();
+		}
+	}
+
+	else
+	{
+		Cy_SCB_UART_PutString(UART_HW, "\r\nRunning ALL calibration\r\n");
+		calibrateBreakdownvTemp();
+		calibrateCountsvDiscThresh();
+		calibrateCountsvBiasVolt();
+
 	}
 
 

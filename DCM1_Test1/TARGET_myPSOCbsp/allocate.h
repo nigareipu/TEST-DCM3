@@ -36,6 +36,7 @@ extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printf
 extern volatile int count;
 extern char confirmValue[32];
 extern float* mode;
+extern float *mode5Calibration;
 extern float* VDET0;
 extern float* VDET1;
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
@@ -47,6 +48,9 @@ extern float *VoltSt, *VoltEd, *Exit;
 extern float *kp; // PID Proportional Gain
 extern float *ki;// PID Integral Gain
 extern float *kd;
+extern float *countingDlay;
+extern float *targetTECFlag0;
+extern float *targetTECFlag1;
 
 extern struct node *hash_table;
 extern unsigned int table_size;

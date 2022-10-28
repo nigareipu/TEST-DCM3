@@ -13,6 +13,7 @@ void default_hashtable()
 	Cy_SCB_UART_PutString(UART_HW, "\r\ninside hash table\r\n");
 	// Allocating space to each Key
     mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
+    mode5Calibration = allocate_node(hash_table, table_size, sizeof(float), "mode5Calibration");
     VDET0 = allocate_node(hash_table, table_size, sizeof(float), "VDET0");
     VDET1 = allocate_node(hash_table, table_size, sizeof(float), "VDET1");
     VDET2 = allocate_node(hash_table, table_size, sizeof(float), "VDET2");
@@ -38,13 +39,15 @@ void default_hashtable()
 	kp = allocate_node(hash_table, table_size, sizeof(float), "kp");
 	ki = allocate_node(hash_table, table_size, sizeof(float), "ki");
 	kd = allocate_node(hash_table, table_size, sizeof(float), "kd");
-	//PIDLoopDlay = allocate_node(hash_table, table_size, sizeof(float), "PIDLoopDlay");
-	//targetDetectorFlag= allocate_node(hash_table, table_size, sizeof(float), "targetDetectorFlag");
+	countingDlay = allocate_node(hash_table, table_size, sizeof(float), "countingDlay");
+	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag0");
+	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag1");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
 
 	*mode = 2;
+	*mode5Calibration=0;
 	*VDET0 = 312;
 	*VDET1 = 337;
 	*VDET2 = 376;
@@ -70,8 +73,9 @@ void default_hashtable()
 	*kp = 1.63; // PID Proportional Gain
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;
-	//*targetDetectorFlag=1;
-	//*PIDLoopDlay = 1000;
+	*targetTECFlag0=0;
+	*targetTECFlag1=0;
+	*countingDlay = 1000;
 	*Exit=0;
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after value assignement \r\n");

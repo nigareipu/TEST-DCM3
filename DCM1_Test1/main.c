@@ -20,14 +20,9 @@ int main(void)
 	// enable all interrupts
 	__enable_irq();
 
-
-
-
 	/*****************************************************************
 	 * Initialize all peripherals
-	 * ***************************************************************
-	 */
-
+	 * ***************************************************************/
 
 	DiscrDAC_SPI_Init();
 	setDiscrDACInternalRef();
@@ -53,34 +48,20 @@ int main(void)
 	CoincidenceCounter3_Init();
 
 
- /* ***********Timer code******************************
+	/* ***********Timer code******************************
 	 ************************************************** */
 
+	TEC_controller0ActiveFlag = 1;
 	TEC_controller1ActiveFlag = 1;
-	TEC_controller2ActiveFlag = 1;
-	targetDetectorFlag0 = 0;
-	targetDetectorFlag1 =0;
+
 	cyhal_timer_event_interrupt();
 
-	  // Read the current timer value, which should be close to the amount of delay in ms * 10 (5000)
 
-	  //Cy_SCB_UART_PutString(UART_HW, "Timer interrupt testing\n ");
+	/************Table Allocation*********************/
 
-
-	//StartCounters();
-
-	// Upon RESET, re-iterate that in IDLE MODE
-	// Should probably check in actuality if in Idle mode..
-
-	/***********************************Table Allocation********************************/
-	//Cy_SCB_UART_PutString(UART_HW, "\r\nCurrently in IDLE MODE.\r\n ");
 	mode1program();
-
-
-	Cy_SCB_UART_PutString(UART_HW, "\r\nRight Before allocation function");
 	default_hashtable();
 
-	// Setting the Communication Input Mode to Automated or Manual
 
 	for (;;)
 	{
@@ -89,7 +70,6 @@ int main(void)
 		if (uartRxCompleteFlag == 1)
 		{
 			echoInput();
-
 
 			// If the user starts a new line, process the command
 			if (*rxBuffer == '\n' || *rxBuffer == '\r')
@@ -100,10 +80,9 @@ int main(void)
 				// Will only work with terminal connected to it, without it tho all default values should still go through
 				commandBuffer = strtok(storeBuffer, ";");
 				valueBuffer = strtok(NULL, ";");
-			    //fvalue = atof(valueBuffer);
+				//fvalue = atof(valueBuffer);
 				//*command = fvalue;
 				// update_table(commandBuffer, fvalue);
-
 
 				if (*mode == 1)
 				{
@@ -122,30 +101,29 @@ int main(void)
 				}
 				else if (*mode == 4)
 				{
-					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					// CODE RUNNING SET MODE to SINGLE SIDE COINCIDENCE COUNTING
 					mode4program();
 				}
 				else if (*mode == 5)
 				{
-					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					// CODE RUNNING SET MODE to CALIBRATION MODE
 					mode5program();
 				}
 				else if (*mode == 6)
 				{
-					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					// CODE RUNNING SET MODE to THERMAL ANNEALING
 					mode6program();
 				}
 				else if (*mode == 7)
 				{
-					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+					// CODE RUNNING SET MODE to LASER ANNEALING
 					mode7program();
 				}
 
 				else
 				{
 					mode1program();
-					Cy_SCB_UART_PutString(UART_HW, "\r\n Not valid value\r\n");
-					Cy_SCB_UART_PutString(UART_HW, "Choose command and value\r\n");
+					Cy_SCB_UART_PutString(UART_HW, "\r\n Not valid input\r\n");
 					uartRxCompleteFlag = 0;
 					count = 0;
 				}
@@ -158,6 +136,6 @@ int main(void)
 			}
 		}
 
-		// Occaisionally, if nothing incoming in buffer, then send temperature data.
+
 	}
 }
