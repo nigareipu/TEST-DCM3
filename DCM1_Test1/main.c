@@ -55,6 +55,7 @@ int main(void)
 
  /* ***********Timer code******************************
 	 ************************************************** */
+
 	TEC_controller1ActiveFlag = 1;
 	TEC_controller2ActiveFlag = 1;
 	targetDetectorFlag0 = 0;

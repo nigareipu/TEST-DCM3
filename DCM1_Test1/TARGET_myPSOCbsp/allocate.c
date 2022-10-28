@@ -51,8 +51,8 @@ void default_hashtable()
 	*VDET3 = 373;
 	*TDET0 = 0.85;
 	*TDET1 = 0.85;
-	*TDET2 = 0.85;
-	*TDET3 = 0.85;
+	*TDET2 = 0.95;
+	*TDET3 = 0.95;
 	*RTime = 300;
 	*DThrs = 0.05;
 	*DlayDET0 = 0;

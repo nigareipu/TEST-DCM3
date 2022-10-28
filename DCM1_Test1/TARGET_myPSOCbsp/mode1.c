@@ -9,8 +9,8 @@
 
 void mode1program(void)
 {
-	TEC_controller1ActiveFlag = 1;
-	TEC_controller2ActiveFlag = 1;
+	TEC_controller1ActiveFlag = 0;
+	TEC_controller2ActiveFlag = 0;
 	targetDetectorFlag0 = 0;
 	targetDetectorFlag1 =0;
 

@@ -50,8 +50,8 @@ void mode2program()
 	settingParameters();
 	TEC_controller1ActiveFlag = 1;
 	TEC_controller2ActiveFlag = 1;
-	targetDetectorFlag0 = 0;
-	targetDetectorFlag1 =0;
+	targetDetectorFlag0 = 1;
+	targetDetectorFlag1 =1;
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
 

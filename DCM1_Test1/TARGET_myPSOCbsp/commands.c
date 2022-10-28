@@ -650,7 +650,7 @@ void settingParameters()
     TEC_Driver1_Status(ON);
 
 
-    StabilizeAllTemp(*TDET0);
+    //StabilizeAllTemp(*TDET0);
 
     if (*Exit == 1)
 	{

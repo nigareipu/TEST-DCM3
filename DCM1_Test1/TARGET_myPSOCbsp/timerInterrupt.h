@@ -14,8 +14,8 @@
 
 void isr_timer(void *callback_arg, cyhal_timer_event_t event);
 void cyhal_timer_event_interrupt();
-void PID_loop1(float tempSet);
-void PID_loop2(float tempSet);
+void PID_loop0();
+void PID_loop1();
 
 extern volatile bool TEC_controller1ActiveFlag;
 extern volatile bool TEC_controller2ActiveFlag;
