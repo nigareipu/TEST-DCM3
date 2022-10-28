@@ -191,7 +191,7 @@ void setParameters()
 
 	// Turns on TEC driver and switches
 	TEC_controller0ActiveFlag = 1;
-	TEC_controller1ActiveFlag = 0;
+	TEC_controller1ActiveFlag = 1;
 
 	TEC_SW0_Status(ON);
 	TEC_SW1_Status(ON);
@@ -219,8 +219,8 @@ void setDetectorBias()
 			DET_gradual_increase[i] = DET_gradual_increase[i] + 10;
 			cyhal_system_delay_ms(1);
 		}
-		Cy_SCB_UART_PutString(UART_HW, "detector voltage :");
-		printFloat(DET_bias[i]);
+		//Cy_SCB_UART_PutString(UART_HW, "detector voltage :");
+		//printFloat(DET_bias[i]);
 		SetDetectorVoltage(DET[i], DET_bias[i]);
 	}
 

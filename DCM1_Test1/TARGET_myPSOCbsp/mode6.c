@@ -21,15 +21,18 @@ void mode6program()
 	//printThermalInfo = 1;
 
 	// Confirm selected TEC is on and set to anneal to the temperature #
-	Cy_SCB_UART_PutString(UART_HW, "Thermoelectric cooler number ");
-	sprintf(adcBuffer, "%f", *AnDET);
-	Cy_SCB_UART_PutString(UART_HW, " is ON and set to anneal to temperature ");
-	sprintf(confirmValue, "%f", *TDET0);
-	Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
-	Cy_SCB_UART_PutString(UART_HW, " for ");
-	sprintf(confirmValue, "%f", *RTime);
-	Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
-	Cy_SCB_UART_PutString(UART_HW, " seconds:\r\n");
+	if (*printMessageFlag == 1)
+	{
+		Cy_SCB_UART_PutString(UART_HW, "Thermoelectric cooler number ");
+		sprintf(adcBuffer, "%f", *AnDET);
+		Cy_SCB_UART_PutString(UART_HW, " is ON and set to anneal to temperature ");
+		sprintf(confirmValue, "%f", *TDET0);
+		Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
+		Cy_SCB_UART_PutString(UART_HW, " for ");
+		sprintf(confirmValue, "%f", *RTime);
+		Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
+		Cy_SCB_UART_PutString(UART_HW, " seconds:\r\n");
+	}
 
 	// Annealing the selected detector to 91 C for the selected time
 	//Annealing setup

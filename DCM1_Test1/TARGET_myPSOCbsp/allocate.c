@@ -43,6 +43,7 @@ void default_hashtable()
 	countTime = allocate_node(hash_table, table_size, sizeof(float), "countTime");
 	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag0");
 	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag1");
+	printMessageFlag = allocate_node(hash_table, table_size, sizeof(float), "printMessageFlag");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
@@ -53,8 +54,8 @@ void default_hashtable()
 	*VDET1 = 337;
 	*VDET2 = 376;
 	*VDET3 = 373;
-	*TDET0 = 0.95;
-	*TDET1 = 0.85;
+	*TDET0 = 1.0;
+	*TDET1 = 1.0;
 	*TDET2 = 0.95;
 	*TDET3 = 0.95;
 	*RTime = 300;
@@ -76,7 +77,8 @@ void default_hashtable()
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;
 	*targetTECFlag0=0;
-	*targetTECFlag1=1;
+	*targetTECFlag1=0;
+	*printMessageFlag=0;
 	*countTime = 1000;
 	*Exit=0;
 

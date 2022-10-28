@@ -43,7 +43,7 @@ extern float *ki;// PID Integral Gain
 extern float *kd;
 extern float *countTime;
 extern float *targetTECFlag0;
-extern float *targetTECFlag1;
+extern float *targetTECFlag1, *printMessageFlag;
 
 extern struct node *hash_table;
 extern unsigned int table_size;

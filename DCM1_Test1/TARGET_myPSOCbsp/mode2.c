@@ -21,7 +21,8 @@ void mode2program()
 
 
 	/*****************************Test values for printing*************************/
-	// if (printfeedbackFlag == 1){
+	if (*printMessageFlag == 1)
+	{
 	Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
 	printFloat(*VDET0);
 
@@ -42,6 +43,7 @@ void mode2program()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
 	printFloat(*DThrs);
+	}
 
 	/*****************************End of test values for printing***************************/
 

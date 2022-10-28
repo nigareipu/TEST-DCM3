@@ -14,27 +14,29 @@ void mode3program()
 	printThermalInfo = 1;
 
 	/*****************************Test Printing*************************/
-	// if (printfeedbackFlag == 1){
-	Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
-	printFloat(*VDET0);
+	if (*printMessageFlag == 1)
+	{
+		Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
+		printFloat(*VDET0);
 
-	Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
-	printFloat(*VDET1);
+		Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
+		printFloat(*VDET1);
 
-	Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
-	printFloat(*VDET2);
+		Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
+		printFloat(*VDET2);
 
-	Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
-	printFloat(*VDET3);
+		Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
+		printFloat(*VDET3);
 
-	Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
-	printFloat(*TDET0);
+		Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
+		printFloat(*TDET0);
 
-	Cy_SCB_UART_PutString(UART_HW, "Runtime :");
-	printFloat(*RTime);
+		Cy_SCB_UART_PutString(UART_HW, "Runtime :");
+		printFloat(*RTime);
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
-	printFloat(*DThrs);
+		Cy_SCB_UART_PutString(UART_HW, "\r\n discriminator threshold:  ");
+		printFloat(*DThrs);
+	}
 
 	/*****************************TEst printing***************************/
 
