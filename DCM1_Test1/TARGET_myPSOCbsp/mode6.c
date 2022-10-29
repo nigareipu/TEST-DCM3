@@ -1,15 +1,6 @@
-/*
- * mode6.c
- *
- *  Created on: May 19, 2022
- *      Author: jkrynski1
- * 		Modified: Noura-B August 9th
- */
+
 
 #include "modes.h"
-//volatile bool DetectorSetFlag;
-
-// should we have an emergency shutdown button??
 
 void mode6program()
 {
@@ -18,7 +9,6 @@ void mode6program()
 
 	// CODE FOR RUNNING  MODE
 	turnOFF_TECs();
-	//printThermalInfo = 1;
 
 	// Confirm selected TEC is on and set to anneal to the temperature #
 	if (*printMessageFlag == 1)
@@ -64,9 +54,8 @@ void mode6program()
 		TEC_controller1ActiveFlag = 1;
 		TEC_Driver1_Status(ON);
 	}
+	printThermalInfo=1;
 
-
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
 	for (int k = 0; k < *RTime; k++)
 	{
 
@@ -82,9 +71,4 @@ void mode6program()
 	turnOFF_TECs();
 	mode1program();
 }
-
-
-
-// Turn the selected detector OFF == 0
-
 

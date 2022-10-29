@@ -49,7 +49,7 @@ int idx;
 volatile int count;
 volatile bool uartRxCompleteFlag; // flag for notifying that the rx buffer is not empty
 volatile bool flag_1;			  // flag for notifying that the rx buffer is full and receiving is complete.
-volatile bool printThermalInfo;	  // option to print all thermread data
+volatile bool printThermalInfo=1;	  // option to print all thermread data
 volatile bool ThermStabilize;	  // option to do 30 s thermal stabilization. Must be set to 1 initially during first measurements.
 volatile bool TEC_controller0ActiveFlag;// flag for timer interrupt
 volatile bool TEC_controller1ActiveFlag;

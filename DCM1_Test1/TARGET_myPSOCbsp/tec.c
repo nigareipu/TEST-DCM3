@@ -159,7 +159,7 @@ void TEC_SW3_Status(uint8 status)
 	cyhal_gpio_write(P7_3, status);
 }
 
-void TEC0_StabilizeTemp(float tempSet)
+/*void TEC0_StabilizeTemp(float tempSet)
 {
 
 	// EXPLAIN the function
@@ -243,9 +243,9 @@ void TEC0_StabilizeTemp(float tempSet)
 
 		cyhal_system_delay_ms(1000);
 	}
-}
+}*/
 
-void TEC1_StabilizeTemp(float tempSet)
+/*void TEC1_StabilizeTemp(float tempSet)
 {
 
 	float k1 = *kp + *ki + *kd;
@@ -323,40 +323,30 @@ void TEC1_StabilizeTemp(float tempSet)
 
 		cyhal_system_delay_ms(1000);
 	}
-}
+}*/
 
 void monitorITEC0()
 {
-
 	ITEC0_Read();
 	ITEC0 = (ITEC0_V - 1.5) / (8 * 0.05);
-	sprintf(adcBuffer, "%f", ITEC0);
-	// Cy_SCB_UART_PutString(UART_HW,"ITEC0 = ");
-	Cy_SCB_UART_PutArray(UART_HW, adcBuffer, 7);
-	// Cy_SCB_UART_PutString(UART_HW," A\r\n");
 }
 
 void monitorITEC1()
 {
-
 	ITEC1_Read();
 	ITEC1 = (ITEC1_V - 1.5) / (8 * 0.05);
-	sprintf(adcBuffer, "%f", ITEC1);
-	// Cy_SCB_UART_PutString(UART_HW,"ITEC1 = ");
-	Cy_SCB_UART_PutArray(UART_HW, adcBuffer, 7);
-	// Cy_SCB_UART_PutString(UART_HW," A\r\n");
 }
 
-void GetAllTECCurrent(void)
+/*void GetAllTECCurrent(void)
 {
 
 	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
 	ITEC0_V = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, ITEC0channel, Cy_SAR_GetResult16(SAR_ADC_HW, ITEC0channel));
 	ITEC1_V = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, ITEC1channel, Cy_SAR_GetResult16(SAR_ADC_HW, ITEC1channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-}
+}*/
 
-void TEC0_updateTemp(float tempSet)
+/*void TEC0_updateTemp(float tempSet)
 {
 
 	float k1 = *kp + *ki + *kd;
@@ -431,9 +421,9 @@ void TEC0_updateTemp(float tempSet)
 
 		Cy_SAR_StopConvert(SAR_ADC_HW);
 	}
-}
+}*/
 
-void TEC1_updateTemp(float tempSet)
+/*void TEC1_updateTemp(float tempSet)
 {
 
 	float k1 = *kp + *ki + *kd;
@@ -508,9 +498,9 @@ void TEC1_updateTemp(float tempSet)
 
 		Cy_SAR_StopConvert(SAR_ADC_HW);
 	}
-}
+}*/
 
-void StabilizeAllTemp(float tempSet)
+/*void StabilizeAllTemp(float tempSet)
 {
 	// Function for cooling down all detectors
 
@@ -652,13 +642,13 @@ void StabilizeAllTemp(float tempSet)
 		Cy_SAR_StopConvert(SAR_ADC_HW);
 		cyhal_system_delay_ms(1000);
 	}
-}
+}*/
 
 // change settime to length (command setl) and choosedetector to DET_0 in bias code
 // make sure the detectors are off and only on is on
 // ranges can be found in prompt.h for set l and set det
 
-void Annealing(uint16_t detector, float length, float DET0_temp)
+/*void Annealing(uint16_t detector, float length, float DET0_temp)
 {
 
 	float k1 = *kp + *ki + *kd;
@@ -832,10 +822,10 @@ void Annealing(uint16_t detector, float length, float DET0_temp)
 			}
 		}
 	}
-}
+}*/
 
 // add print statements saying which detector is on
-void TurnTEC_ON(uint16_t detector)
+/*void TurnTEC_ON(uint16_t detector)
 {
 
 	if (detector == DET0)
@@ -862,9 +852,9 @@ void TurnTEC_ON(uint16_t detector)
 		cyhal_system_delay_ms(2000);
 		TEC_SW3_Status(ON);
 	}
-}
+}*/
 
-void TurnTEC_OFF(uint16_t detector)
+/*void TurnTEC_OFF(uint16_t detector)
 {
 
 	if (detector == DET0)
@@ -891,14 +881,14 @@ void TurnTEC_OFF(uint16_t detector)
 		cyhal_system_delay_ms(2000);
 		TEC_SW3_Status(OFF);
 	}
-}
+}*/
 
-void UpdateAllTemp(float tempSet)
+/*void UpdateAllTemp(float tempSet)
 {
 	// Updating Detector 0 and 1 simultanously
 
 	TEC0_updateTemp(tempSet);
 	TEC1_updateTemp(tempSet);
-}
+}*/
 
 

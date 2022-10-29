@@ -51,6 +51,7 @@ void mode3program()
 	// sets discriminator threshold, turns on switches and bias voltages
 	setParameters();
 	setDetectorBias();
+	printThermalInfo=0;
 
 
 

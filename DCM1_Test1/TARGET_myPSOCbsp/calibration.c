@@ -79,6 +79,7 @@ void calibrateBreakdownvTemp()
 			}
 
 			SetDetectorVoltage(DET[d], *VoltSt);
+			printThermalInfo=0;
 			// Do a voltage scan at each temperature
 			VoltageScan(DET[d], *VoltSt, *VoltEd);
 
@@ -99,8 +100,6 @@ void calibrateBreakdownvTemp()
 
 void calibrateCountsvDiscThresh()
 {
-
-	printThermalInfo = 1;
 	// Set temp and stabilize
 	turnON_TECs();
 	//StabilizeAllTemp(*TDET0);
@@ -129,6 +128,7 @@ void calibrateCountsvDiscThresh()
 		setDiscr1Thresh(thresh);
 		setDiscr2Thresh(thresh);
 		setDiscr3Thresh(thresh);
+		printThermalInfo=0;
 
 		// Print information
 		Cy_SCB_UART_PutString(UART_HW, "\r\n thresholds =  ");
@@ -176,8 +176,6 @@ void calibrateCountsvBiasVolt()
 
 	// Cy_SCB_UART_Enable(UART_HW);
 
-	printThermalInfo = 1;
-
 	setParameters();
 
     unsigned int DET[] = {DET0, DET1, DET2, DET3};
@@ -205,7 +203,7 @@ void calibrateCountsvBiasVolt()
 		// Stabilize temperature for 30 s to -1?
 		//Cy_SCB_UART_PutString(UART_HW, "Stabilizing temperatures for 30 s\r\n");
 		//StabilizeAllTemp(temp);
-
+		printThermalInfo=0;
 		VoltageScan(DET[d], *VoltSt, *VoltEd);
 	}
 

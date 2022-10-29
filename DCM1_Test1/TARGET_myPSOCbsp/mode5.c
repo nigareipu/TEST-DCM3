@@ -11,6 +11,7 @@ void mode5program()
 {
 
 	Cy_SCB_UART_PutString(UART_HW, "SET MODE to CALIBRATION\r\n");
+	printThermalInfo=1;
 
 	if (*mode5Calibration==0)
 	{

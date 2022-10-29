@@ -16,34 +16,28 @@ double e_1 = 0;
 double e1_1 = 0;
 double e2_1 = 0;
 
-//double C_output = 0.0;
-//double prev_output = 1.5;
-/*double prev_output0 = 1.5;
-double prev_output1 = 1.5;
-double C_output0 = 0.0;
-double C_output1 = 0.0;
-
-float thermRead = 0.0;
-float thermRead0 = 0.0; // System output temperature in voltage for Tec 0
-float thermRead1 = 0.0; // System output temperature in voltage for Tec 1
-float thermRead2 = 0.0; // System output temperature in voltage for Tec 2
-float thermRead3 = 0.0;*/
-
-
 void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 {
 	//First TEC controller
-	Cy_SCB_UART_PutString(UART_HW, "Therm0, Therm1, Therm2, Therm3: ");
+	if(printThermalInfo==1)
+	{
+	Cy_SCB_UART_PutString(UART_HW, "Therm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: ");
 	Therm0_Read();
 	Therm1_Read();
 	Therm2_Read();
 	Therm3_Read();
+	monitorITEC0();
+	monitorITEC1();
 
 	//printFloat(*TDET0);
 	printFloat(ThermRead0);
 	printFloat(ThermRead1);
 	printFloat(ThermRead2);
 	printFloat(ThermRead3);
+	printFloat(ITEC0);
+	printFloat(ITEC1);
+
+	}
 	Cy_SCB_UART_PutString(UART_HW, "\n\r ");
 
 	if(TEC_controller0ActiveFlag == 1)
@@ -79,16 +73,11 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 		C_output1 = 1.5;
 		//Cy_SCB_UART_PutString(UART_HW, "do nothing\n\r ");
 	}
-
-
 }
 
 void cyhal_timer_event_interrupt()
 
 {
-	//timer_interrupt_flag = false;
-	//cy_rslt_t rslt;
-
 	cyhal_timer_cfg_t timer_cfg =
 	{
 			.compare_value = 0,              // Timer compare value, not used
@@ -176,8 +165,8 @@ void PID_loop0()
 	dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_C, AD56x8_WR_IN_UPD_ALL);
 	transmitToHVDAC(dacDataPacket);
 
-	monitorITEC0();
-	Cy_SCB_UART_PutString(UART_HW, ",\r\n");
+	//monitorITEC0();
+	//Cy_SCB_UART_PutString(UART_HW, ",\r\n");
 	//Cy_SCB_UART_PutString(UART_HW, " PID loop1 ends\n\r ");
 }
 
@@ -233,8 +222,7 @@ void PID_loop1()
 
 	/*printFloat(thermRead1);
 	Cy_SCB_UART_PutString(UART_HW, ",");*/
-
-	monitorITEC1();
-	Cy_SCB_UART_PutString(UART_HW, ",\r\n");
+	//monitorITEC1();
+	//Cy_SCB_UART_PutString(UART_HW, ",\r\n");
 	//Cy_SCB_UART_PutString(UART_HW, " PID loop2 ends\n\r ");
 }
