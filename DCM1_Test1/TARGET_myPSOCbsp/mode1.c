@@ -16,6 +16,11 @@ void mode1program()
 	TEC_controller0ActiveFlag = 0;
 	TEC_controller1ActiveFlag = 0;
 
+	setDiscr0Thresh(*DThrs);
+	setDiscr1Thresh(*DThrs);
+	setDiscr2Thresh(*DThrs);
+	setDiscr3Thresh(*DThrs);
+
 	DET0_voltage = 0;
 	DET1_voltage = 0;
 	DET2_voltage = 0;

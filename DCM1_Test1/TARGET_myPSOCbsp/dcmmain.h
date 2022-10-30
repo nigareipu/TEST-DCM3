@@ -54,7 +54,7 @@ volatile bool ThermStabilize;	  // option to do 30 s thermal stabilization. Must
 volatile bool TEC_controller0ActiveFlag;// flag for timer interrupt
 volatile bool TEC_controller1ActiveFlag;
 volatile bool warningFlag = 1; // flag for printing warnings before mode is set. Must be set to 1 to print information.
-
+volatile bool PID_Select=0; // flag for alternating PID loops
 float tecDriver0StatusFlag;
 float tecDriver1StatusFlag;
 float targetDetectorFlag;

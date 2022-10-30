@@ -52,7 +52,7 @@ void mode2program()
 	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 	setParameters();
 	setDetectorBias();
-	printThermalInfo=0;
+	//printThermalInfo=0;
 
 	/********counting loop*****************************/
 
@@ -68,6 +68,15 @@ void mode2program()
 		startSinglesCounting();
 		startCoincidenceCounting();
 		Cy_SCB_UART_PutString(UART_HW, "\r\n");
+
+		/*dacValue = convertTempSetVoltagetoDACVoltage(C_output0);
+		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_C, AD56x8_WR_IN_UPD_ALL);
+		transmitToHVDAC(dacDataPacket);
+
+		dacValue = convertTempSetVoltagetoDACVoltage(C_output1);
+		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_D, AD56x8_WR_IN_UPD_ALL);
+		transmitToHVDAC(dacDataPacket);*/
+
 		cyhal_system_delay_ms(*countTime);//Must be kept for accumulating counts/sec
 	}
 	mode1program();

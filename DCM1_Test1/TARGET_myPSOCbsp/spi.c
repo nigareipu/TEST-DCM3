@@ -105,18 +105,19 @@ void HVDAC_SPI_Init(void)
 void transmitToHVDAC(uint32_t dacDataPacket)
 {
 	//Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC  start\n\r ");
+	char confirmValue[32];
+	/*sprintf(confirmValue, "%ld %d", dacDataPacket, SPI_BUFFER_SIZE );
+				Cy_SCB_UART_PutString(UART_HW, confirmValue);
+				Cy_SCB_UART_PutString(UART_HW, "\n\r");*/
 
 	for (bufIndex = (SPI_BUFFER_SIZE - 1), shift = 0; bufIndex >= 0; bufIndex--, shift++)
 	{
 		//Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC  loop\n\r ");
 		spi_buf[bufIndex] = (uint8_t)(dacDataPacket >> (8 * shift));
+
 	}
 	//Cy_SCB_UART_PutString(UART_HW, "outside transmitToHVDAC  loop\n\r ");
 	cy_rslt_t result;
-	char confirmValue[32];
-
-	//sprintf(confirmValue, "%d", spi_buf);
-	//Cy_SCB_UART_PutString(UART_HW, confirmValue);
 
 	// Define placehold variable to receive
 	uint8_t receive_data[4];
@@ -124,7 +125,15 @@ void transmitToHVDAC(uint32_t dacDataPacket)
 	for (int i = 0; i < 1; i++)
 	{
 		//Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC loop2  start\n\r ");
-		cyhal_spi_transfer_async(&HVDAC_obj, spi_buf, 4u, receive_data, 4u);
+		/*sprintf(confirmValue, "%d %d %d %d,%d", spi_buf[0], spi_buf[1], spi_buf[2], spi_buf[3], sizeof(spi_buf));
+		Cy_SCB_UART_PutString(UART_HW, confirmValue);
+		Cy_SCB_UART_PutString(UART_HW, "\n\r");*/
+		cyhal_spi_transfer_async(&HVDAC_obj, spi_buf, 4, receive_data, 4);
+		//cyhal_spi_transfer(&HVDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
+		//cyhal_spi_send(&HVDAC_obj, dacDataPacket);
+		/*sprintf(confirmValue, "%d %d %d %d", receive_data[0], receive_data[1], receive_data[2], receive_data[3]);
+		Cy_SCB_UART_PutString(UART_HW, confirmValue);
+		Cy_SCB_UART_PutString(UART_HW, "\n\r");*/
 
 		/*if( result != CY_RSLT_SUCCESS)
 		{
