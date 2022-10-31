@@ -23,7 +23,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 	{
 		if(printThermalInfo==1)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "Therm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: ");
+			Cy_SCB_UART_PutString(UART_HW, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: ");
 			Therm0_Read();
 			Therm1_Read();
 			Therm2_Read();

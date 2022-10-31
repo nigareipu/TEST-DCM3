@@ -22,7 +22,7 @@ void calibrateBreakdownvTemp()
 		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-			break;//should it be break or return
+			mode1program();
 		}
 
 		// Set temperature loop.. make sure to print also what the temperature is.
@@ -36,11 +36,12 @@ void calibrateBreakdownvTemp()
 				break;
 			}
 
-			Cy_SCB_UART_PutString(UART_HW, "SetTemp = ");
-			sprintf(txBuffer, "%f", temp);
+			//Cy_SCB_UART_PutString(UART_HW, "SetTemp = ");
+			/*sprintf(txBuffer, "%f", temp);
 			Cy_SCB_UART_Transmit(UART_HW, txBuffer, 8, &uartContext);
-			Cy_SCB_UART_PutString(UART_HW, "\r\n\r\n");
+			Cy_SCB_UART_PutString(UART_HW, "\r\n\r\n");*/
 
+			//Set TEC for getting feedback
 			if (d==0)
 			{
 				*TDET0 = temp;
@@ -63,7 +64,7 @@ void calibrateBreakdownvTemp()
 			/***************************************************************************
 			 * *******************This is required to settle temperature before counting*************
 			 **************************************************************************/
-			cyhal_system_delay_ms(10000);
+			cyhal_system_delay_ms(30000);
 
 			if (*Exit == 1)
 			{
@@ -79,9 +80,9 @@ void calibrateBreakdownvTemp()
 			}
 
 			SetDetectorVoltage(DET[d], *VoltSt);
-			printThermalInfo=0;
+			//printThermalInfo=0;
 			// Do a voltage scan at each temperature
-			VoltageScan(DET[d], *VoltSt, *VoltEd);
+			VoltageScan(DET[d], *VoltSt, *VoltEd, temp);
 
 		}
 	}
@@ -204,7 +205,7 @@ void calibrateCountsvBiasVolt()
 		//Cy_SCB_UART_PutString(UART_HW, "Stabilizing temperatures for 30 s\r\n");
 		//StabilizeAllTemp(temp);
 		printThermalInfo=0;
-		VoltageScan(DET[d], *VoltSt, *VoltEd);
+		VoltageScan(DET[d], *VoltSt, *VoltEd, *TDET0);
 	}
 
 	turnOFF_TECs();

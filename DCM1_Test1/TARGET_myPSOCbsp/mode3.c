@@ -51,11 +51,17 @@ void mode3program()
 	// sets discriminator threshold, turns on switches and bias voltages
 	setParameters();
 	setDetectorBias();
+
+	/********Wait for Thermal stabilization*****************************/
+	for(int count=0; count<15; count++)
+	{
+		cyhal_system_delay_ms(1000);
+	}
+
 	printThermalInfo=0;
 
 
-
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate 0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
+	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate\r\n0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
 	// Starts counting
 	for (int k = 0; k < *RTime; k++)
 	{

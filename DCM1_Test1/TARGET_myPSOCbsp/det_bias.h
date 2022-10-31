@@ -38,6 +38,6 @@ extern uint32_t dacDataPacket;
 
 // Functions
 void SetDetectorVoltage(uint16_t detector, float voltage);
-void VoltageScan(uint16_t detector, float startVoltage, float endVoltage);
+void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float temp);
 
 #endif /* TARGET_MYPSOCBSP_DET_BIAS_H_ */

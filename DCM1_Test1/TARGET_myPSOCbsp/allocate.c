@@ -10,7 +10,7 @@ void default_hashtable()
 {
 
 	hash_table = initialize_table(table_size);
-	Cy_SCB_UART_PutString(UART_HW, "\r\ninside hash table\r\n");
+	//Cy_SCB_UART_PutString(UART_HW, "\r\ninside hash table\r\n");
 	// Allocating space to each Key
     mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
     mode5Calibration = allocate_node(hash_table, table_size, sizeof(float), "mode5Calibration");
@@ -46,9 +46,9 @@ void default_hashtable()
 	printMessageFlag = allocate_node(hash_table, table_size, sizeof(float), "printMessageFlag");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\n after allocation \r\n");
 
-	*mode = 2;
+
+	*mode = 5;
 	*mode5Calibration=0;
 	*VDET0 = 312;
 	*VDET1 = 337;
@@ -82,7 +82,6 @@ void default_hashtable()
 	*countTime = 1000;
 	*Exit=0;
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\n after value assignement \r\n");
 
 }
 

@@ -124,27 +124,9 @@ void transmitToHVDAC(uint32_t dacDataPacket)
 
 	for (int i = 0; i < 1; i++)
 	{
-		//Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC loop2  start\n\r ");
-		/*sprintf(confirmValue, "%d %d %d %d,%d", spi_buf[0], spi_buf[1], spi_buf[2], spi_buf[3], sizeof(spi_buf));
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "\n\r");*/
 		cyhal_spi_transfer_async(&HVDAC_obj, spi_buf, 4, receive_data, 4);
-		//cyhal_spi_transfer(&HVDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
-		//cyhal_spi_send(&HVDAC_obj, dacDataPacket);
-		/*sprintf(confirmValue, "%d %d %d %d", receive_data[0], receive_data[1], receive_data[2], receive_data[3]);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		Cy_SCB_UART_PutString(UART_HW, "\n\r");*/
-
-		/*if( result != CY_RSLT_SUCCESS)
-		{
-			Cy_SCB_UART_PutString(UART_HW,"HC DAC SPI data transferred FAILED \r\n");
-			CY_ASSERT(0);
-
-
-		}
-		else { Cy_SCB_UART_PutString(UART_HW,"HV DAC SPI data byte transferred\r\n");}*/
 	}
-	//Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC loop2  ends\n\r ");
+
 }
 
 

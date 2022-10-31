@@ -66,12 +66,14 @@ void SetDetectorVoltage(uint16_t detector, float voltage)
  * @param float endVoltage - The voltage the scan will end at
  * @returns Nothing
  */
-void VoltageScan(uint16_t detector, float startVoltage, float endVoltage)
+void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float temp)
 {
 
-	char voltStep[5];
+	char voltStep[32];
 
-	Cy_SCB_UART_PutString(UART_HW, "Detector Bias Voltage, Count Rate\r\n");
+
+
+
 	// Voltage scan loop for each temperature
 	for (float voltage = startVoltage; voltage < endVoltage + 0.5; voltage = voltage + 0.5)
 	{
@@ -81,13 +83,14 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage)
 			break;
 		}
 
+		Cy_SCB_UART_PutString(UART_HW, "\n\rDET, Tset, DBias, DCount: ");
+		sprintf(voltStep, "%i, %.3f, %f, ", detector, temp, voltage);
+		Cy_SCB_UART_PutString(UART_HW, voltStep);
+
 		SetDetectorVoltage(detector, voltage);
 
 		for (int j = 0; j < 1; j++)
 		{
-			sprintf(voltStep, "%f", voltage);
-			Cy_SCB_UART_PutArray(UART_HW, voltStep, 5);
-			Cy_SCB_UART_PutString(UART_HW, ",");
 			// should be an if statement dependent on det chosen
 			if (detector == DET0)
 			{
