@@ -250,8 +250,8 @@ void GetSingles1Counts()
 	Singles1_CountRate = readcount1;
 	Cy_TCPWM_Counter_SetCounter(Singles_1_HW, Singles_1_NUM, 0);
 
-	sprintf(Singles1_CountRateArray, "%lu:%lu,", ClockStamp, Singles1_CountRate);
-	Cy_SCB_UART_PutArray(UART_HW, Singles1_CountRateArray, strlen(Singles1_CountRateArray));
+	/*sprintf(Singles1_CountRateArray, "%lu:%lu,", ClockStamp, Singles1_CountRate);
+	Cy_SCB_UART_PutArray(UART_HW, Singles1_CountRateArray, strlen(Singles1_CountRateArray));*/
 }
 
 /*
