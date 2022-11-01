@@ -4,8 +4,9 @@
 
 void mode6program()
 {
+	printThermalInfo=1;
+	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to Thermal Annealing\r\n");
 
-	Cy_SCB_UART_PutString(UART_HW, "SET MODE to Thermal Annealing\r\n");
 
 	// CODE FOR RUNNING  MODE
 	turnOFF_TECs();
@@ -29,32 +30,37 @@ void mode6program()
 
 	if(*AnDET==0)
 	{
+		TEC_controller0ActiveFlag = 1;
+		TEC_controller1ActiveFlag = 0;
 		TEC_SW0_Status(ON);
+		TEC_Driver0_Status(ON);
+		//also set *targetTECFlag0 == 0;
 	}
 
 	else if (*AnDET==1){
-		TEC_SW1_Status(ON);
-	}
-	else if (*AnDET==2){
-		TEC_SW2_Status(ON);
-	}
-	else {
-		TEC_SW3_Status(ON);
-	}
 
-	if(*CntTEC==0)
-	{
 		TEC_controller0ActiveFlag = 1;
 		TEC_controller1ActiveFlag = 0;
+		TEC_SW1_Status(ON);
 		TEC_Driver0_Status(ON);
+		//also set *targetTECFlag0 == 1;
 	}
-	else
-	{
+	else if (*AnDET==2){
+
 		TEC_controller0ActiveFlag = 0;
 		TEC_controller1ActiveFlag = 1;
+		TEC_SW2_Status(ON);
 		TEC_Driver1_Status(ON);
+		//also set *targetTECFlag1 == 0;
 	}
-	printThermalInfo=1;
+	else {
+		TEC_controller0ActiveFlag = 0;
+		TEC_controller1ActiveFlag = 1;
+		TEC_SW3_Status(ON);
+		TEC_Driver1_Status(ON);
+		//also set *targetTECFlag1 == 1;
+	}
+
 
 	for (int k = 0; k < *RTime; k++)
 	{

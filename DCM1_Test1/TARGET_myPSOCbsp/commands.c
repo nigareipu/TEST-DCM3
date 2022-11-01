@@ -31,35 +31,29 @@ void Init_Hardware()
  */
 void setCoincidenceWindowCommand(float ConcidanceWindow)
 {
-
 	if (ConcidanceWindow == 0)
-
 	{
 		CoincidenceWindow_Set(0, 0);
-		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 0\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 0\r\n");
 	}
-
 	else if (ConcidanceWindow == 1)
 	{
 		CoincidenceWindow_Set(0, 1);
-		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 1\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 1\r\n");
 	}
-
 	else if (ConcidanceWindow == 2)
 	{
 		CoincidenceWindow_Set(1, 0);
-		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 2\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 2\r\n");
 	}
-
 	else if (ConcidanceWindow == 3)
 	{
 		CoincidenceWindow_Set(1, 1);
-		Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 3\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 3\r\n");
 	}
 	else
 	{
 		Cy_SCB_UART_PutString(UART_HW, "\r\n Input not valid ");
-
 	}
 }
 
@@ -72,31 +66,23 @@ void setDelay0Command(float DelayValue)
 
 	if (DelayValue == 0)
 	{
-
 		Delay0_Set(0, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 0\r\n");
-
+		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
-
 		Delay0_Set(0, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 1\r\n");
-
+		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
-
 		Delay0_Set(1, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 2\r\n");
-
+		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 2\r\n");
 	}
 	else if (DelayValue == 3)
 	{
-
 		Delay0_Set(1, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 3\r\n");
-
+		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 3\r\n");
 	}
 }
 
@@ -105,24 +91,24 @@ void setDelay1Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay1_Set(0, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 0\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay1_Set(0, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 1\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 
 		Delay1_Set(1, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 2\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 2\r\n");
 
 	}
 	else if (DelayValue == 3)
 	{
 		Delay1_Set(1, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 3\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 3\r\n");
 
 	}
 }
@@ -132,24 +118,23 @@ void setDelay2Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay2_Set(0, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 0\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay2_Set(0, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 1\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
-
 		Delay2_Set(1, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 2\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 2\r\n");
 
 	}
 	else if (DelayValue == 3)
 	{
 		Delay2_Set(1, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 3\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 3\r\n");
 
 	}
 }
@@ -159,25 +144,22 @@ void setDelay3Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay3_Set(0, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 0\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay3_Set(0, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 1\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
-
 		Delay3_Set(1, 0);
-		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 2\r\n");
-
+		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 2\r\n");
 	}
 	else if (DelayValue == 3)
 	{
 		Delay3_Set(1, 1);
-		Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 3\r\n");
-
+		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 3\r\n");
 	}
 }
 
@@ -207,6 +189,17 @@ void setParameters()
 // Set voltage of detectors gradually
 void setDetectorBias()
 {
+
+	HV0_Monitor();
+	cyhal_system_delay_ms(500); // required delay
+	HV3_Monitor();
+	cyhal_system_delay_ms(500); // required delay
+	Cy_SCB_UART_PutString(UART_HW, "\r\nHV0, HV3: ");
+	sprintf(confirmValue, "%.3f, %.3f",  HVMoni0, HVMoni3);
+	Cy_SCB_UART_PutString(UART_HW, confirmValue);
+
+
+
 	float DET_gradual_increase[] = {0, 0, 0, 0};
 	float DET_bias[] = {*VDET0, *VDET1, *VDET2, *VDET3};
 	unsigned int DET[] = {DET0, DET1, DET2, DET3};
@@ -230,10 +223,7 @@ void setDetectorBias()
 		mode1program();
 	}
 
-	HV0_Monitor();
-	cyhal_system_delay_ms(500); // required delay
-	HV3_Monitor();
-	cyhal_system_delay_ms(500); // required delay
+
 
 }
 

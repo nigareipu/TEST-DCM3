@@ -39,6 +39,7 @@ extern volatile bool TEC_controller0ActiveFlag;
 extern volatile bool TEC_controller1ActiveFlag;
 extern char confirmValue[32];
 extern float discrThresh;
+extern uint32_t ClockStamp;
 
 void mode1program();
 void mode2program();

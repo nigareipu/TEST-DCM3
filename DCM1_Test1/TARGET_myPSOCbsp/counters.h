@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include "string.h"
 #include <stdlib.h>
-
+#include "modes.h"
 extern char lengthArray[4];
 
 // External variables declared

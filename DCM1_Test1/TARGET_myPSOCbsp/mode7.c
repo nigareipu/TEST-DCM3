@@ -9,7 +9,7 @@
 
 void mode7program()
 {
-	Cy_SCB_UART_PutString(UART_HW, "SET MODE to OPTICAL ANNEALING\r\n");
+	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to OPTICAL ANNEALING\r\n");
 	printThermalInfo=1;
 
 	for (int t = 0; t < *RTime; t++)

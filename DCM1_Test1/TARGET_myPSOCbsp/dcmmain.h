@@ -65,6 +65,7 @@ cyhal_spi_t HVDAC_obj;
 uint8_t spi_buf[SPI_BUFFER_SIZE];
 uint32_t dacDataPacket;
 uint16_t dacValue;
+uint32_t ClockStamp;
 
 float inputVoltage;
 
@@ -93,14 +94,14 @@ float* VDET0;
 float* VDET1;
 float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
 float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
-float *CntTEC, *AnDET;
+float *TECcntr, *AnDET;
 float *DthrEd, *DthrSt;
 float *TempSt,*TempEd;
-float *VoltSt, *VoltEd;
+float *VoltSt, *VoltEd, *DNum;
 float *kp, *ki, *kd; //PID coefficients
 float *countTime;
 float *targetTECFlag0;
-float *targetTECFlag1, *printMessageFlag;
+float *targetTECFlag1, *printMessageFlag, *printThermalFlag;
 float *Exit;
 
 /*end of hashtable variable declaration*/

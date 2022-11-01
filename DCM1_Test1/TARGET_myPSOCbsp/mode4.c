@@ -10,7 +10,7 @@
 void mode4program()
 {
 
-	Cy_SCB_UART_PutString(UART_HW, "SET MODE to SINGLE SIDE COINCIDENCE COUNTING\r\n");
+	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to SINGLE SIDE COINCIDENCE COUNTING\r\n");
 	printThermalInfo = 1;
 
 	/*****************************Test Pritning*************************/
@@ -52,13 +52,13 @@ void mode4program()
 	setParameters();
 	setDetectorBias();
 
+	printThermalInfo=*printThermalFlag;
 
-
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSingles 0, Singles 1, Singles 2,  Singles 3, Coincidence 0&2, Coincidence 1&3\r\n");
 	// Starts counting
 
 	for (int k = 0; k < *RTime; k++)
 	{
+		Cy_SCB_UART_PutString(UART_HW, "\r\nS0, S1, S2,  S3, C02, C13: ");
 		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");

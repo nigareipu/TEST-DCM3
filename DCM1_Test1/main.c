@@ -46,6 +46,8 @@ int main(void)
 	CoincidenceCounter1_Init();
 	CoincidenceCounter2_Init();
 	CoincidenceCounter3_Init();
+	SysTick_Init();
+	Cy_SysTick_Enable();
 
 	/* ***********Timer setup******************************/
 	cyhal_timer_event_interrupt();

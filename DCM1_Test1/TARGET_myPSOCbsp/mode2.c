@@ -16,7 +16,7 @@
 void mode2program()
 {
 
-	Cy_SCB_UART_PutString(UART_HW, "SET MODE to COINCIDENCE COUNTING\r\n");
+	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to COINCIDENCE COUNTING\r\n");
 	printThermalInfo = 1;
 
 
@@ -53,19 +53,11 @@ void mode2program()
 	setParameters();
 	setDetectorBias();
 
-
-	/********Wait for Thermal stabilization*****************************/
-	for(int count=0; count<15; count++)
-	{
-		cyhal_system_delay_ms(1000);
-	}
-
-	printThermalInfo=0;
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSingle Count Rate\r\n0, 1, 2, 3, Coincidence 1&2, 0&1, 2&3, 0&3\r\n");
+	printThermalInfo=*printThermalFlag;
 
 	for (int k = 0; k < *RTime; k++)
 	{
-
+		Cy_SCB_UART_PutString(UART_HW, "\r\nS0, S1, S2, S3, C12, C01, C23, C03: ");
 		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");

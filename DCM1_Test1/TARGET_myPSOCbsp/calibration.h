@@ -18,6 +18,7 @@
 #include "discr.h"
 #include "serialUART.h"
 #include "spi.h"
+#include "adc.h"
 #define ON (1u)
 #define OFF (0u)
 

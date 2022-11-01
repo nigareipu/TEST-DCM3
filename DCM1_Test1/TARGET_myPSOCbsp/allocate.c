@@ -12,13 +12,13 @@ void default_hashtable()
 	hash_table = initialize_table(table_size);
 	//Cy_SCB_UART_PutString(UART_HW, "\r\ninside hash table\r\n");
 	// Allocating space to each Key
-    mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
-    mode5Calibration = allocate_node(hash_table, table_size, sizeof(float), "mode5Calibration");
-    VDET0 = allocate_node(hash_table, table_size, sizeof(float), "VDET0");
-    VDET1 = allocate_node(hash_table, table_size, sizeof(float), "VDET1");
-    VDET2 = allocate_node(hash_table, table_size, sizeof(float), "VDET2");
+	mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
+	mode5Calibration = allocate_node(hash_table, table_size, sizeof(float), "mode5Calibration");
+	VDET0 = allocate_node(hash_table, table_size, sizeof(float), "VDET0");
+	VDET1 = allocate_node(hash_table, table_size, sizeof(float), "VDET1");
+	VDET2 = allocate_node(hash_table, table_size, sizeof(float), "VDET2");
 	VDET3 = allocate_node(hash_table, table_size, sizeof(float), "VDET3");
-    TDET0 = allocate_node(hash_table, table_size, sizeof(float), "TDET0");
+	TDET0 = allocate_node(hash_table, table_size, sizeof(float), "TDET0");
 	TDET1 = allocate_node(hash_table, table_size, sizeof(float), "TDET1");
 	TDET2 = allocate_node(hash_table, table_size, sizeof(float), "TDET2");
 	TDET3 = allocate_node(hash_table, table_size, sizeof(float), "TDET3");
@@ -29,8 +29,9 @@ void default_hashtable()
 	DlayDET2 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET2");
 	DlayDET3 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET3");
 	CoWin = allocate_node(hash_table, table_size, sizeof(float), "CoWin");
-	CntTEC = allocate_node(hash_table, table_size, sizeof(float), "CntTEC");
-	AnDET = allocate_node(hash_table, table_size, sizeof(float), "AnDET");
+	//TECcntr = allocate_node(hash_table, table_size, sizeof(float), "TECcntr");//Choose TEC controller for Mode6
+	AnDET = allocate_node(hash_table, table_size, sizeof(float), "AnDET");// Choose Annealing DET for Mode6
+	DNum = allocate_node(hash_table, table_size, sizeof(float), "DNum");
 	DthrEd = allocate_node(hash_table, table_size, sizeof(float), "DthrEd");
 	DthrSt = allocate_node(hash_table, table_size, sizeof(float), "DthrSt");
 	TempSt = allocate_node(hash_table, table_size, sizeof(float), "TempSt");
@@ -44,6 +45,7 @@ void default_hashtable()
 	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag0");
 	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag1");
 	printMessageFlag = allocate_node(hash_table, table_size, sizeof(float), "printMessageFlag");
+	printThermalFlag= allocate_node(hash_table, table_size, sizeof(float), "printThermalFlag");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
 
@@ -58,27 +60,30 @@ void default_hashtable()
 	*TDET1 = 1.0;
 	*TDET2 = 0.95;
 	*TDET3 = 0.95;
-	*RTime = 300;
+	*RTime = 100;
 	*DThrs = 0.05;
 	*DlayDET0 = 0;
 	*DlayDET1= 3;
 	*DlayDET2= 2;
 	*DlayDET3= 1;
 	*CoWin = 3;
-	*CntTEC = 0;
-	*AnDET=0;
-	*DthrEd = 1.10;
+	//*TECcntr = 0; //value-> 0 (for TEC0 & TEC1) and 1 (for TEC2 & TEC3)
+	*AnDET=3; ////value-> 0 (for TEC0),  1 (for TEC1), 2 (for TEC2) & 3 (for TEC3)
+	*targetTECFlag0=1;
+	*targetTECFlag1=1;
 	*DthrSt = 0.2;
+	*DthrEd = 0.22;
 	*TempSt = 0.85 ;
 	*TempEd = 1.36;
 	*VoltSt = 300;
-	*VoltEd = 310;
+	*VoltEd = 320;
+	*DNum=1;//value->1-4. How many detectors to scan Required for mode5(2) scanning
 	*kp = 1.63; // PID Proportional Gain
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;
-	*targetTECFlag0=0;
-	*targetTECFlag1=0;
+
 	*printMessageFlag=0;
+	*printThermalFlag=1;
 	*countTime = 1000;
 	*Exit=0;
 

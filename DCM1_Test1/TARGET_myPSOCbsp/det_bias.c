@@ -71,7 +71,7 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float 
 
 	char voltStep[32];
 
-
+	printThermalInfo = *printThermalFlag;
 
 
 	// Voltage scan loop for each temperature
@@ -84,7 +84,7 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float 
 		}
 
 		Cy_SCB_UART_PutString(UART_HW, "\n\rDET, Tset, DBias, DCount: ");
-		sprintf(voltStep, "%i, %.3f, %f, ", detector, temp, voltage);
+		sprintf(voltStep, "%i, %.4f, %.3f, ", detector, temp, voltage);
 		Cy_SCB_UART_PutString(UART_HW, voltStep);
 
 		SetDetectorVoltage(detector, voltage);

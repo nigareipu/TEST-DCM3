@@ -16,8 +16,8 @@ int16_t THERM3;
 float HVMoni0Volts;
 float HVMoni3Volts;
 float ThermRead;
-float HVMoni0ConvertedVolts;
-float HVMoni3ConvertedVolts;
+float HVMoni0;
+float HVMoni3;
 float ThermRead0;
 float ThermRead1;
 float ThermRead2;
@@ -57,15 +57,15 @@ void HV0_Monitor(void)
 		HVMoni0Counts = Cy_SAR_GetResult16(SAR_ADC_HW, hvmoni0channel);
 		HVMoni0Volts = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, hvmoni0channel, Cy_SAR_GetResult16(SAR_ADC_HW, hvmoni0channel));
 		// This accounts for voltage divider, will print actual high voltage
-		HVMoni0ConvertedVolts = HVMoni0Volts * 10039.2 / 39.2;
+		HVMoni0 = HVMoni0Volts * 10039.2 / 39.2;
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 
 
-	sprintf(adcBuffer0, "%f", HVMoni0ConvertedVolts);
+	/*sprintf(adcBuffer0, "%f", HVMoni0ConvertedVolts);
 	Cy_SCB_UART_PutString(UART_HW, "\r\nHVMoni_0 = ");
 	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 16, &uartContext);
-	Cy_SCB_UART_PutString(UART_HW, "\r\n");
+	Cy_SCB_UART_PutString(UART_HW, "\r\n");*/
 }
 
 /* @desc Read voltage from HV 3 feedback line. Value of HVMoni will be between 0 and Vref (2.048V) and must be converted to read
@@ -81,13 +81,13 @@ void HV3_Monitor(void)
 		HVMoni3Counts = Cy_SAR_GetResult16(SAR_ADC_HW, hvmoni3channel);
 		HVMoni3Volts = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, hvmoni3channel, HVMoni3Counts);
 		// This accounts for voltage divider, will print actual high voltage
-		HVMoni3ConvertedVolts = HVMoni3Volts * 10039.2 / 39.2;
+		HVMoni3 = HVMoni3Volts * 10039.2 / 39.2;
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 
-	sprintf(adcBuffer0, "%f", HVMoni3ConvertedVolts);
+	/*sprintf(adcBuffer0, "%f", HVMoni3ConvertedVolts);
 	Cy_SCB_UART_PutString(UART_HW, "\r\nHVMoni_3 = ");
-	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 10, &uartContext);
+	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 10, &uartContext);*/
 }
 
 /*

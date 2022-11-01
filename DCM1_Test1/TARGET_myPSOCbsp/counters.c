@@ -19,7 +19,7 @@ uint32_t Coincidence1_CountRate;
 uint32_t Coincidence2_CountRate;
 uint32_t Coincidence3_CountRate;
 
-uint32_t prevCount0;
+/*uint32_t prevCount0;
 uint32_t prevCount1;
 uint32_t prevCount2;
 uint32_t prevCount3;
@@ -27,7 +27,7 @@ uint32_t prevCount3;
 uint32_t prevCoinCount0;
 uint32_t prevCoinCount1;
 uint32_t prevCoinCount2;
-uint32_t prevCoinCount3;
+uint32_t prevCoinCount3;*/
 
 /*
  * @desc Initialize and start Singles 0 counter
@@ -191,145 +191,6 @@ void CoincidenceCounter3_Init(void)
 }
 
 /*
- * @desc Reads the current singles count at counter 0 and subtracts previous counts. So finds the
- * number of counts between the last reading and the current reading
- * @param uint32_t* prevCount0 - The number of counts prior to performing this read
- * @returns Nothing
- */
-void SinglesCounter0_Read(uint32_t *prevCount0)
-{
-	uint32_t readcount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
-	Singles0_CountRate = readcount0 - *prevCount0;
-	*prevCount0 = readcount0;
-
-	/*
-	 * if(*prevCount0> 4294900000)
-	 * {
-	 * Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
-	   Cy_TCPWM_TriggerStart_Single(Singles_0_HW, Singles_0_NUM);
-	   prevCount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
-	   }
-
-	 */
-
-}
-
-/*
- * @desc Reads the current singles count at counter 1 and subtracts previous counts. So finds the
- * number of counts between the last reading and the current reading
- * @param uint32_t* prevCount1 - The number of counts prior to performing this read
- * @returns Nothing
- */
-void SinglesCounter1_Read(uint32_t *prevCount1)
-{
-
-
-	uint32_t readcount1 = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
-	Singles1_CountRate = readcount1 - *prevCount1;
-	*prevCount1 = readcount1;
-
-}
-
-/*
- * @desc Reads the current singles count at counter 2 and subtracts previous counts. So finds the
- * number of counts between the last reading and the current reading
- * @param uint32_t* prevCount2 - The number of counts prior to performing this read
- * @returns Nothing
- */
-void SinglesCounter2_Read(uint32_t *prevCount2)
-{
-
-	uint32_t readcount2 = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
-	Singles2_CountRate = readcount2 - *prevCount2;
-	*prevCount2 = readcount2;
-
-	// updates Singles2_CountRate;
-}
-
-/*
- * @desc Reads the current singles count at counter 3 and subtracts previous counts. So finds the
- * number of counts between the last reading and the current reading
- * @param uint32_t* prevCount3 - The number of counts prior to performing this read
- * @returns Nothing
- */
-void SinglesCounter3_Read(uint32_t *prevCount3)
-{
-
-	uint32_t readcount3 = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
-	Singles3_CountRate = readcount3 - *prevCount3;
-	*prevCount3 = readcount3;
-
-	// updates Singles3_CountRate;
-}
-
-/*
- * @desc Reads the current coincidence count at counter 0 and subtracts previous coincidence counts.
- * So finds the number of coincidence counts between the last reading and the current reading
- * @param uint32_t* prevCoinCount0 - The number of coincidence counts prior to performing this read
- * @returns Nothing
- */
-void CoincidenceCounter0_Read(uint32_t *prevCoinCount0)
-{
-
-	uint32_t readCoincount0 = Cy_TCPWM_Counter_GetCounter(Coinc_0_HW, Coinc_0_NUM);
-	Coincidence0_CountRate = readCoincount0 - *prevCoinCount0;
-	*prevCoinCount0 = readCoincount0;
-
-
-	// updates Coincidence0_CountRate;
-}
-
-/*
- * @desc Reads the current coincidence count at counter 1 and subtracts previous coincidence counts.
- * So finds the number of coincidence counts between the last reading and the current reading
- * @param uint32_t* prevCoinCount1 - The number of coincidence counts prior to performing this read
- * @returns Nothing
- */
-void CoincidenceCounter1_Read(uint32_t *prevCoinCount1)
-{
-
-	uint32_t readCoincount1 = Cy_TCPWM_Counter_GetCounter(Coinc_1_HW, Coinc_1_NUM);
-	Coincidence1_CountRate = readCoincount1 - *prevCoinCount1;
-	*prevCoinCount1 = readCoincount1;
-
-
-	// updates Coincidence1_CountRate;
-}
-
-/*
- * @desc Reads the current coincidence count at counter 2 and subtracts previous coincidence counts.
- * So finds the number of coincidence counts between the last reading and the current reading
- * @param uint32_t* prevCoinCount2 - The number of coincidence counts prior to performing this read
- * @returns Nothing
- */
-void CoincidenceCounter2_Read(uint32_t *prevCoinCount2)
-{
-
-	uint32_t readCoincount2 = Cy_TCPWM_Counter_GetCounter(Coinc_2_HW, Coinc_2_NUM);
-	Coincidence2_CountRate = readCoincount2 - *prevCoinCount2;
-	*prevCoinCount2 = readCoincount2;
-
-
-	// updates Coincidence2_CountRate;
-}
-
-/*
- * @desc Reads the current coincidence count at counter 3 and subtracts previous coincidence counts.
- * So finds the number of coincidence counts between the last reading and the current reading
- * @param uint32_t* prevCoinCount3 - The number of coincidence counts prior to performing this read
- * @returns Nothing
- */
-void CoincidenceCounter3_Read(uint32_t *prevCoinCount3)
-{
-
-	uint32_t readCoincount3 = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
-	Coincidence3_CountRate = readCoincount3 - *prevCoinCount3;
-	*prevCoinCount3 = readCoincount3;
-
-	// updates Coincidence3_CountRate;
-}
-
-/*
  * @desc Initializes SysTick driver with an interval of 10000000
  * @returns Nothing
  */
@@ -344,7 +205,7 @@ void SysTick_Init()
  * @param uint32_t* prevTick - Previous value of SysTick
  * @returns Nothing
  */
-void getSysTick(uint32_t *prevTick)
+/*void getSysTick(uint32_t *prevTick)
 {
 
 	sysTick = Cy_SysTick_GetValue();
@@ -352,44 +213,9 @@ void getSysTick(uint32_t *prevTick)
 	*prevTick = sysTick;
 
 }
-
-/*
- * @desc Gets an initial count and coincidence count from each counter
- * @returns Nothing
- */
-/*void StartCounters()
-{
 */
 
-	/*char prevCount0Array[10];
-	char prevCount1Array[10];
-	char prevCount2Array[10];
-	char prevCount3Array[10];
 
-	char prevCoinCount0Array[10];
-	char prevCoinCount1Array[10];
-	char prevCoinCount2Array[10];
-	char prevCoinCount3Array[10];*/
-
-
-	/*prevCount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
-	prevCount1 = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
-	prevCount2 = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
-	prevCount3 = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
-
-	prevCoinCount0 = Cy_TCPWM_Counter_GetCounter(Coinc_0_HW, Coinc_0_NUM);
-	prevCoinCount1 = Cy_TCPWM_Counter_GetCounter(Coinc_1_HW, Coinc_1_NUM);
-	prevCoinCount2 = Cy_TCPWM_Counter_GetCounter(Coinc_2_HW, Coinc_2_NUM);
-	prevCoinCount3 = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
-
-	if (prevCoinCount0 == 0)
-	{
-
-		// Cy_SCB_UART_PutString(UART_HW,"prevCoinCount0 =");
-		// sprintf(prevCount0Array,"%lu",prevCount0);
-		// Cy_SCB_UART_PutArray(UART_HW,prevCount0Array,10);
-	}
-}*/
 
 /*
  * @desc Prints the current singles 0 counts
@@ -400,11 +226,14 @@ void GetSingles0Counts()
 
 	char Singles0_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	     //SinglesCounter0_Read(&prevCount0);
-
+			ClockStamp = Cy_SysTick_GetValue();
 	       uint32_t readcount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
+
+	       	//sprintf(confirmValue, "%ld\n\r ", ClockStamp);
+	       	//Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			Singles0_CountRate = readcount0;
 			Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
-			sprintf(Singles0_CountRateArray, "%lu,", Singles0_CountRate);
+			sprintf(Singles0_CountRateArray, "%lu:%lu,", ClockStamp, Singles0_CountRate);
 			Cy_SCB_UART_PutArray(UART_HW, Singles0_CountRateArray, strlen(Singles0_CountRateArray));
 }
 
@@ -416,12 +245,12 @@ void GetSingles1Counts()
 {
 
 	char Singles1_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//SinglesCounter1_Read(&prevCount1);
+	ClockStamp = Cy_SysTick_GetValue();
 	uint32_t readcount1 = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
 	Singles1_CountRate = readcount1;
 	Cy_TCPWM_Counter_SetCounter(Singles_1_HW, Singles_1_NUM, 0);
 
-	sprintf(Singles1_CountRateArray, "%lu,", Singles1_CountRate);
+	sprintf(Singles1_CountRateArray, "%lu:%lu,", ClockStamp, Singles1_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Singles1_CountRateArray, strlen(Singles1_CountRateArray));
 }
 
@@ -433,12 +262,12 @@ void GetSingles2Counts()
 {
 
 	char Singles2_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//SinglesCounter2_Read(&prevCount2);
+	ClockStamp = Cy_SysTick_GetValue();
 	uint32_t readcount2 = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
 	Singles2_CountRate = readcount2;
 	Cy_TCPWM_Counter_SetCounter(Singles_2_HW, Singles_2_NUM, 0);
 
-	sprintf(Singles2_CountRateArray, "%lu,", Singles2_CountRate);
+	sprintf(Singles2_CountRateArray, "%lu:%lu,", ClockStamp, Singles2_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Singles2_CountRateArray, strlen(Singles2_CountRateArray));
 }
 
@@ -450,12 +279,12 @@ void GetSingles3Counts()
 {
 
 	char Singles3_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//SinglesCounter3_Read(&prevCount3);
+	ClockStamp = Cy_SysTick_GetValue();
 
 	uint32_t readcount3 = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
 	Singles3_CountRate = readcount3;
 	Cy_TCPWM_Counter_SetCounter(Singles_3_HW, Singles_3_NUM, 0);
-	sprintf(Singles3_CountRateArray, "%lu,", Singles3_CountRate);
+	sprintf(Singles3_CountRateArray, "%lu:%lu,", ClockStamp, Singles3_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Singles3_CountRateArray, strlen(Singles3_CountRateArray));
 }
 
@@ -467,12 +296,12 @@ void GetCoincidence0Counts()
 {
 
 	char Coincidence0_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//CoincidenceCounter0_Read(&prevCoinCount0);
+	ClockStamp = Cy_SysTick_GetValue();
 
 	uint32_t coincreadcount0 = Cy_TCPWM_Counter_GetCounter(Coinc_0_HW, Coinc_0_NUM);
 	Coincidence0_CountRate = coincreadcount0;
 	Cy_TCPWM_Counter_SetCounter(Coinc_0_HW, Coinc_0_NUM, 0);
-	sprintf(Coincidence0_CountRateArray, "%lu,", Coincidence0_CountRate);
+	sprintf(Coincidence0_CountRateArray, "%lu:%lu,", ClockStamp, Coincidence0_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Coincidence0_CountRateArray, strlen(Coincidence0_CountRateArray));
 }
 
@@ -484,12 +313,12 @@ void GetCoincidence1Counts()
 {
 
 	char Coincidence1_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//CoincidenceCounter1_Read(&prevCoinCount1);
+	ClockStamp = Cy_SysTick_GetValue();
 
 	uint32_t coincreadcount1 = Cy_TCPWM_Counter_GetCounter(Coinc_1_HW, Coinc_1_NUM);
 	Coincidence1_CountRate = coincreadcount1;
 	Cy_TCPWM_Counter_SetCounter(Coinc_1_HW, Coinc_1_NUM, 0);
-	sprintf(Coincidence1_CountRateArray, "%lu,", Coincidence1_CountRate);
+	sprintf(Coincidence1_CountRateArray,"%lu:%lu,", ClockStamp, Coincidence1_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Coincidence1_CountRateArray,strlen(Coincidence1_CountRateArray));
 }
 
@@ -501,11 +330,11 @@ void GetCoincidence2Counts()
 {
 
 	char Coincidence2_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//CoincidenceCounter2_Read(&prevCoinCount2);
+	ClockStamp = Cy_SysTick_GetValue();
 	uint32_t coincreadcount2 = Cy_TCPWM_Counter_GetCounter(Coinc_2_HW, Coinc_2_NUM);
 	Coincidence2_CountRate = coincreadcount2;
 	Cy_TCPWM_Counter_SetCounter(Coinc_2_HW, Coinc_2_NUM, 0);
-	sprintf(Coincidence2_CountRateArray, "%lu,", Coincidence2_CountRate);
+	sprintf(Coincidence2_CountRateArray, "%lu:%lu,", ClockStamp, Coincidence2_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Coincidence2_CountRateArray, strlen(Coincidence2_CountRateArray));
 }
 
@@ -517,11 +346,11 @@ void GetCoincidence3Counts()
 {
 
 	char Coincidence3_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	//CoincidenceCounter3_Read(&prevCoinCount3);
+	ClockStamp = Cy_SysTick_GetValue();
 	uint32_t coincreadcount3 = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
 	Coincidence3_CountRate = coincreadcount3;
 	Cy_TCPWM_Counter_SetCounter(Coinc_3_HW, Coinc_3_NUM, 0);
-	sprintf(Coincidence3_CountRateArray, "%lu,", Coincidence3_CountRate);
+	sprintf(Coincidence3_CountRateArray, "%lu:%lu,", ClockStamp, Coincidence3_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Coincidence3_CountRateArray, strlen(Coincidence3_CountRateArray));
 }
 
@@ -529,7 +358,7 @@ void GetCoincidence3Counts()
  * @desc Prints all the current singles counts
  * @returns Nothing
  */
-void GetAllSinglesCounts()
+/*void GetAllSinglesCounts()
 {
 
 	char Singles0_CountRateArray[10];
@@ -552,13 +381,13 @@ void GetAllSinglesCounts()
 	SinglesCounter3_Read(&prevCount3);
 	sprintf(Singles3_CountRateArray, "%lu,", Singles3_CountRate);
 	Cy_SCB_UART_PutArray(UART_HW, Singles3_CountRateArray, 2);
-}
+}*/
 
 /*
  * @desc Prints all of the current single and coincidence counts
  * @returns Nothing
  */
-void GetAllCounts()
+/*void GetAllCounts()
 {
 
 	char Singles0_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -611,4 +440,4 @@ void GetAllCounts()
 
 		cyhal_system_delay_ms(1000);
 	}
-}
+}*/

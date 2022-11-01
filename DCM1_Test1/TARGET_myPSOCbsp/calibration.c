@@ -8,15 +8,14 @@
 
 void calibrateBreakdownvTemp()
 {
-
-	float currentVoltage = 0;
 	printThermalInfo = 1;
+	float currentVoltage = 0;
 	setParameters();
 	// Turn on TECs
 
     unsigned int DET[] = {DET0, DET1, DET2, DET3};
 
-    for (int d = 0; d < 4; d++)
+    for (int d = 0; d < *DNum; d++)
 	{
 
 		if (*Exit == 1)
@@ -33,13 +32,8 @@ void calibrateBreakdownvTemp()
 			if (*Exit == 1)
 			{
 				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-				break;
+				mode1program();
 			}
-
-			//Cy_SCB_UART_PutString(UART_HW, "SetTemp = ");
-			/*sprintf(txBuffer, "%f", temp);
-			Cy_SCB_UART_Transmit(UART_HW, txBuffer, 8, &uartContext);
-			Cy_SCB_UART_PutString(UART_HW, "\r\n\r\n");*/
 
 			//Set TEC for getting feedback
 			if (d==0)
@@ -90,7 +84,7 @@ void calibrateBreakdownvTemp()
 	//SetDetectorVoltage(DET3, 0);
 	// Turn off TECs
     turnOFF_TECs();
-
+    mode1program();
 	uartRxCompleteFlag = 0;
 	count = 0;
 }
@@ -101,6 +95,7 @@ void calibrateBreakdownvTemp()
 
 void calibrateCountsvDiscThresh()
 {
+	printThermalInfo = 1;
 	// Set temp and stabilize
 	turnON_TECs();
 	//StabilizeAllTemp(*TDET0);
@@ -129,14 +124,10 @@ void calibrateCountsvDiscThresh()
 		setDiscr1Thresh(thresh);
 		setDiscr2Thresh(thresh);
 		setDiscr3Thresh(thresh);
-		printThermalInfo=0;
+		printThermalInfo=*printThermalFlag;
 
-		// Print information
-		Cy_SCB_UART_PutString(UART_HW, "\r\n thresholds =  ");
-		sprintf(txBuffer, "%.3f", thresh);
-		Cy_SCB_UART_Transmit(UART_HW, txBuffer, 4, &uartContext);
-		Cy_SCB_UART_PutString(UART_HW, "\r\n ");
-		Cy_SCB_UART_PutString(UART_HW, "Singles 0, Singles 1, Singles 2, Singles 3 s\r\n");
+		// Single counts for each detector information
+
 
 		// Print out singles counts for all detectors
 		for (int i = 0; i < 10; i++)
@@ -146,6 +137,9 @@ void calibrateCountsvDiscThresh()
 				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 				break;
 			}
+
+			Cy_SCB_UART_PutString(UART_HW, "\r\nDThrs, S0, S1, S2, S3: ");
+			printFloat(thresh);
 			startSinglesCounting();
 			//UpdateAllTemp(*TDET0);
 			Cy_SCB_UART_PutString(UART_HW, "\r\n");
@@ -155,6 +149,7 @@ void calibrateCountsvDiscThresh()
 
 	// Turn off TECs
 	turnOFF_TECs();
+	mode1program();
 }
 
 /*
@@ -162,21 +157,15 @@ void calibrateCountsvDiscThresh()
  * @returns Nothing
  */
 
-void calibrateCountsvBiasVolt()
+/*void calibrateCountsvBiasVolt()
 {
-
+	printThermalInfo = 1;
 	if (*Exit == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		return;
+		mode1program();
 	}
-
-
 	float currentVoltage = 0;
-
-
-	// Cy_SCB_UART_Enable(UART_HW);
-
 	setParameters();
 
     unsigned int DET[] = {DET0, DET1, DET2, DET3};
@@ -202,12 +191,12 @@ void calibrateCountsvBiasVolt()
 		SetDetectorVoltage(DET[d], *VoltSt);
 
 		// Stabilize temperature for 30 s to -1?
-		//Cy_SCB_UART_PutString(UART_HW, "Stabilizing temperatures for 30 s\r\n");
-		//StabilizeAllTemp(temp);
-		printThermalInfo=0;
+		cyhal_system_delay_ms(30000);
+
 		VoltageScan(DET[d], *VoltSt, *VoltEd, *TDET0);
 	}
 
 	turnOFF_TECs();
-}
+	mode1program();
+}*/
 
