@@ -23,7 +23,7 @@
 
 extern int idx;
 extern char voltageArray[3];
-extern char confirmValue[32];
+//extern char confirmValue[32];
 extern char lengthArray[4];
 
 extern volatile bool coincWindowSetFlag;
@@ -54,6 +54,7 @@ void setParameters();
 void setDetectorBias();
 void turnON_TECs();
 void turnOFF_TECs();
+void SetCounters();
 
 // Updating Hash Table Values
 //void* inout();

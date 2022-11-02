@@ -34,15 +34,15 @@
 
 /************************  FUNCTION DECLARATIONS  *********************************/
 
-uint8_t txBuffer[20];
-uint8_t rxBuffer[20];
-uint8_t sendBuffer[8];
+uint8_t txBuffer[32];
+uint8_t rxBuffer[32];
+uint8_t sendBuffer[32];
 char storeBuffer[BUF_LEN];
 char str[20];
-char interpBuffer[8];
+//char interpBuffer[8];
 char *commandBuffer;
 char *valueBuffer;
-char confirmValue[32];
+char confirmValue[200];
 
 
 int idx;
@@ -65,7 +65,7 @@ cyhal_spi_t HVDAC_obj;
 uint8_t spi_buf[SPI_BUFFER_SIZE];
 uint32_t dacDataPacket;
 uint16_t dacValue;
-uint32_t ClockStamp;
+uint32_t  ClockStamp, ClockStamp0, ClockStamp1, ClockStamp2, ClockStamp3;
 
 float inputVoltage;
 
@@ -97,11 +97,12 @@ float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
 float *TECcntr, *AnDET;
 float *DthrEd, *DthrSt;
 float *TempSt,*TempEd;
-float *VoltSt, *VoltEd, *DNum;
+float *VoltSt, *VoltEd;
 float *kp, *ki, *kd; //PID coefficients
 float *countTime;
 float *targetTECFlag0;
 float *targetTECFlag1, *printMessageFlag, *printThermalFlag;
+int *Di, *DNum;
 float *Exit;
 
 /*end of hashtable variable declaration*/

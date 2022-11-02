@@ -15,13 +15,13 @@ void calibrateBreakdownvTemp()
 
     unsigned int DET[] = {DET0, DET1, DET2, DET3};
 
-    for (int d = 0; d < *DNum; d++)
+    for (int d = *Di; d < *DNum; d++)
 	{
 
 		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-			mode1program();
+			break;
 		}
 
 		// Set temperature loop.. make sure to print also what the temperature is.
@@ -32,10 +32,10 @@ void calibrateBreakdownvTemp()
 			if (*Exit == 1)
 			{
 				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-				mode1program();
+				break;
 			}
 
-			//Set TEC for getting feedback
+			//Set TEC for Therm feedback
 			if (d==0)
 			{
 				*TDET0 = temp;
@@ -46,12 +46,12 @@ void calibrateBreakdownvTemp()
 				*TDET1 = temp;
 				*targetTECFlag0=1;
 			}
-			else if (d==1)
+			else if (d==2)
 			{
 				*TDET2 = temp;
 				*targetTECFlag1=0;
 			}
-			else {
+			else if (d==3){
 				*TDET3 = temp;
 				*targetTECFlag1=1;
 			}

@@ -15,7 +15,7 @@ void UART_Interrupt_Callback(uint32_t event)
 		uartRxCompleteFlag = 1;
 		// Cy_SCB_UART_PutString(UART_HW, "RX Interrupt\r\n");
 		// Store the received data from Rx FIFO into a buffer
-		Cy_SCB_UART_GetArray(UART_HW, rxBuffer, 8);
+		Cy_SCB_UART_GetArray(UART_HW, rxBuffer, 32);
 		// Cy_SCB_UART_Put(UART_HW, rxBuffer);
 		break;
 	}

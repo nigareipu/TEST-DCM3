@@ -69,10 +69,7 @@ void SetDetectorVoltage(uint16_t detector, float voltage)
 void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float temp)
 {
 
-	char voltStep[32];
-
 	printThermalInfo = *printThermalFlag;
-
 
 	// Voltage scan loop for each temperature
 	for (float voltage = startVoltage; voltage < endVoltage + 0.5; voltage = voltage + 0.5)
@@ -83,36 +80,44 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float 
 			break;
 		}
 
-		Cy_SCB_UART_PutString(UART_HW, "\n\rDET, Tset, DBias, DCount: ");
+		/*Cy_SCB_UART_PutString(UART_HW, "\n\rDET, Tset, DBias, DCount: ");
 		sprintf(voltStep, "%i, %.4f, %.3f, ", detector, temp, voltage);
-		Cy_SCB_UART_PutString(UART_HW, voltStep);
+		Cy_SCB_UART_PutString(UART_HW, voltStep);*/
 
 		SetDetectorVoltage(detector, voltage);
-
+		ClockStamp0 = Cy_SysTick_GetValue();
 		for (int j = 0; j < 1; j++)
 		{
 			// should be an if statement dependent on det chosen
 			if (detector == DET0)
 			{
 				//TEC0_updateTemp(DET0_temp);
-				GetSingles0Counts();
+				Singles0_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
+				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S0: %lu, %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles0_CountRate);
+				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
 			if (detector == DET1)
 			{
 				//TEC0_updateTemp(DET0_temp);
-				GetSingles1Counts();
+				Singles1_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
+				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S1: %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles1_CountRate);
+				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
 			if (detector == DET2)
 			{
 				//TEC1_updateTemp(DET0_temp);
-				GetSingles2Counts();
+				Singles2_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
+				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S2: %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles2_CountRate);
+				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
 			if (detector == DET3)
 			{
 				//TEC1_updateTemp(DET0_temp);
-				GetSingles3Counts();
+				Singles3_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
+				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S3: %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles3_CountRate);
+				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
-			Cy_SCB_UART_PutString(UART_HW, "\r\n");
+			SetCounters();
 			cyhal_system_delay_ms(*countTime);
 		}
 	}

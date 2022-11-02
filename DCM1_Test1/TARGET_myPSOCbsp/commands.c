@@ -253,20 +253,41 @@ void turnON_TECs()
 }
 void startSinglesCounting()
 {
-	GetSingles0Counts();
+	Singles0_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
+	Singles1_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
+	Singles2_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
+	Singles3_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
+	/*GetSingles0Counts();
 	GetSingles1Counts();
 	GetSingles2Counts();
-	GetSingles3Counts();
+	GetSingles3Counts();*/
 }
 
 void startCoincidenceCounting()
 {
+	Coincidence0_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_0_HW, Coinc_0_NUM);
+	Coincidence1_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_1_HW, Coinc_1_NUM);
+	Coincidence2_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_2_HW, Coinc_2_NUM);
+	Coincidence3_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
 	// Want 12, 01, 23, 03
-	GetCoincidence1Counts();
+	/*GetCoincidence1Counts();
 	GetCoincidence0Counts();
 	GetCoincidence3Counts();
-	GetCoincidence2Counts();
+	GetCoincidence2Counts();*/
 }
+
+void SetCounters()
+{
+	Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
+	Cy_TCPWM_Counter_SetCounter(Singles_1_HW, Singles_1_NUM, 0);
+	Cy_TCPWM_Counter_SetCounter(Singles_2_HW, Singles_2_NUM, 0);
+	Cy_TCPWM_Counter_SetCounter(Singles_3_HW, Singles_3_NUM, 0);
+	Cy_TCPWM_Counter_SetCounter(Coinc_0_HW, Coinc_0_NUM, 0);
+	Cy_TCPWM_Counter_SetCounter(Coinc_1_HW, Coinc_1_NUM, 0);
+	Cy_TCPWM_Counter_SetCounter(Coinc_2_HW, Coinc_2_NUM, 0);
+	Cy_TCPWM_Counter_SetCounter(Coinc_3_HW, Coinc_3_NUM, 0);
+}
+
 
 void printFloat(float message)
 {

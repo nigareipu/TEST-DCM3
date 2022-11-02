@@ -23,8 +23,8 @@ extern volatile bool uartRxCompleteFlag;
 
 extern volatile int count;
 
-extern uint8_t txBuffer[20], rxBuffer[20], sendBuffer[8];
-extern char storeBuffer[BUF_LEN], str[20], interpBuffer[8], *commandBuffer, *valueBuffer;
+extern uint8_t txBuffer[32], rxBuffer[32], sendBuffer[32];
+extern char storeBuffer[BUF_LEN], str[20], *commandBuffer, *valueBuffer;
 
 void echoInput();
 void fillBuffer();

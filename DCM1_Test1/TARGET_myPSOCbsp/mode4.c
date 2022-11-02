@@ -58,20 +58,26 @@ void mode4program()
 
 	for (int k = 0; k < *RTime; k++)
 	{
-		Cy_SCB_UART_PutString(UART_HW, "\r\nS0, S1, S2,  S3, C02, C13: ");
+		//Cy_SCB_UART_PutString(UART_HW, "\r\nS0, S1, S2,  S3, C02, C13: ");
 		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
+		ClockStamp0 = Cy_SysTick_GetValue();
 		startSinglesCounting();
 		// Want coin between 0&2 and 1&3
-		GetCoincidence0Counts();
-		GetCoincidence3Counts();
-		Cy_SCB_UART_PutString(UART_HW, "\r\n");
+		Coincidence0_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_0_HW, Coinc_0_NUM);
+		Coincidence3_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
+		SetCounters();
+
+		sprintf(confirmValue, "\n\rClockStamp, S0, S1, S2, S3, C02, C13: %lu, %lu, %lu, %lu, %lu, %lu, %lu\r\n ",
+				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate,
+				Coincidence3_CountRate);
+		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
+
 		cyhal_system_delay_ms(*countTime);//Must be kept for accumulating counts/sec
 	}
-
 	mode1program();
 }
 

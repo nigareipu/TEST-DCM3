@@ -23,7 +23,6 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 	{
 		if(printThermalInfo==1)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: ");
 			Therm0_Read();
 			Therm1_Read();
 			Therm2_Read();
@@ -31,14 +30,10 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 			monitorITEC0();
 			monitorITEC1();
 
-			//printFloat(*TDET0);
-			printFloat(ThermRead0);
-			printFloat(ThermRead1);
-			printFloat(ThermRead2);
-			printFloat(ThermRead3);
-			printFloat(ITEC0);
-			printFloat(ITEC1);
-			Cy_SCB_UART_PutString(UART_HW, "\n\r");
+			sprintf(confirmValue, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: %.5f, %.5f, %.5f, %.5f,%.5f, %.5f\n\r",
+					ThermRead0, ThermRead1, ThermRead2, ThermRead3, ITEC0, ITEC1);
+			Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
+
 		}
 
 

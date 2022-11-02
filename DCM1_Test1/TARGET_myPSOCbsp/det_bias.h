@@ -20,6 +20,7 @@
 #include "spi.h"
 #include "counters.h"
 #include "commands.h"
+#include "modes.h"
 
 #define DET0 (0x00)
 #define DET1 (0x01)

@@ -226,15 +226,15 @@ void GetSingles0Counts()
 
 	char Singles0_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	     //SinglesCounter0_Read(&prevCount0);
-			ClockStamp = Cy_SysTick_GetValue();
+			ClockStamp0 = Cy_SysTick_GetValue();
 	       uint32_t readcount0 = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
 
 	       	//sprintf(confirmValue, "%ld\n\r ", ClockStamp);
 	       	//Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			Singles0_CountRate = readcount0;
 			Cy_TCPWM_Counter_SetCounter(Singles_0_HW, Singles_0_NUM, 0);
-			sprintf(Singles0_CountRateArray, "%lu:%lu,", ClockStamp, Singles0_CountRate);
-			Cy_SCB_UART_PutArray(UART_HW, Singles0_CountRateArray, strlen(Singles0_CountRateArray));
+			/*sprintf(Singles0_CountRateArray, "%lu:%lu,", ClockStamp, Singles0_CountRate);
+			Cy_SCB_UART_PutArray(UART_HW, Singles0_CountRateArray, strlen(Singles0_CountRateArray));*/
 }
 
 /*
@@ -245,7 +245,7 @@ void GetSingles1Counts()
 {
 
 	char Singles1_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	ClockStamp = Cy_SysTick_GetValue();
+	ClockStamp1 = Cy_SysTick_GetValue();
 	uint32_t readcount1 = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
 	Singles1_CountRate = readcount1;
 	Cy_TCPWM_Counter_SetCounter(Singles_1_HW, Singles_1_NUM, 0);
@@ -262,13 +262,13 @@ void GetSingles2Counts()
 {
 
 	char Singles2_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	ClockStamp = Cy_SysTick_GetValue();
+	ClockStamp2 = Cy_SysTick_GetValue();
 	uint32_t readcount2 = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
 	Singles2_CountRate = readcount2;
-	Cy_TCPWM_Counter_SetCounter(Singles_2_HW, Singles_2_NUM, 0);
+	/*Cy_TCPWM_Counter_SetCounter(Singles_2_HW, Singles_2_NUM, 0);
 
 	sprintf(Singles2_CountRateArray, "%lu:%lu,", ClockStamp, Singles2_CountRate);
-	Cy_SCB_UART_PutArray(UART_HW, Singles2_CountRateArray, strlen(Singles2_CountRateArray));
+	Cy_SCB_UART_PutArray(UART_HW, Singles2_CountRateArray, strlen(Singles2_CountRateArray));*/
 }
 
 /*
@@ -279,13 +279,13 @@ void GetSingles3Counts()
 {
 
 	char Singles3_CountRateArray[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	ClockStamp = Cy_SysTick_GetValue();
+	ClockStamp3 = Cy_SysTick_GetValue();
 
 	uint32_t readcount3 = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
 	Singles3_CountRate = readcount3;
-	Cy_TCPWM_Counter_SetCounter(Singles_3_HW, Singles_3_NUM, 0);
+	/*Cy_TCPWM_Counter_SetCounter(Singles_3_HW, Singles_3_NUM, 0);
 	sprintf(Singles3_CountRateArray, "%lu:%lu,", ClockStamp, Singles3_CountRate);
-	Cy_SCB_UART_PutArray(UART_HW, Singles3_CountRateArray, strlen(Singles3_CountRateArray));
+	Cy_SCB_UART_PutArray(UART_HW, Singles3_CountRateArray, strlen(Singles3_CountRateArray));*/
 }
 
 /*
@@ -319,7 +319,7 @@ void GetCoincidence1Counts()
 	Coincidence1_CountRate = coincreadcount1;
 	Cy_TCPWM_Counter_SetCounter(Coinc_1_HW, Coinc_1_NUM, 0);
 	sprintf(Coincidence1_CountRateArray,"%lu:%lu,", ClockStamp, Coincidence1_CountRate);
-	Cy_SCB_UART_PutArray(UART_HW, Coincidence1_CountRateArray,strlen(Coincidence1_CountRateArray));
+	Cy_SCB_UART_PutString(UART_HW, Coincidence1_CountRateArray);
 }
 
 /*

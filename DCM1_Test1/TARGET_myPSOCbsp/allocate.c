@@ -31,6 +31,7 @@ void default_hashtable()
 	CoWin = allocate_node(hash_table, table_size, sizeof(float), "CoWin");
 	//TECcntr = allocate_node(hash_table, table_size, sizeof(float), "TECcntr");//Choose TEC controller for Mode6
 	AnDET = allocate_node(hash_table, table_size, sizeof(float), "AnDET");// Choose Annealing DET for Mode6
+	Di = allocate_node(hash_table, table_size, sizeof(float), "Di");
 	DNum = allocate_node(hash_table, table_size, sizeof(float), "DNum");
 	DthrEd = allocate_node(hash_table, table_size, sizeof(float), "DthrEd");
 	DthrSt = allocate_node(hash_table, table_size, sizeof(float), "DthrSt");
@@ -50,7 +51,7 @@ void default_hashtable()
 
 
 
-	*mode = 5;
+	*mode = 2;
 	*mode5Calibration=0;
 	*VDET0 = 312;
 	*VDET1 = 337;
@@ -77,7 +78,8 @@ void default_hashtable()
 	*TempEd = 1.36;
 	*VoltSt = 300;
 	*VoltEd = 320;
-	*DNum=1;//value->1-4. How many detectors to scan Required for mode5(2) scanning
+	*Di = 0;
+	*DNum=2;//value->1-4. How many detectors to scan Required for mode5(2) scanning
 	*kp = 1.63; // PID Proportional Gain
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;

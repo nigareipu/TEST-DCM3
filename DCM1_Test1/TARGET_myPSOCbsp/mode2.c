@@ -57,20 +57,23 @@ void mode2program()
 
 	for (int k = 0; k < *RTime; k++)
 	{
-		Cy_SCB_UART_PutString(UART_HW, "\r\n S0, S1, S2, S3, C12, C01, C23, C03: ");//add tick at the beginning
 		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
 
+		ClockStamp0 = Cy_SysTick_GetValue();
 		startSinglesCounting();
 		startCoincidenceCounting();
-		/*ClockStamp = Cy_SysTick_GetValue();
-		sprintf(confirmValue, "%lu %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu,", ClockStamp, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate, Coincidence2_CountRate, Coincidence3_CountRate);
-		Cy_SCB_UART_PutString(UART_HW, Singles1_CountRateArray);*/
-		Cy_SCB_UART_PutString(UART_HW, "\r\n");
+		SetCounters();
 
+		//ClockStamp1 = Cy_SysTick_GetValue();
+
+		sprintf(confirmValue, "\n\rClockStamp, S0, S1, S2, S3, C12, C01, C23, C03 : %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu\r\n ",
+				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
+				Coincidence2_CountRate, Coincidence3_CountRate);
+		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 
 
 		cyhal_system_delay_ms(*countTime);//Must be kept for accumulating counts/sec

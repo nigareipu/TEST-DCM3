@@ -41,19 +41,6 @@ void mode5program()
 		}
 	}
 
-	/*else if (*mode5Calibration==2)
-	{
-
-		Cy_SCB_UART_PutString(UART_HW, "\r\nDETCounts vs DETBias\r\n");
-
-		calibrateCountsvBiasVolt();
-
-		if (*Exit == 1)
-		{
-			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-			mode1program();
-		}
-	}*/
 
 	else
 	{
@@ -62,8 +49,7 @@ void mode5program()
 		calibrateBreakdownvTemp();
 		Cy_SCB_UART_PutString(UART_HW, "\r\nDETCounts vs DThrs\r\n");
 		calibrateCountsvDiscThresh();
-		/*Cy_SCB_UART_PutString(UART_HW, "\r\nDETCounts vs DETBias\r\n");
-		calibrateCountsvBiasVolt();*/
+
 	}
 	mode1program();
 }

@@ -47,7 +47,7 @@ void HVDAC_SPI_Init(void)
 
 void transmitToHVDAC(uint32_t dacDataPacket)
 {
-	char confirmValue[32];
+	//char confirmValue[32];
 	for (bufIndex = (SPI_BUFFER_SIZE - 1), shift = 0; bufIndex >= 0; bufIndex--, shift++)
 	{
 		//Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC  loop\n\r ");

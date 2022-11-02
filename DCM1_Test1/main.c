@@ -56,6 +56,14 @@ int main(void)
 	default_hashtable();
 	mode1program();
 
+
+	/*for(int i=0; i<10; i++){
+		ClockStamp = Cy_SysTick_GetValue();
+		sprintf(confirmValue,"clockStamp: %lu,", ClockStamp);
+		Cy_SCB_UART_PutString(UART_HW, confirmValue);
+		cyhal_system_delay_ms(1000);
+	}*/
+
 	for (;;)
 	{
 		if (uartRxCompleteFlag == 1)

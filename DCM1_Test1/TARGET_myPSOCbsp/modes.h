@@ -37,9 +37,9 @@ extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printf
 extern volatile int count;
 extern volatile bool TEC_controller0ActiveFlag;
 extern volatile bool TEC_controller1ActiveFlag;
-extern char confirmValue[32];
+extern char confirmValue[200];
 extern float discrThresh;
-extern uint32_t ClockStamp;
+extern uint32_t ClockStamp, ClockStamp0, ClockStamp1, ClockStamp2, ClockStamp3;
 
 void mode1program();
 void mode2program();
