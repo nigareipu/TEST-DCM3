@@ -88,22 +88,16 @@ float fvalue;
 
 
 /*hashtable variables*/
-float* mode;
-float *mode5Calibration;
+int *mode, *Di, *DNum, *countTime, *AnDET, *Exit, *RTime, *CoWin, *mode5Calibration;
 float* VDET0;
 float* VDET1;
-float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
-float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
-float *TECcntr, *AnDET;
+float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs;
+float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;
 float *DthrEd, *DthrSt;
 float *TempSt,*TempEd;
 float *VoltSt, *VoltEd;
 float *kp, *ki, *kd; //PID coefficients
-float *countTime;
-float *targetTECFlag0;
-float *targetTECFlag1, *printMessageFlag, *printThermalFlag;
-int *Di, *DNum;
-float *Exit;
+int *targetTECFlag1, *printMessageFlag, *printThermalFlag, *targetTECFlag0;
 
 /*end of hashtable variable declaration*/
 
