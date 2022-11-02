@@ -100,8 +100,7 @@ float *TempSt,*TempEd;
 float *VoltSt, *VoltEd, *DNum;
 float *kp, *ki, *kd; //PID coefficients
 float *countTime;
-float *targetTECFlag0;
-float *targetTECFlag1, *printMessageFlag, *printThermalFlag;
+int *targetTECFlag0, *targetTECFlag1, *printMessageFlag, *printThermalFlag;
 float *Exit;
 
 /*end of hashtable variable declaration*/
