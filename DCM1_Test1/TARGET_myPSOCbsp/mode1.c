@@ -44,6 +44,8 @@ void mode1program()
 	Delay2_Set(0, 0);
 	Delay3_Set(0, 0);
 
+	*Exit=0;
+
 	uartRxCompleteFlag = 0;
 	count = 0;
 }

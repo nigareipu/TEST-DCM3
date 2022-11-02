@@ -51,7 +51,7 @@ void default_hashtable()
 
 
 
-	*mode = 2;
+	*mode = 5;
 	*mode5Calibration=0;
 	*VDET0 = 312;
 	*VDET1 = 337;
@@ -75,11 +75,11 @@ void default_hashtable()
 	*DthrSt = 0.2;
 	*DthrEd = 0.22;
 	*TempSt = 0.85 ;
-	*TempEd = 1.36;
+	*TempEd = 1.2;
 	*VoltSt = 300;
 	*VoltEd = 320;
 	*Di = 0;
-	*DNum=2;//value->1-4. How many detectors to scan Required for mode5(2) scanning
+	*DNum=4;//value->1-4. How many detectors to scan Required for mode5(2) scanning
 	*kp = 1.63; // PID Proportional Gain
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;

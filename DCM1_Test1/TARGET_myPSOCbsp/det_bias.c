@@ -100,21 +100,21 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float 
 			{
 				//TEC0_updateTemp(DET0_temp);
 				Singles1_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
-				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S1: %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles1_CountRate);
+				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S1: %lu, %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles1_CountRate);
 				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
 			if (detector == DET2)
 			{
 				//TEC1_updateTemp(DET0_temp);
 				Singles2_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
-				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S2: %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles2_CountRate);
+				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S2: %lu, %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles2_CountRate);
 				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
 			if (detector == DET3)
 			{
 				//TEC1_updateTemp(DET0_temp);
 				Singles3_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
-				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S3: %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles3_CountRate);
+				sprintf(confirmValue, "\n\rClockStamp, DET, Tset, DBias, S3: %lu, %i, %.4f, %.2f, %lu", ClockStamp0, detector, temp, voltage, Singles3_CountRate);
 				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
 			SetCounters();

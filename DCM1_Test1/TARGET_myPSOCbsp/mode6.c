@@ -53,12 +53,17 @@ void mode6program()
 		TEC_Driver1_Status(ON);
 		//also set *targetTECFlag1 == 0;
 	}
-	else {
+	else if (*AnDET==3){
 		TEC_controller0ActiveFlag = 0;
 		TEC_controller1ActiveFlag = 1;
 		TEC_SW3_Status(ON);
 		TEC_Driver1_Status(ON);
 		//also set *targetTECFlag1 == 1;
+	}
+	else {
+		Cy_SCB_UART_PutString(UART_HW, "Wrong anneal detector- Exit\r\n");
+		mode1program();
+		return;
 	}
 
 
