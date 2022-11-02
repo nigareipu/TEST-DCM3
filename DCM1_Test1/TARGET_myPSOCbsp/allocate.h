@@ -42,7 +42,8 @@ extern float *kp; // PID Proportional Gain
 extern float *ki;// PID Integral Gain
 extern float *kd;
 extern float *countTime;
-extern int *targetTECFlag0, *targetTECFlag1, *printMessageFlag, *printThermalFlag;
+extern float *targetTECFlag0;
+extern float *targetTECFlag1, *printMessageFlag, *printThermalFlag;
 
 extern struct node *hash_table;
 extern unsigned int table_size;

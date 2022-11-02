@@ -42,10 +42,10 @@ void default_hashtable()
 	ki = allocate_node(hash_table, table_size, sizeof(float), "ki");
 	kd = allocate_node(hash_table, table_size, sizeof(float), "kd");
 	countTime = allocate_node(hash_table, table_size, sizeof(float), "countTime");
-	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(int), "targetTECFlag0");
-	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(int), "targetTECFlag1");
-	printMessageFlag = allocate_node(hash_table, table_size, sizeof(int), "printMessageFlag");
-	printThermalFlag= allocate_node(hash_table, table_size, sizeof(int), "printThermalFlag");
+	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag0");
+	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag1");
+	printMessageFlag = allocate_node(hash_table, table_size, sizeof(float), "printMessageFlag");
+	printThermalFlag= allocate_node(hash_table, table_size, sizeof(float), "printThermalFlag");
 	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
 
 
