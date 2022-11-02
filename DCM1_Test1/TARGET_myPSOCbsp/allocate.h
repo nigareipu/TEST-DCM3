@@ -28,24 +28,19 @@
 extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
 extern volatile int count;
 extern char confirmValue[200];
-extern float* mode;
-extern float *mode5Calibration;
+extern int *mode, *countTime, *mode5Calibration, *RTime, *Di, *DNum, *CoWin, *AnDET, *Exit;
 extern float* VDET0;
 extern float* VDET1;
-extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *RTime, *DThrs;
-extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *CoWin;
-extern float *TECcntr, *AnDET;
+extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs;
+extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;
 extern float *DthrEd, *DthrSt;
 extern float *TempSt,*TempEd;
-extern float *VoltSt, *VoltEd, *Exit;
+extern float *VoltSt, *VoltEd;
 extern float *kp; // PID Proportional Gain
 extern float *ki;// PID Integral Gain
 extern float *kd;
-extern float *countTime;
-extern float *targetTECFlag0;
-extern float *targetTECFlag1, *printMessageFlag, *printThermalFlag;
+extern int *targetTECFlag0, *targetTECFlag1, *printMessageFlag, *printThermalFlag;
 
-extern int *Di, *DNum;
 
 extern struct node *hash_table;
 extern unsigned int table_size;

@@ -12,8 +12,8 @@ void default_hashtable()
 	hash_table = initialize_table(table_size);
 	//Cy_SCB_UART_PutString(UART_HW, "\r\ninside hash table\r\n");
 	// Allocating space to each Key
-	mode = allocate_node(hash_table, table_size, sizeof(float), "mode");
-	mode5Calibration = allocate_node(hash_table, table_size, sizeof(float), "mode5Calibration");
+	mode = allocate_node(hash_table, table_size, sizeof(int), "mode");
+	mode5Calibration = allocate_node(hash_table, table_size, sizeof(int), "mode5Calibration");
 	VDET0 = allocate_node(hash_table, table_size, sizeof(float), "VDET0");
 	VDET1 = allocate_node(hash_table, table_size, sizeof(float), "VDET1");
 	VDET2 = allocate_node(hash_table, table_size, sizeof(float), "VDET2");
@@ -22,17 +22,17 @@ void default_hashtable()
 	TDET1 = allocate_node(hash_table, table_size, sizeof(float), "TDET1");
 	TDET2 = allocate_node(hash_table, table_size, sizeof(float), "TDET2");
 	TDET3 = allocate_node(hash_table, table_size, sizeof(float), "TDET3");
-	RTime = allocate_node(hash_table, table_size, sizeof(float), "length");
+	RTime = allocate_node(hash_table, table_size, sizeof(int), "length");
 	DThrs = allocate_node(hash_table, table_size, sizeof(float), "DThrs");
 	DlayDET0 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET0");
 	DlayDET1 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET1");
 	DlayDET2 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET2");
 	DlayDET3 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET3");
-	CoWin = allocate_node(hash_table, table_size, sizeof(float), "CoWin");
+	CoWin = allocate_node(hash_table, table_size, sizeof(int), "CoWin");
 	//TECcntr = allocate_node(hash_table, table_size, sizeof(float), "TECcntr");//Choose TEC controller for Mode6
-	AnDET = allocate_node(hash_table, table_size, sizeof(float), "AnDET");// Choose Annealing DET for Mode6
-	Di = allocate_node(hash_table, table_size, sizeof(float), "Di");
-	DNum = allocate_node(hash_table, table_size, sizeof(float), "DNum");
+	AnDET = allocate_node(hash_table, table_size, sizeof(int), "AnDET");// Choose Annealing DET for Mode6
+	Di = allocate_node(hash_table, table_size, sizeof(int), "Di");
+	DNum = allocate_node(hash_table, table_size, sizeof(int), "DNum");
 	DthrEd = allocate_node(hash_table, table_size, sizeof(float), "DthrEd");
 	DthrSt = allocate_node(hash_table, table_size, sizeof(float), "DthrSt");
 	TempSt = allocate_node(hash_table, table_size, sizeof(float), "TempSt");
@@ -42,12 +42,12 @@ void default_hashtable()
 	kp = allocate_node(hash_table, table_size, sizeof(float), "kp");
 	ki = allocate_node(hash_table, table_size, sizeof(float), "ki");
 	kd = allocate_node(hash_table, table_size, sizeof(float), "kd");
-	countTime = allocate_node(hash_table, table_size, sizeof(float), "countTime");
-	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag0");
-	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(float), "targetTECFlag1");
-	printMessageFlag = allocate_node(hash_table, table_size, sizeof(float), "printMessageFlag");
-	printThermalFlag= allocate_node(hash_table, table_size, sizeof(float), "printThermalFlag");
-	Exit = allocate_node(hash_table, table_size, sizeof(float), "Exit");
+	countTime = allocate_node(hash_table, table_size, sizeof(int), "countTime");
+	targetTECFlag0= allocate_node(hash_table, table_size, sizeof(int), "targetTECFlag0");
+	targetTECFlag1= allocate_node(hash_table, table_size, sizeof(int), "targetTECFlag1");
+	printMessageFlag = allocate_node(hash_table, table_size, sizeof(int), "printMessageFlag");
+	printThermalFlag= allocate_node(hash_table, table_size, sizeof(int), "printThermalFlag");
+	Exit = allocate_node(hash_table, table_size, sizeof(int), "Exit");
 
 
 
