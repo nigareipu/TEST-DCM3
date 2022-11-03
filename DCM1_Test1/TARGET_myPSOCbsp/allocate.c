@@ -22,7 +22,7 @@ void default_hashtable()
 	TDET1 = allocate_node(hash_table, table_size, sizeof(float), "TDET1");
 	TDET2 = allocate_node(hash_table, table_size, sizeof(float), "TDET2");
 	TDET3 = allocate_node(hash_table, table_size, sizeof(float), "TDET3");
-	RTime = allocate_node(hash_table, table_size, sizeof(int), "length");
+	RTime = allocate_node(hash_table, table_size, sizeof(int), "RTime");
 	DThrs = allocate_node(hash_table, table_size, sizeof(float), "DThrs");
 	DlayDET0 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET0");
 	DlayDET1 = allocate_node(hash_table, table_size, sizeof(float), "DlayDET1");
@@ -52,7 +52,7 @@ void default_hashtable()
 
 
 	*mode = 5;
-	*mode5Calibration=0;
+	*mode5Calibration=1;
 	*VDET0 = 312;
 	*VDET1 = 337;
 	*VDET2 = 376;
@@ -79,7 +79,7 @@ void default_hashtable()
 	*VoltSt = 300;
 	*VoltEd = 320;
 	*Di = 0;
-	*DNum=4;//value->1-4. How many detectors to scan Required for mode5(2) scanning
+	*DNum=4;//value->1-4. How many detectors to scan, upperlimit
 	*kp = 1.63; // PID Proportional Gain
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;

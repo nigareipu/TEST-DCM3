@@ -58,7 +58,7 @@ void calibrateBreakdownvTemp()
 			/***************************************************************************
 			 * *******************This is required to settle temperature before counting*************
 			 **************************************************************************/
-			cyhal_system_delay_ms(10000);
+			cyhal_system_delay_ms(30000);
 
 			if (*Exit == 1)
 			{
@@ -103,7 +103,7 @@ void calibrateCountsvDiscThresh()
 	if (*Exit == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		mode1program();
+		return;
 	}
 
 	// Set voltage of detectors gradually
@@ -137,16 +137,14 @@ void calibrateCountsvDiscThresh()
 				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 				break;
 			}
-
-			Cy_SCB_UART_PutString(UART_HW, "\r\nDThrs, S0, S1, S2, S3: ");
-			printFloat(thresh);
+			ClockStamp0 = Cy_SysTick_GetValue();
 			startSinglesCounting();
-			//UpdateAllTemp(*TDET0);
-			Cy_SCB_UART_PutString(UART_HW, "\r\n");
+			SetCounters();
+			sprintf(confirmValue, "\n\rClockStamp, DThrs, S0, S1, S2, S3:  %lu, %.2f, %lu, %lu, %lu, %lu\n\r", ClockStamp0, thresh, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate);
+			Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			cyhal_system_delay_ms(1000);
 		}
 	}
-
 	// Turn off TECs
 	turnOFF_TECs();
 	mode1program();

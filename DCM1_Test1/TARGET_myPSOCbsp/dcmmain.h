@@ -84,7 +84,7 @@ float discrThresh;
 float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
 float DET0_temp, DET1_temp, DET2_temp, DET3_temp;
 float length;
-float fvalue;
+//float fvalue;
 
 
 /*hashtable variables*/
