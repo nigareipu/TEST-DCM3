@@ -16,11 +16,8 @@ void setDiscrDACInternalRef(void)
 
 	cy_rslt_t result;
 
-	// Cy_SCB_UART_PutString(UART_HW,"Created result \r\n");
-
 	/*Define placehold variable to receive */
 	uint8_t receive_data[4];
-	// Cy_SCB_UART_PutString(UART_HW,"Created receive data \r\n");
 
 	spi_buf[0] = 0x08;
 	spi_buf[1] = 0x00;
@@ -32,14 +29,7 @@ void setDiscrDACInternalRef(void)
 	for (int i = 0; i < 1; i++)
 	{
 		result = cyhal_spi_transfer(&DiscrDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
-		/*if( result != CY_RSLT_SUCCESS)
-		{
-			Cy_SCB_UART_PutString(UART_HW,"\r\n DAC Discr internal ref Setting FAILED \r\n");
-			CY_ASSERT(0);
 
-
-		}
-		else Cy_SCB_UART_PutString(UART_HW,"\r\nDAC Discr internal reference voltage set\r\n");*/
 	}
 }
 
@@ -55,42 +45,20 @@ void setHVDACInternalRef(void)
 
 	char error_codeArray[10];
 
-	// Cy_SCB_UART_PutString(UART_HW,"Created nothing \r\n");
-
 	cy_rslt_t result;
-	// Cy_SCB_UART_PutString(UART_HW,"Created result \r\n");
 
 	/*Define placehold variable to receive */
 	uint8_t receive_data[4];
-	// Cy_SCB_UART_PutString(UART_HW,"Created receive data \r\n");
 
 	spi_buf[0] = 0x08;
 	spi_buf[1] = 0x00;
 	spi_buf[2] = 0x00;
 	spi_buf[3] = 0x01;
 
-	/*Cy_SCB_UART_PutString(UART_HW,"spi buf = ");
-	sprintf(confirmValue,"%x",spi_buf);
-	Cy_SCB_UART_PutArray(UART_HW,confirmValue,4);
-	Cy_SCB_UART_PutString(UART_HW," \r\n");*/
-
 	for (int i = 0; i < 1; i++)
 	{
 		result = cyhal_spi_transfer(&HVDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
-		/*	if( result != CY_RSLT_SUCCESS)
-			{
-				Cy_SCB_UART_PutString(UART_HW,"\r\nHV DAC internal ref Setting FAILED \r\n");
 
-				 error_code = CY_RSLT_GET_CODE(result);
-				 Cy_SCB_UART_PutString(UART_HW,"Error code =  ");
-				 sprintf(error_codeArray,"%u",error_code);
-				 Cy_SCB_UART_PutArray(UART_HW,error_codeArray,10);
-				 Cy_SCB_UART_PutString(UART_HW," V\r\n");
-				CY_ASSERT(0);
-
-
-			}
-			Cy_SCB_UART_PutString(UART_HW,"\r\nHV DAC internal reference voltage set\r\n");*/
 	}
 }
 
@@ -113,11 +81,6 @@ uint16_t convertHighVoltagetoDACVoltage(float inputVoltage)
 
 	inputVoltageConverted = inputVoltage * voltageDividerFactor;
 
-	/*Cy_SCB_UART_PutString(UART_HW,"Converted voltage = ");
-   sprintf(confirmdacValue,"%f",inputVoltageConverted);
-	Cy_SCB_UART_PutArray(UART_HW,confirmdacValue,3);
-	Cy_SCB_UART_PutString(UART_HW,"\r\n");*/
-
 	// get DAC decimal value (from data sheet: D = 2^(resolution) * V/2*VrefInternal = 2^12 * V/2(1.25V) = 4096 *V/2.5. V is the voltage you want the DAC to output.
 	tempDacValue = (uint32_t)((inputVoltageConverted * AD56x8_NUM_STEPS) / (AD56x8_VREF_VALUE));
 
@@ -134,11 +97,6 @@ uint16_t convertHighVoltagetoDACVoltage(float inputVoltage)
 	{
 		dacValue = (uint16_t)tempDacValue;
 	}
-
-	/*Cy_SCB_UART_PutString(UART_HW,"dacValue = ");
-	sprintf(confirmdacValue,"%i",dacValue);
-	Cy_SCB_UART_PutArray(UART_HW,confirmdacValue,3);
-	Cy_SCB_UART_PutString(UART_HW,"\r\n");*/
 
 	return (dacValue);
 }
@@ -160,10 +118,6 @@ uint16_t convertDiscrThreshtoDACVoltage(float inputVoltage)
 	tempDacValue = 0;
 	dacValue = 0;
 
-	/*Cy_SCB_UART_PutString(UART_HW,"Converted voltage = ");
-   sprintf(confirmdacValue,"%f",inputVoltageConverted);
-	Cy_SCB_UART_PutArray(UART_HW,confirmdacValue,3);
-	Cy_SCB_UART_PutString(UART_HW,"\r\n");*/
 
 	// get DAC decimal value (from data sheet: D = 2^(resolution) * V/2*VrefInternal = 2^12 * V/2(1.25V) = 4096 *V/2.5. V is the voltage you want the DAC to output.
 	tempDacValue = (uint32_t)((inputVoltage * AD56x8_NUM_STEPS) / (AD56x8_VREF_VALUE));
@@ -181,11 +135,6 @@ uint16_t convertDiscrThreshtoDACVoltage(float inputVoltage)
 	{
 		dacValue = (uint16_t)tempDacValue;
 	}
-
-	/*Cy_SCB_UART_PutString(UART_HW,"dacValue = ");
-	sprintf(confirmdacValue,"%i",dacValue);
-	Cy_SCB_UART_PutArray(UART_HW,confirmdacValue,3);
-	Cy_SCB_UART_PutString(UART_HW,"\r\n");*/
 
 	return (dacValue);
 }
@@ -209,11 +158,6 @@ uint16_t convertTempSetVoltagetoDACVoltage(float inputVoltage)
 
 	inputVoltageConverted = inputVoltage;
 
-	/*Cy_SCB_UART_PutString(UART_HW,"Converted voltage = ");
-   sprintf(confirmdacValue,"%f",inputVoltageConverted);
-	Cy_SCB_UART_PutArray(UART_HW,confirmdacValue,3);
-	Cy_SCB_UART_PutString(UART_HW,"\r\n");*/
-
 	// get DAC decimal value (from data sheet: D = 2^(resolution) * V/2*VrefInternal = 2^12 * V/2(1.25V) = 4096 *V/2.5. V is the voltage you want the DAC to output.
 	tempDacValue = (uint32_t)((inputVoltageConverted * AD56x8_NUM_STEPS) / (AD56x8_VREF_VALUE));
 
@@ -230,11 +174,6 @@ uint16_t convertTempSetVoltagetoDACVoltage(float inputVoltage)
 	{
 		dacValue = (uint16_t)tempDacValue;
 	}
-
-	/*Cy_SCB_UART_PutString(UART_HW,"dacValue = ");
-	sprintf(confirmdacValue,"%i",dacValue);
-	Cy_SCB_UART_PutArray(UART_HW,confirmdacValue,3);
-	Cy_SCB_UART_PutString(UART_HW,"\r\n");*/
 
 	return (dacValue);
 }
@@ -286,10 +225,6 @@ uint32_t prepareDACDataPacket(uint16_t data, uint16_t channel, uint16_t command)
 	dacDataPacket &= (~AD56x8_DATA_MASK);
 	dacDataPacket += tempDACPacket;
 
-	/*Cy_SCB_UART_PutString(UART_HW,"dacDataPacket = ");
-	sprintf(confirmdacValue,"%lu",dacDataPacket);
-	Cy_SCB_UART_PutArray(UART_HW,confirmdacValue,8);
-	Cy_SCB_UART_PutString(UART_HW,"\r\n");*/
 
 	return dacDataPacket;
 }

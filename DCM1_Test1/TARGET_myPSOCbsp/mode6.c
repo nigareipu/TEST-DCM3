@@ -26,7 +26,6 @@ void mode6program()
 	}
 
 	// Annealing the selected detector to 91 C for the selected time
-	//Annealing setup
 
 	if(*AnDET==0)
 	{

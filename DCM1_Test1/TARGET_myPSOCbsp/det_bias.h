@@ -27,7 +27,6 @@
 #define DET2 (0x04)
 #define DET3 (0x05)
 
-//#include "functions.h"
 extern uint16_t detector;
 extern float voltage;
 extern char voltageArray[3];

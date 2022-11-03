@@ -13,7 +13,7 @@ void mode4program()
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to SINGLE SIDE COINCIDENCE COUNTING\r\n");
 	printThermalInfo = 1;
 
-	/*****************************Test Pritning*************************/
+	/*****************************Test Printing*************************/
 	if (*printMessageFlag == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
@@ -38,6 +38,7 @@ void mode4program()
 		printFloat(*DThrs);
 	}
 
+
 	/*****************************TEst printing done ***************************/
 
 	check_countTime();
@@ -59,7 +60,7 @@ void mode4program()
 
 	for (int k = 0; k < *RTime; k++)
 	{
-		//Cy_SCB_UART_PutString(UART_HW, "\r\nS0, S1, S2,  S3, C02, C13: ");
+
 		if (*Exit == 1)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");

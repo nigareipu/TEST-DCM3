@@ -22,7 +22,6 @@ void mode5program()
 
 		if (*Exit == 1)
 		{
-			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			mode1program();
 		}
 	}
@@ -36,7 +35,6 @@ void mode5program()
 
 		if (*Exit == 1)
 		{
-			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			mode1program();
 		}
 	}
