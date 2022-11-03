@@ -47,12 +47,11 @@ void HVDAC_SPI_Init(void)
 
 void transmitToHVDAC(uint32_t dacDataPacket)
 {
-	//char confirmValue[32];
+	// char confirmValue[32];
 	for (bufIndex = (SPI_BUFFER_SIZE - 1), shift = 0; bufIndex >= 0; bufIndex--, shift++)
 	{
-		//Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC  loop\n\r ");
+		// Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC  loop\n\r ");
 		spi_buf[bufIndex] = (uint8_t)(dacDataPacket >> (8 * shift));
-
 	}
 	cy_rslt_t result;
 	// Define placehold variable to receive
@@ -62,7 +61,6 @@ void transmitToHVDAC(uint32_t dacDataPacket)
 		cyhal_spi_transfer_async(&HVDAC_obj, spi_buf, 4, receive_data, 4);
 	}
 }
-
 
 void transmitToDiscrDAC(uint32_t dacDataPacket)
 {
@@ -78,6 +76,5 @@ void transmitToDiscrDAC(uint32_t dacDataPacket)
 	for (int i = 0; i < 1; i++)
 	{
 		result = cyhal_spi_transfer(&DiscrDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
-
 	}
 }

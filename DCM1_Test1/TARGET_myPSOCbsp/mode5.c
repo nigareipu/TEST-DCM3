@@ -11,9 +11,9 @@ void mode5program()
 {
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to CALIBRATION\r\n");
-	printThermalInfo=1;
+	printThermalInfo = 1;
 
-	if (*mode5Calibration==0)
+	if (*mode5Calibration == 0)
 	{
 
 		Cy_SCB_UART_PutString(UART_HW, "\r\nDET_Vb vs T\r\n");
@@ -26,7 +26,7 @@ void mode5program()
 		}
 	}
 
-	else if (*mode5Calibration==1)
+	else if (*mode5Calibration == 1)
 	{
 
 		Cy_SCB_UART_PutString(UART_HW, "\r\nDETCounts vs DThrs\r\n");
@@ -38,7 +38,6 @@ void mode5program()
 			mode1program();
 		}
 	}
-
 
 	else
 	{
@@ -47,7 +46,6 @@ void mode5program()
 		calibrateBreakdownvTemp();
 		Cy_SCB_UART_PutString(UART_HW, "\r\nDETCounts vs DThrs\r\n");
 		calibrateCountsvDiscThresh();
-
 	}
 	mode1program();
 }

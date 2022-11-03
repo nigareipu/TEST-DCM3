@@ -23,7 +23,6 @@
 
 extern int idx;
 extern char voltageArray[3];
-//extern char confirmValue[32];
 extern char lengthArray[4];
 
 extern volatile bool coincWindowSetFlag;
@@ -39,7 +38,7 @@ extern volatile bool DetectorSetFlag;
 
 extern int delay0Value, delay1Value, delay2Value, delay3Value;
 extern float fvalue;
-extern char* command;
+extern char *command;
 
 void Init_Hardware();
 void setCoincidenceWindowCommand(float ConcidanceWindow);
@@ -55,9 +54,5 @@ void setDetectorBias();
 void turnON_TECs();
 void turnOFF_TECs();
 void SetCounters();
-
-// Updating Hash Table Values
-//void* inout();
-//void update_table(char* command, float value);
 
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_COMMANDS_H_ */

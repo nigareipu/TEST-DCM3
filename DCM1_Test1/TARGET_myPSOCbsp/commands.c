@@ -7,7 +7,7 @@
 
 #include "commands.h"
 
-char* command;
+char *command;
 
 /*
  * @desc Command that sets the length of time modes run for
@@ -34,22 +34,18 @@ void setCoincidenceWindowCommand(float ConcidanceWindow)
 	if (ConcidanceWindow == 0)
 	{
 		CoincidenceWindow_Set(0, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 0\r\n");
 	}
 	else if (ConcidanceWindow == 1)
 	{
 		CoincidenceWindow_Set(0, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 1\r\n");
 	}
 	else if (ConcidanceWindow == 2)
 	{
 		CoincidenceWindow_Set(1, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 2\r\n");
 	}
 	else if (ConcidanceWindow == 3)
 	{
 		CoincidenceWindow_Set(1, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "ConcidanceWindow = 3\r\n");
 	}
 	else
 	{
@@ -67,22 +63,18 @@ void setDelay0Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay0_Set(0, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay0_Set(0, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 		Delay0_Set(1, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 2\r\n");
 	}
 	else if (DelayValue == 3)
 	{
 		Delay0_Set(1, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET0 Delay = 3\r\n");
 	}
 }
 
@@ -91,25 +83,19 @@ void setDelay1Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay1_Set(0, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay1_Set(0, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 
 		Delay1_Set(1, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 2\r\n");
-
 	}
 	else if (DelayValue == 3)
 	{
 		Delay1_Set(1, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET1 Delay = 3\r\n");
-
 	}
 }
 
@@ -118,24 +104,18 @@ void setDelay2Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay2_Set(0, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay2_Set(0, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 		Delay2_Set(1, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 2\r\n");
-
 	}
 	else if (DelayValue == 3)
 	{
 		Delay2_Set(1, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET2 Delay = 3\r\n");
-
 	}
 }
 
@@ -144,25 +124,20 @@ void setDelay3Command(float DelayValue)
 	if (DelayValue == 0)
 	{
 		Delay3_Set(0, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 0\r\n");
 	}
 	else if (DelayValue == 1)
 	{
 		Delay3_Set(0, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 1\r\n");
 	}
 	else if (DelayValue == 2)
 	{
 		Delay3_Set(1, 0);
-		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 2\r\n");
 	}
 	else if (DelayValue == 3)
 	{
 		Delay3_Set(1, 1);
-		//Cy_SCB_UART_PutString(UART_HW, "DET3 Delay = 3\r\n");
 	}
 }
-
 
 void setParameters()
 {
@@ -183,8 +158,6 @@ void setParameters()
 	TEC_Driver1_Status(ON);
 }
 
-
-
 // Slowly ramp up voltages
 // Set voltage of detectors gradually
 void setDetectorBias()
@@ -195,10 +168,8 @@ void setDetectorBias()
 	HV3_Monitor();
 	cyhal_system_delay_ms(500); // required delay
 	Cy_SCB_UART_PutString(UART_HW, "\r\nHV0, HV3: ");
-	sprintf(confirmValue, "%.3f, %.3f",  HVMoni0, HVMoni3);
+	sprintf(confirmValue, "%.3f, %.3f", HVMoni0, HVMoni3);
 	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-
-
 
 	float DET_gradual_increase[] = {0, 0, 0, 0};
 	float DET_bias[] = {*VDET0, *VDET1, *VDET2, *VDET3};
@@ -212,8 +183,6 @@ void setDetectorBias()
 			DET_gradual_increase[i] = DET_gradual_increase[i] + 10;
 			cyhal_system_delay_ms(1);
 		}
-		//Cy_SCB_UART_PutString(UART_HW, "detector voltage :");
-		//printFloat(DET_bias[i]);
 		SetDetectorVoltage(DET[i], DET_bias[i]);
 	}
 
@@ -222,9 +191,6 @@ void setDetectorBias()
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 		mode1program();
 	}
-
-
-
 }
 
 void turnOFF_TECs()
@@ -257,10 +223,6 @@ void startSinglesCounting()
 	Singles1_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_1_HW, Singles_1_NUM);
 	Singles2_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_2_HW, Singles_2_NUM);
 	Singles3_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_3_HW, Singles_3_NUM);
-	/*GetSingles0Counts();
-	GetSingles1Counts();
-	GetSingles2Counts();
-	GetSingles3Counts();*/
 }
 
 void startCoincidenceCounting()
@@ -270,10 +232,6 @@ void startCoincidenceCounting()
 	Coincidence2_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_2_HW, Coinc_2_NUM);
 	Coincidence3_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
 	// Want 12, 01, 23, 03
-	/*GetCoincidence1Counts();
-	GetCoincidence0Counts();
-	GetCoincidence3Counts();
-	GetCoincidence2Counts();*/
 }
 
 void SetCounters()
@@ -287,7 +245,6 @@ void SetCounters()
 	Cy_TCPWM_Counter_SetCounter(Coinc_2_HW, Coinc_2_NUM, 0);
 	Cy_TCPWM_Counter_SetCounter(Coinc_3_HW, Coinc_3_NUM, 0);
 }
-
 
 void printFloat(float message)
 {

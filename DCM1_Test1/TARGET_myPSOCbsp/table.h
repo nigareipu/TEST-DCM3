@@ -18,7 +18,6 @@ extern struct node *hash_table;
 
 extern char HashValue[20];
 
-
 // Declaring Function
 
 struct node

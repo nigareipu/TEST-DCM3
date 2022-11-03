@@ -38,8 +38,6 @@ float thermRead3 = 0.0;
 
 float ITEC0_V, ITEC1_V, ITEC0, ITEC1;
 
-
-
 void TEC_Driver0_Init(uint8 status)
 {
 	// Function initializing TEC Driver 0
@@ -158,7 +156,6 @@ void TEC_SW3_Status(uint8 status)
 
 	cyhal_gpio_write(P7_3, status);
 }
-
 
 void monitorITEC0()
 {
