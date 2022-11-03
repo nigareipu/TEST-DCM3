@@ -46,14 +46,14 @@ void ADC_Init()
  */
 void HV0_Monitor(void)
 {
-
+	//Cy_SAR_StopConvert(SAR_ADC_HW);
 	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
 
 	for (int j = 0; j < 10; j++)
 	{
 
 		HVMoni0Counts = Cy_SAR_GetResult16(SAR_ADC_HW, hvmoni0channel);
-		HVMoni0Volts = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, hvmoni0channel, Cy_SAR_GetResult16(SAR_ADC_HW, hvmoni0channel));
+		HVMoni0Volts = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, hvmoni0channel, HVMoni0Counts);
 		// This accounts for voltage divider, will print actual high voltage
 		HVMoni0 = HVMoni0Volts * 10039.2 / 39.2;
 	}

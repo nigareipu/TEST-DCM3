@@ -29,7 +29,7 @@ void Init_Hardware()
  * @desc Command that checks if value for coincidence window is valid
  * @returns Nothing
  */
-void setCoincidenceWindowCommand(float ConcidanceWindow)
+void setCoincidenceWindowCommand(int ConcidanceWindow)
 {
 	if (ConcidanceWindow == 0)
 	{
@@ -57,7 +57,7 @@ void setCoincidenceWindowCommand(float ConcidanceWindow)
  * @desc Command that checks whether the length of delay is valid
  * @returns Nothing
  */
-void setDelay0Command(float DelayValue)
+void setDelay0Command(int DelayValue)
 {
 
 	if (DelayValue == 0)
@@ -78,7 +78,7 @@ void setDelay0Command(float DelayValue)
 	}
 }
 
-void setDelay1Command(float DelayValue)
+void setDelay1Command(int DelayValue)
 {
 	if (DelayValue == 0)
 	{
@@ -99,7 +99,7 @@ void setDelay1Command(float DelayValue)
 	}
 }
 
-void setDelay2Command(float DelayValue)
+void setDelay2Command(int DelayValue)
 {
 	if (DelayValue == 0)
 	{
@@ -119,7 +119,7 @@ void setDelay2Command(float DelayValue)
 	}
 }
 
-void setDelay3Command(float DelayValue)
+void setDelay3Command(int DelayValue)
 {
 	if (DelayValue == 0)
 	{
@@ -162,15 +162,6 @@ void setParameters()
 // Set voltage of detectors gradually
 void setDetectorBias()
 {
-
-	HV0_Monitor();
-	cyhal_system_delay_ms(500); // required delay
-	HV3_Monitor();
-	cyhal_system_delay_ms(500); // required delay
-	Cy_SCB_UART_PutString(UART_HW, "\r\nHV0, HV3: ");
-	sprintf(confirmValue, "%.3f, %.3f", HVMoni0, HVMoni3);
-	Cy_SCB_UART_PutString(UART_HW, confirmValue);
-
 	float DET_gradual_increase[] = {0, 0, 0, 0};
 	float DET_bias[] = {*VDET0, *VDET1, *VDET2, *VDET3};
 	unsigned int DET[] = {DET0, DET1, DET2, DET3};
@@ -189,8 +180,15 @@ void setDetectorBias()
 	if (*Exit == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		mode1program();
+		return;
 	}
+
+	cyhal_system_delay_ms(3000);
+	HV0_Monitor();
+	cyhal_system_delay_ms(3000);
+	HV3_Monitor();
+	sprintf(confirmValue, "\r\nHV0, HV3: %.3f, %.3f", HVMoni0, HVMoni3);
+	Cy_SCB_UART_PutString(UART_HW, confirmValue);
 }
 
 void turnOFF_TECs()

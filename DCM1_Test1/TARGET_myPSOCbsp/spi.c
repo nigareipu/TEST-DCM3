@@ -45,6 +45,23 @@ void HVDAC_SPI_Init(void)
 	result = cyhal_spi_set_frequency(&HVDAC_obj, spi_master_frequency);
 }
 
+void transmitToTDAC(uint32_t dacDataPacket)
+{
+	// char confirmValue[32];
+	for (bufIndex = (SPI_BUFFER_SIZE - 1), shift = 0; bufIndex >= 0; bufIndex--, shift++)
+	{
+		// Cy_SCB_UART_PutString(UART_HW, "inside transmitToHVDAC  loop\n\r ");
+		spi_buf[bufIndex] = (uint8_t)(dacDataPacket >> (8 * shift));
+	}
+	cy_rslt_t result;
+	// Define placehold variable to receive
+	uint8_t receive_data[4];
+	for (int i = 0; i < 1; i++)
+	{
+		cyhal_spi_transfer_async(&HVDAC_obj, spi_buf, 4, receive_data, 4);
+	}
+}
+
 void transmitToHVDAC(uint32_t dacDataPacket)
 {
 	// char confirmValue[32];
@@ -59,6 +76,7 @@ void transmitToHVDAC(uint32_t dacDataPacket)
 	for (int i = 0; i < 1; i++)
 	{
 		cyhal_spi_transfer_async(&HVDAC_obj, spi_buf, 4, receive_data, 4);
+		//cyhal_spi_transfer(&HVDAC_obj, spi_buf, 4, receive_data, 4, 0xFF);
 	}
 }
 

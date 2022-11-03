@@ -51,6 +51,8 @@ int main(void)
 
 	/************Set default values*********************/
 	default_hashtable();
+
+
 	mode1program();
 
 	for (;;)

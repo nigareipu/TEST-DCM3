@@ -41,11 +41,11 @@ extern float fvalue;
 extern char *command;
 
 void Init_Hardware();
-void setCoincidenceWindowCommand(float ConcidanceWindow);
-void setDelay0Command(float DelayValue);
-void setDelay1Command(float DelayValue);
-void setDelay2Command(float DelayValue);
-void setDelay3Command(float DelayValue);
+void setCoincidenceWindowCommand(int ConcidanceWindow);
+void setDelay0Command(int DelayValue);
+void setDelay1Command(int DelayValue);
+void setDelay2Command(int DelayValue);
+void setDelay3Command(int DelayValue);
 void startSinglesCounting();
 void startCoincidenceCounting();
 void printFloat(float message);

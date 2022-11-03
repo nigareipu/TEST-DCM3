@@ -44,10 +44,12 @@ void mode2program()
 
 
 	//check if countTime is acceptable
+	//HV0_Monitor();
 	check_countTime();
 	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 	setParameters();
 	setDetectorBias();
+
 
 	printThermalInfo = *printThermalFlag;
 

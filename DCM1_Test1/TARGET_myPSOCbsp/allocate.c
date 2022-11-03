@@ -48,22 +48,22 @@ void default_hashtable()
 	printThermalFlag = allocate_node(hash_table, table_size, sizeof(int), "printThermalFlag");
 	Exit = allocate_node(hash_table, table_size, sizeof(int), "Exit");
 
-	*mode = 5;
+	*mode = 2;
 	*mode5Calibration = 1;
-	*VDET0 = 312;
-	*VDET1 = 337;
-	*VDET2 = 376;
-	*VDET3 = 373;
+	*VDET0 = 1;
+	*VDET1 = 1;
+	*VDET2 = 1;
+	*VDET3 = 1;
 	*TDET0 = 1.0;
 	*TDET1 = 1.0;
 	*TDET2 = 0.95;
 	*TDET3 = 0.95;
-	*RTime = 100;
+	*RTime = 10000;
 	*DThrs = 0.05;
 	*DlayDET0 = 0;
-	*DlayDET1 = 3;
-	*DlayDET2 = 2;
-	*DlayDET3 = 1;
+	*DlayDET1 = 0;
+	*DlayDET2 = 0;
+	*DlayDET3 = 0;
 	*CoWin = 3;
 	*AnDET = 3; ////value-> 0 (for TEC0),  1 (for TEC1), 2 (for TEC2) & 3 (for TEC3)
 	*targetTECFlag0 = 1;
@@ -80,7 +80,7 @@ void default_hashtable()
 	*ki = 0.45; // PID Integral Gain
 	*kd = 0.15;
 	*printMessageFlag=0;
-	*printThermalFlag=1;
+	*printThermalFlag=0;
 	*countTime = 1000; //In millisecond.
 	*Exit=0;
 

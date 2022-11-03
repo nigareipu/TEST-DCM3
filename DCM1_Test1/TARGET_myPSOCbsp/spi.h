@@ -24,5 +24,6 @@ void DiscrDAC_SPI_Init();
 void HVDAC_SPI_Init();
 void transmitToDiscrDAC(uint32_t dacDataPacket);
 void transmitToHVDAC(uint32_t dacDataPacket);
+void transmitToTDAC(uint32_t dacDataPacket);
 
 #endif /* TARGET_MYPSOCBSP_SPI_H_ */

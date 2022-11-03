@@ -53,7 +53,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 
 		dacValue = convertTempSetVoltagetoDACVoltage(C_output0);
 		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_C, AD56x8_WR_IN_UPD_ALL);
-		transmitToHVDAC(dacDataPacket);
+		transmitToTDAC(dacDataPacket);
 	}
 
 	else
@@ -76,7 +76,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 		}
 		dacValue = convertTempSetVoltagetoDACVoltage(C_output1);
 		dacDataPacket = prepareDACDataPacket(dacValue, AD56x8_DAC_CH_D, AD56x8_WR_IN_UPD_ALL);
-		transmitToHVDAC(dacDataPacket);
+		transmitToTDAC(dacDataPacket);
 	}
 }
 
