@@ -79,6 +79,5 @@ void GetCoincidence3Counts();
 void GetAllSinglesCounts();
 void GetAllCounts();
 void StartCounters();
-// void GetCoincidence0Counts();
 
 #endif /* TARGET_MYPSOCBSP_COUNTERS_H_ */
