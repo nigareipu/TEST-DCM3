@@ -53,7 +53,7 @@ void mode3program()
 	setParameters();
 	setDetectorBias();
 
-	printThermalInfo=*printThermalFlag;
+	printThermalInfo = *printThermalFlag;
 
 	// Starts counting
 	for (int k = 0; k < *RTime; k++)
@@ -72,6 +72,7 @@ void mode3program()
 				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
 				Coincidence2_CountRate, Coincidence3_CountRate);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
+
 
 		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
 	}

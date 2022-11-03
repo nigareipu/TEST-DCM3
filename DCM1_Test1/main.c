@@ -5,10 +5,7 @@
  *
  *******************************************************************************/
 
-
 #include "dcmmain.h"
-
-
 
 int main(void)
 {
@@ -56,14 +53,6 @@ int main(void)
 	default_hashtable();
 	mode1program();
 
-
-	/*for(int i=0; i<10; i++){
-		ClockStamp = Cy_SysTick_GetValue();
-		sprintf(confirmValue,"clockStamp: %lu,", ClockStamp);
-		Cy_SCB_UART_PutString(UART_HW, confirmValue);
-		cyhal_system_delay_ms(1000);
-	}*/
-
 	for (;;)
 	{
 		if (uartRxCompleteFlag == 1)
@@ -73,12 +62,9 @@ int main(void)
 			if (*rxBuffer == '\n' || *rxBuffer == '\r')
 			{
 				// Divide incoming buffer into command and value sections (ex. first 4 bits are for command and last 4 are for value)
-				// Will only work with terminal connected to it, without it tho all default values should still go through
+				// Will only work with terminal connected to it, although without it all default values should still go through
 				commandBuffer = strtok(storeBuffer, ";");
 				valueBuffer = strtok(NULL, ";");
-				//fvalue = atof(valueBuffer);
-				//*command = fvalue;
-				// update_table(commandBuffer, fvalue);
 
 				if (*mode == 1)
 				{

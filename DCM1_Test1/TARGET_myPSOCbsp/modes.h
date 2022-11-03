@@ -47,8 +47,8 @@ void mode2program();
 void mode3program();
 void mode4program();
 void mode5program();
-void calibrateBreakdownvTemp();//Mode5 functions
-void calibrateCountsvDiscThresh();//Mode5 functions
+void calibrateBreakdownvTemp();    // Mode5 functions
+void calibrateCountsvDiscThresh(); // Mode5 functions
 void mode6program();
 void mode7program();
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_MODE2_H_ */

@@ -12,7 +12,7 @@ void mode1program()
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to IDLE\r\n");
 
 	// SETTINGS FOR RUNNING IDLE MODE
-	printThermalInfo=1;
+	printThermalInfo = 1;
 	TEC_controller0ActiveFlag = 0;
 	TEC_controller1ActiveFlag = 0;
 
@@ -44,7 +44,7 @@ void mode1program()
 	Delay2_Set(0, 0);
 	Delay3_Set(0, 0);
 
-	*Exit=0;
+	*Exit = 0;
 
 	uartRxCompleteFlag = 0;
 	count = 0;

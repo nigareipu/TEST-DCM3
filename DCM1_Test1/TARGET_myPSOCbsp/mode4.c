@@ -54,7 +54,7 @@ void mode4program()
 	setParameters();
 	setDetectorBias();
 
-	printThermalInfo=*printThermalFlag;
+	printThermalInfo = *printThermalFlag;
 
 	// Starts counting
 
@@ -82,5 +82,3 @@ void mode4program()
 	}
 	mode1program();
 }
-
-

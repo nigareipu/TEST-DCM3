@@ -12,7 +12,6 @@ void SingleSide_Init()
 	cy_rslt_t result;
 	result = cyhal_gpio_init(P9_2, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
 	result = cyhal_gpio_init(P9_3, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-
 }
 
 /*
@@ -38,7 +37,6 @@ void CoincidenceWindow_Init()
 	cy_rslt_t result;
 	result = cyhal_gpio_init(P2_4, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
 	result = cyhal_gpio_init(P11_5, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUPDOWN, 0);
-
 }
 
 /*
@@ -54,5 +52,4 @@ void CoincidenceWindow_Set(bool Bit1, bool Bit2)
 	cyhal_gpio_write(P2_4, Bit1);
 	cy_rslt_t setWindowBit2;
 	cyhal_gpio_write(P11_5, Bit2);
-
 }

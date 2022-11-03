@@ -8,7 +8,6 @@
 #ifndef TARGET_MYPSOCBSP_COIN_WINDOW_H_
 #define TARGET_MYPSOCBSP_COIN_WINDOW_H_
 
-
 #include "cy_pdl.h"
 #include "cyhal.h"
 #include "cybsp.h"

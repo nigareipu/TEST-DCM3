@@ -38,8 +38,6 @@ void ADC_Init()
 	// ADC Settings
 	Cy_SAR_Init(SAR_ADC_HW, &SAR_ADC_config);
 	Cy_SAR_Enable(SAR_ADC_HW);
-
-
 }
 
 /* @desc Read voltage from HV 0 feedback line. Value of HVMoni will be between 0 and Vref (2.048V) and must be converted to read
@@ -60,12 +58,6 @@ void HV0_Monitor(void)
 		HVMoni0 = HVMoni0Volts * 10039.2 / 39.2;
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-
-
-	/*sprintf(adcBuffer0, "%f", HVMoni0ConvertedVolts);
-	Cy_SCB_UART_PutString(UART_HW, "\r\nHVMoni_0 = ");
-	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 16, &uartContext);
-	Cy_SCB_UART_PutString(UART_HW, "\r\n");*/
 }
 
 /* @desc Read voltage from HV 3 feedback line. Value of HVMoni will be between 0 and Vref (2.048V) and must be converted to read
@@ -84,10 +76,6 @@ void HV3_Monitor(void)
 		HVMoni3 = HVMoni3Volts * 10039.2 / 39.2;
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-
-	/*sprintf(adcBuffer0, "%f", HVMoni3ConvertedVolts);
-	Cy_SCB_UART_PutString(UART_HW, "\r\nHVMoni_3 = ");
-	Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 10, &uartContext);*/
 }
 
 /*
@@ -100,11 +88,6 @@ void Therm0_Read(void)
 	THERM0 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread0channel);
 	ThermRead0 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread0channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread0channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-
-	// sprintf(adcBuffer0,"%lu",THERM0);
-	// Cy_SCB_UART_PutString(UART_HW,"\r\nHVMoni_0ConvertedVolts = ");
-	// Cy_SCB_UART_Transmit(UART_HW, adcBuffer0, 16, &uartContext);
-	// Cy_SCB_UART_PutString(UART_HW,"\r\n");
 }
 
 /*
@@ -117,7 +100,6 @@ void Therm1_Read(void)
 	THERM1 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel);
 	ThermRead1 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread1channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-
 }
 
 /*
@@ -130,7 +112,6 @@ void Therm2_Read(void)
 	THERM2 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread2channel);
 	ThermRead2 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread2channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread2channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-
 }
 
 /*
@@ -143,7 +124,6 @@ void Therm3_Read(void)
 	THERM3 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel);
 	ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-
 }
 
 /*
@@ -160,7 +140,6 @@ void GetAllThermRead(void)
 	ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
-
 
 /*
  * @desc Gets current for TEC 0
@@ -185,4 +164,3 @@ void ITEC1_Read()
 	ITEC1_V = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, ITEC1channel, Cy_SAR_GetResult16(SAR_ADC_HW, ITEC1channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
-

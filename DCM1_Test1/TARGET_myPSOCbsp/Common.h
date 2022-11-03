@@ -14,12 +14,7 @@
 #define SRC_COMMON_H_
 
 /***************************** Include Files *********************************/
-//#include "stm32f4xx.h"
-//#include "HAL_spi.h"
-//#include "HAL_dac.h"
-//#include "HAL_common.h"
 #include "AD56x8.h"
-//#include "stm32f4xx_hal.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,7 +45,6 @@
 #define MANUAL_MODE (1)
 #define AUTO_MODE (0)
 #define LAB_MODE (0)
-//#define DEBUG_MODE				(0)
 
 #define MULTI_TIER_MENU (1)
 
@@ -64,15 +58,8 @@
 #define LCPR1_INDEX 1
 #define LCPR2_INDEX 2
 #define ENABLE_DISABLE_LCPR 0
-//#define CHANGE_LCPR_DUTY_CYCLE		1
-//#define CHANGE_LCPR_FREQUENCY		2
 #define CHANGE_LCPR_ANGLE 3
 #define CHANGE_LCPR_VOLTAGE 4
-//#define ENABLE_DISABLE_LCPR2		6
-//#define CHANGE_LCPR2_DUTY_CYCLE		2
-//#define CHANGE_LCPR3_DUTY_CYCLE		3
-//#define CHANGE_LCPR3_FREQUENCY		9
-//#define ENABLE_DISABLE_LCPR3		7
 
 /**************************** Type Definitions *******************************/
 /***************** Macros (Inline Functions) Definitions *********************/

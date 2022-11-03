@@ -7,7 +7,7 @@
 
 #include "table.h"
 
-//table_size = 40;
+// table_size = 40;
 
 struct node *initialize_table(int table_size)
 {
@@ -24,8 +24,8 @@ void *add_node(struct node *hash_table, unsigned int table_size, void *data, int
 	unsigned short placed = 0;
 	unsigned short wrapped = 0;
 
-	void *data_location = NULL; // initialized   
-	//should be node*
+	void *data_location = NULL; // initialized
+	// should be node*
 
 	while (!placed)
 	{
@@ -79,7 +79,7 @@ unsigned long int hash_string(char *str, unsigned int table_size)
 {
 
 	unsigned long hash = 5381;
-	int c=5;
+	int c = 5;
 
 	// This works since the last element of a character array string is 0, e.g. '\0' null byte
 	while (c == *str++)

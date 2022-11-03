@@ -20,9 +20,9 @@
 extern char temperatureArray[3];
 
 // declaration of global PID Coeficients
-//extern float  k1, k2, k3;
-extern float *kp, *ki, *kd; //PID coefficients
-extern float *PIDLoopDlay;;
+// extern float  k1, k2, k3;
+extern float *kp, *ki, *kd; // PID coefficients
+extern float *PIDLoopDlay;
 
 // Error parameters
 extern double e_1, e1_1, e2_1, e_1, e1_1, e2_1; // Error = (SetPoint - Feedback)
@@ -75,6 +75,5 @@ void TEC1_updateTemp(float tempSet);
 void StabilizeAllTemp(float tempSet);
 void UpdateAllTemp(float tempSet);
 void Annealing(uint16_t detector, float length, float Annealing_temp);
-
 
 #endif /* TARGET_MYPSOCBSP_TEC_H_ */
