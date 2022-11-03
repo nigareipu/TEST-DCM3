@@ -8,7 +8,6 @@
 #ifndef TARGET_MYPSOCBSP_DELAYS_H_
 #define TARGET_MYPSOCBSP_DELAYS_H_
 
-#include "functions.h"
 
 // Functions
 void Delay0_Set(bool Delay0Bit1, bool Delay0Bit2);

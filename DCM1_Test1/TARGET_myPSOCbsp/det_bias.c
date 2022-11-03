@@ -13,15 +13,13 @@
 float voltage;
 float voltStart, voltFinish;
 
-// uint16_t dacValue;
-// uint32_t dacDataPacket;
-
 /*
  * @desc Sets the given detector's voltage to the given voltage
  * @param uint16_t detector - The detector whose voltage will be set (DET_0, DET_1, DET_2, DET_3)
  * @param float voltage - The voltage that the chosen detector will be set to
  * @returns Nothing
  */
+
 void SetDetectorVoltage(uint16_t detector, float voltage)
 {
 
@@ -79,10 +77,6 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float 
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
-
-		/*Cy_SCB_UART_PutString(UART_HW, "\n\rDET, Tset, DBias, DCount: ");
-		sprintf(voltStep, "%i, %.4f, %.3f, ", detector, temp, voltage);
-		Cy_SCB_UART_PutString(UART_HW, voltStep);*/
 
 		SetDetectorVoltage(detector, voltage);
 		ClockStamp0 = Cy_SysTick_GetValue();
