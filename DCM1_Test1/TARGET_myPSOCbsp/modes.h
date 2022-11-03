@@ -40,6 +40,7 @@ extern volatile bool TEC_controller1ActiveFlag;
 extern char confirmValue[200];
 extern float discrThresh;
 extern uint32_t ClockStamp, ClockStamp0, ClockStamp1, ClockStamp2, ClockStamp3;
+extern int countLoopDelay;
 
 void mode1program();
 void mode2program();

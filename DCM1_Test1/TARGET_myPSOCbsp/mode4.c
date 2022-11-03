@@ -38,8 +38,9 @@ void mode4program()
 		printFloat(*DThrs);
 	}
 
-	/*****************************TEst printing***************************/
+	/*****************************TEst printing done ***************************/
 
+	check_countTime();
 	// sets coincidence channel, window and delay
 	SingleSide_Set(0, 0); // sets coin0-> 0&2 and coin1->1&2; but // Want coin between 0&2 and 1&3
 	setCoincidenceWindowCommand(*CoWin);
@@ -76,7 +77,7 @@ void mode4program()
 				Coincidence3_CountRate);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 
-		cyhal_system_delay_ms(*countTime);//Must be kept for accumulating counts/sec
+		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
 	}
 	mode1program();
 }

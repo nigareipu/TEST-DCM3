@@ -49,6 +49,8 @@ void mode2program()
 
 	/********settings for MODE2***********************/
 
+	//check if countTime is acceptable
+	check_countTime();
 	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 	setParameters();
 	setDetectorBias();
@@ -76,7 +78,7 @@ void mode2program()
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 
 
-		cyhal_system_delay_ms(*countTime);//Must be kept for accumulating counts/sec
+		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
 	}
 	mode1program();
 }

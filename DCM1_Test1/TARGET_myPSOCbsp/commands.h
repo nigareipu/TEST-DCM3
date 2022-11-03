@@ -55,6 +55,7 @@ void setDetectorBias();
 void turnON_TECs();
 void turnOFF_TECs();
 void SetCounters();
+void check_countTime();
 
 // Updating Hash Table Values
 //void* inout();

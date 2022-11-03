@@ -86,7 +86,7 @@ void default_hashtable()
 
 	*printMessageFlag=0;
 	*printThermalFlag=1;
-	*countTime = 1000;
+	*countTime = 1; //In millisecond.
 	*Exit=0;
 
 

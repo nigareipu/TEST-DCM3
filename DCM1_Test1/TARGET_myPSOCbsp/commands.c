@@ -288,6 +288,18 @@ void SetCounters()
 	Cy_TCPWM_Counter_SetCounter(Coinc_3_HW, Coinc_3_NUM, 0);
 }
 
+void check_countTime()
+{
+	if (*countTime>5000)  //MAX Counting loop delay is 5000 millisecond
+	{
+		countLoopDelay=5000;
+	}
+	else
+	{
+		countLoopDelay=*countTime;
+	}
+}
+
 
 void printFloat(float message)
 {

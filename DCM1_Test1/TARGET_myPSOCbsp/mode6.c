@@ -15,12 +15,12 @@ void mode6program()
 	if (*printMessageFlag == 1)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Thermoelectric cooler number ");
-		sprintf(adcBuffer, "%f", *AnDET);
+		sprintf(adcBuffer, "%d", *AnDET);
 		Cy_SCB_UART_PutString(UART_HW, " is ON and set to anneal to temperature ");
 		sprintf(confirmValue, "%f", *TDET0);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
 		Cy_SCB_UART_PutString(UART_HW, " for ");
-		sprintf(confirmValue, "%f", *RTime);
+		sprintf(confirmValue, "%d", *RTime);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
 		Cy_SCB_UART_PutString(UART_HW, " seconds:\r\n");
 	}

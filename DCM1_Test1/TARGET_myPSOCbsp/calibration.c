@@ -119,6 +119,8 @@ void calibrateCountsvDiscThresh()
 			break;
 		}
 
+
+		check_countTime();
 		// Set discriminator thresholds
 		setDiscr0Thresh(thresh);
 		setDiscr1Thresh(thresh);
@@ -142,7 +144,7 @@ void calibrateCountsvDiscThresh()
 			SetCounters();
 			sprintf(confirmValue, "\n\rClockStamp, DThrs, S0, S1, S2, S3:  %lu, %.2f, %lu, %lu, %lu, %lu\n\r", ClockStamp0, thresh, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate);
 			Cy_SCB_UART_PutString(UART_HW, confirmValue);
-			cyhal_system_delay_ms(1000);
+			cyhal_system_delay_ms(countLoopDelay);
 		}
 	}
 	// Turn off TECs
