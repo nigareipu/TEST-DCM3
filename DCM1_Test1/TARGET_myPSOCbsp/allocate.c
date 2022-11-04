@@ -48,7 +48,7 @@ void default_hashtable()
 	printThermalFlag = allocate_node(hash_table, table_size, sizeof(int), "printThermalFlag");
 	Exit = allocate_node(hash_table, table_size, sizeof(int), "Exit");
 
-	*mode = 2;
+	*mode = 4;
 	*mode5Calibration = 1;
 	*VDET0 = 1;
 	*VDET1 = 1;
@@ -64,7 +64,7 @@ void default_hashtable()
 	*DlayDET1 = 0;
 	*DlayDET2 = 0;
 	*DlayDET3 = 0;
-	*CoWin = 3;
+	*CoWin = 1;
 	*AnDET = 3; ////value-> 0 (for TEC0),  1 (for TEC1), 2 (for TEC2) & 3 (for TEC3)
 	*targetTECFlag0 = 1;
 	*targetTECFlag1 = 1;

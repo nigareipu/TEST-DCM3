@@ -68,7 +68,7 @@ void mode3program()
 		startCoincidenceCounting();
 		SetCounters();
 
-		sprintf(confirmValue, "\n\rClockStamp, S0, S1, S2, S3, C12, C01, C23, C03 : %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu\r\n ",
+		sprintf(confirmValue, "\n\rClockStamp, S0, S1, S2, S3, C01, C12, C03, C23: %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu\r\n ",
 				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
 				Coincidence2_CountRate, Coincidence3_CountRate);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
