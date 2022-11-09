@@ -25,7 +25,6 @@
 #define ITEC1channel 7UL
 
 // Globals
-extern cyhal_adc_t adc_obj;
 
 extern float HVMoni0;
 extern float HVMoni3;
@@ -33,12 +32,8 @@ extern float ThermRead0;
 extern float ThermRead1;
 extern float ThermRead2;
 extern float ThermRead3;
-extern float ThermRead;
 extern float ITEC0_V;
 extern float ITEC1_V;
-
-extern char adcBuffer[10];
-extern char adcBuffer0[16];
 
 extern cy_stc_scb_uart_context_t uartContext;
 

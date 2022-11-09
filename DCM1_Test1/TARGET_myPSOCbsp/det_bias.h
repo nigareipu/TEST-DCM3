@@ -27,12 +27,6 @@
 #define DET2 (0x04)
 #define DET3 (0x05)
 
-extern uint16_t detector;
-extern float voltage;
-extern char voltageArray[3];
-extern float voltage;
-extern float voltStart, voltFinish;
-
 extern uint16_t dacValue;
 extern uint32_t dacDataPacket;
 

@@ -15,7 +15,7 @@ void mode6program()
 	{
 		Cy_SCB_UART_PutString(UART_HW, "Thermoelectric cooler number ");
 
-		sprintf(adcBuffer, "%i", *AnDET);
+		sprintf(confirmValue, "%i", *AnDET);
 
 		Cy_SCB_UART_PutString(UART_HW, " is ON and set to anneal to temperature ");
 		sprintf(confirmValue, "%f", *TDET0);

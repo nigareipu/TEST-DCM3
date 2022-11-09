@@ -8,8 +8,6 @@
 #ifndef TARGET_MYPSOCBSP_SPI_H_
 #define TARGET_MYPSOCBSP_SPI_H_
 
-//#include "functions.h"
-
 #define SPI_BUFFER_SIZE 4
 
 // Globals

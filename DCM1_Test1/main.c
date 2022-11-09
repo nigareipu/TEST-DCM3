@@ -52,11 +52,11 @@ int main(void)
 	/************Set default values*********************/
 	default_hashtable();
 
-
 	mode1program();
 
 	for (;;)
 	{
+
 		if (uartRxCompleteFlag == 1)
 		{
 			echoInput();
@@ -80,6 +80,7 @@ int main(void)
 				}
 				else if (*mode == 3)
 				{
+					Cy_SCB_UART_PutString(UART_HW, "\r\nIn mode 3");
 					// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
 					mode3program();
 				}

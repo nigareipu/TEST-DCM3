@@ -10,8 +10,6 @@
 #include "spi.h"
 #include "counters.h"
 
-float voltage;
-float voltStart, voltFinish;
 
 /*
  * @desc Sets the given detector's voltage to the given voltage

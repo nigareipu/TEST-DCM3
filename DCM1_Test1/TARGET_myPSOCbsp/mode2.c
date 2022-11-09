@@ -16,16 +16,16 @@ void mode2program()
 	/*****************************Test values for printing*************************/
 	if (*printMessageFlag == 1)
 	{
-		Cy_SCB_UART_PutString(UART_HW, "*VDET0: ");
+		Cy_SCB_UART_PutString(UART_HW, "VDET0: ");
 		printFloat(*VDET0);
 
-		Cy_SCB_UART_PutString(UART_HW, "*VDET1: ");
+		Cy_SCB_UART_PutString(UART_HW, "VDET1: ");
 		printFloat(*VDET1);
 
-		Cy_SCB_UART_PutString(UART_HW, "*VDET2: ");
+		Cy_SCB_UART_PutString(UART_HW, "VDET2: ");
 		printFloat(*VDET2);
 
-		Cy_SCB_UART_PutString(UART_HW, "*VDET3: ");
+		Cy_SCB_UART_PutString(UART_HW, "VDET3: ");
 		printFloat(*VDET3);
 
 		Cy_SCB_UART_PutString(UART_HW, "TDET0: ");
@@ -44,7 +44,6 @@ void mode2program()
 
 
 	//check if countTime is acceptable
-	//HV0_Monitor();
 	check_countTime();
 	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 	setParameters();
@@ -67,12 +66,13 @@ void mode2program()
 		SetCounters();
 
 		sprintf(confirmValue, "\n\rClockStamp, S0, S1, S2, S3, C01, C12, C03, C23 : %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu",
-				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
-				Coincidence2_CountRate, Coincidence3_CountRate);
+		ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
+		Coincidence2_CountRate, Coincidence3_CountRate);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 
 		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
 
 	}
+
 	mode1program();
 }

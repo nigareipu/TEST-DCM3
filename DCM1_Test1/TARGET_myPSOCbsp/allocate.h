@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "string.h"
 #include <stdlib.h>
+#include <stdbool.h>
 #include "cy_pdl.h"
 #include "cyhal.h"
 #include "cybsp.h"
@@ -25,10 +26,16 @@
 #include "tec.h"
 #include "table.h"
 
-extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
+
+///Testing new table
+#define TABLE_SIZE 200
+extern struct TNODE table[TABLE_SIZE];
+
+//extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
 extern volatile int count;
 extern char confirmValue[200];
-extern int *mode, *countTime, *mode5Calibration, *RTime, *Di, *DNum, *CoWin, *AnDET, *Exit;
+extern uint8_t *mode, *RTime, *DetSt, *DetEd, *CoWin, *AnDET;
+extern uint16_t *maxcountTime, *countTime;
 extern float *VDET0;
 extern float *VDET1;
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs;
@@ -39,10 +46,8 @@ extern float *VoltSt, *VoltEd;
 extern float *kp; // PID Proportional Gain
 extern float *ki; // PID Integral Gain
 extern float *kd;
-extern int *targetTECFlag0, *targetTECFlag1, *printMessageFlag, *printThermalFlag;
+extern bool *targetTECFlag0, *targetTECFlag1, *printMessageFlag,*mode5Calibration, *printThermalFlag, *Exit;
 
-extern struct node *hash_table;
-extern unsigned int table_size;
 void default_hashtable();
 
 #endif /* TARGET_MYPSOCBSP_ALLOCATE_H_ */

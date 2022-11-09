@@ -15,7 +15,7 @@ void calibrateBreakdownvTemp()
 
 	unsigned int DET[] = {DET0, DET1, DET2, DET3};
 
-	for (int d = *Di; d < *DNum; d++)
+	for (int d = *DetSt; d < *DetEd; d++)
 	{
 
 		if (*Exit == 1)

@@ -11,6 +11,5 @@ void setDiscr1Thresh(float discrThresh);
 void setDiscr2Thresh(float discrThresh);
 void setDiscr3Thresh(float discrThresh);
 
-extern char discrThreshArray[4];
 
 #endif /* TARGET_MYPSOCBSP_DISCR_H_ */

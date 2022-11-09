@@ -28,17 +28,14 @@
 #include "AD56x8.h"
 #include "discr.h"
 #include "allocate.h"
-//#include "calibration.h"
-
 #define ON (1u)
 #define OFF (0u)
 
-extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
+extern volatile bool uartRxCompleteFlag;
 extern volatile int count;
 extern volatile bool TEC_controller0ActiveFlag;
 extern volatile bool TEC_controller1ActiveFlag;
 extern char confirmValue[200];
-extern float discrThresh;
 extern uint32_t ClockStamp, ClockStamp0, ClockStamp1, ClockStamp2, ClockStamp3;
 extern int countLoopDelay;
 

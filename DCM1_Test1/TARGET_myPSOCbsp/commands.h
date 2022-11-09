@@ -21,24 +21,9 @@
 #include "discr.h"
 #include "modes.h"
 
-extern int idx;
-extern char voltageArray[3];
-extern char lengthArray[4];
-
-extern volatile bool coincWindowSetFlag;
-extern int coincWindowValue;
 
 extern float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
-extern float DET0_temp, DET1_temp, DET2_temp, DET3_temp;
-extern float length;
-extern float Annealing_temp;
-
 extern volatile bool delay0SetFlag, delay1SetFlag, delay2SetFlag, delay3SetFlag;
-extern volatile bool DetectorSetFlag;
-
-extern int delay0Value, delay1Value, delay2Value, delay3Value;
-extern float fvalue;
-extern char *command;
 
 void Init_Hardware();
 void setCoincidenceWindowCommand(int ConcidanceWindow);

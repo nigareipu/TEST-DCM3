@@ -32,30 +32,21 @@
 #include "timerInterrupt.h"
 
 /************************  FUNCTION DECLARATIONS  *********************************/
-
-uint8_t txBuffer[32];
 uint8_t rxBuffer[32];
 uint8_t sendBuffer[32];
 char storeBuffer[BUF_LEN];
-char str[20];
 char *commandBuffer;
 char *valueBuffer;
 char confirmValue[200];
 
-int idx;
 volatile int count;
 volatile bool uartRxCompleteFlag; // flag for notifying that the rx buffer is not empty
-volatile bool flag_1;// flag for notifying that the rx buffer is full and receiving is complete.
 volatile bool printThermalInfo = 1;	  // option to print all thermread data
-volatile bool ThermStabilize;// option to do 30 s thermal stabilization. Must be set to 1 initially during first measurements.
 volatile bool TEC_controller0ActiveFlag;	  // flag for timer interrupt
 volatile bool TEC_controller1ActiveFlag;
-volatile bool warningFlag = 1; // flag for printing warnings before mode is set. Must be set to 1 to print information.
 volatile bool PID_Select = 0; // flag for alternating PID loops
 float tecDriver0StatusFlag;
 float tecDriver1StatusFlag;
-float targetDetectorFlag;
-float targetDetectorFlag2;
 
 cyhal_spi_t DiscrDAC_obj;
 cyhal_spi_t HVDAC_obj;
@@ -64,51 +55,41 @@ uint32_t dacDataPacket;
 uint16_t dacValue;
 uint32_t ClockStamp, ClockStamp0, ClockStamp1, ClockStamp2, ClockStamp3;
 
-float inputVoltage;
-
-uint8_t receive_data[SPI_BUFFER_SIZE];
 cy_stc_scb_uart_context_t uartContext;
-cy_rslt_t result;
 cyhal_timer_t timer_obj;
-cyhal_adc_t adc_obj; // ADC and channel object//
 
-char adcBuffer[10];
-char adcBuffer0[16];
 
-uint16_t detector;
+/*****************hash table variables************************************************/
+/* Integer parameters include:
+ * setting the mode
+ * choosing the number of detectors to calibrate using DetST and DetEd
+ * setting the delay time between each counting using countTime
+ * choosing the upper limit for delay time to be set (default value is 5000ms)
+ * choosing the detector via AnDET to be annealed
+ * Choosing loop time using RTime
+ * setting coincidence window size by setting CoWin
+ * Setting the Bias voltage and Temperature for each detector using VDET0-3 and TDET0-3
+ * selecting the discriminator threshhold using DThrs
+ * setting the path delay for each detector using DlayDET0-3
+ * setting the discriminator threshhold, voltage and temperature range for calibration using DthrEd, DthrSt, VoltSt, VoltEd, TempSt, TempEd.
+ * setting PID coefficient kp, ki, kd
+ * setting targetTECFlag0 = 0 sets TEC 0 as master, setting targetTECFlag0 = 1 sets TEC 1 as master for the TEC Driver 0
+ * setting targetTECFlag1 = 0 sets TEC 0 as master, setting targetTECFlag1 = 1 sets TEC 1 as master for the TEC Driver 1
+ * Turning feedback off by setting printMessageFlag = 0, On by setting printMessageFlag = 1
+ * Get thermal information by setting printThermalFlag = 1 otherwise 0
+ * Selecting calibration sub mode: mode5Calibration = 0 -> BreakdownvsTemp or mode5Calibration = 1 -> CountsvDiscThresh and BiasTempvsCounts
+ * Exit mode by setting Exit = 1, default value is 0
+ */
+uint16_t *countTime, *maxcountTime;
+uint8_t *mode, *DetSt, *DetEd, *AnDET,  *RTime, *CoWin;
+float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs, *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *DthrEd, *DthrSt,*TempSt, *TempEd, *VoltSt, *VoltEd, *kp, *ki, *kd;
+bool *targetTECFlag1, *targetTECFlag0, *printMessageFlag, *printThermalFlag, *Exit, *mode5Calibration;
+/*****************End of hash table variables declaration*****************************/
 
-float discrThresh;
-float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
-float DET0_temp, DET1_temp, DET2_temp, DET3_temp;
-float length;
-int countLoopDelay;
-//float fvalue;
-
-/*hashtable variables*/
-int *mode, *Di, *DNum, *countTime, *AnDET, *Exit, *RTime, *CoWin,*mode5Calibration;
-float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs;
-float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;
-float *DthrEd, *DthrSt;
-float *TempSt, *TempEd;
-float *VoltSt, *VoltEd;
-float *kp, *ki, *kd; //PID coefficients
-int *targetTECFlag1, *printMessageFlag, *printThermalFlag, *targetTECFlag0;
-/*end of hashtable variable declaration*/
-
+//Local flags used in functions
 volatile bool coincWindowSetFlag = 0;
-int coincWindowValue;
-volatile bool TerminalCommunicationFlag = 1;
-float startVoltage, endVoltage;
 volatile bool delay0SetFlag = 0, delay1SetFlag = 0, delay2SetFlag = 0,delay3SetFlag = 0;
-int delay0Value, delay1Value, delay2Value, delay3Value;
-
-char voltageArray[3];
-char temperatureArray[3];
-char discrThreshArray[4];
-char lengthArray[4];
-
-unsigned int table_size = 50;
-struct node *hash_table;
-char HashValue[20];
+float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
+int countLoopDelay;
 
 #endif /* MAINHEADER_H_ */

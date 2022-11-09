@@ -4,37 +4,46 @@
  *  Created on: Oct 15, 2022
  *      Author: Noura Bayat
  */
-
 #include "table.h"
 
-// table_size = 40;
-
-struct node *initialize_table(int table_size)
-{
+/*
+ * Initializes table
+ *
+ * Takes size as parameter
+ *
+ * Returns pointer to start of table array
+ */
+struct TNODE* initialize_table(int table_size){
 
 	// Initialize whole table to 0
-	return calloc(table_size, sizeof(struct node) * table_size); // calloc(number of elemtns to allocate, size of each element)
+	return calloc(table_size, sizeof(struct TNODE)*table_size);
 }
 
-void *add_node(struct node *hash_table, unsigned int table_size, void *data, int data_size, char *data_id)
-{
+
+ /*
+ * Adds a new node and initializes its data
+ *
+ * Takes the hash table pointer, hash table size, pointer to data, sizeof data type, and ID string
+ *
+ * Returns pointer to data inside the hash table
+ *
+ */
+struct TNODE* add_node(struct TNODE* hash_table, unsigned int table_size, void* data, int data_size, char* data_id){
+
 
 	int hash = hash_string(data_id, table_size);
 
-	unsigned short placed = 0;
-	unsigned short wrapped = 0;
+	bool placed = false;
+	bool wrapped = false;
 
-	void *data_location = NULL; // initialized
-	// should be node*
+	void* data_location = NULL;
 
-	while (!placed)
-	{
-
-		if (hash_table[hash].data == NULL)
-		{
+	while (!placed){
+		if (hash_table[hash].data == NULL){
 
 			// Found empty space for node
 			placed = 1;
+
 			// Allocate space for data
 			hash_table[hash].data = malloc(data_size);
 			// Copy data
@@ -54,65 +63,102 @@ void *add_node(struct node *hash_table, unsigned int table_size, void *data, int
 			hash++;
 
 		// Go to beginning if we hit the end, if this happens again, then table is full
-		if (hash == table_size && !placed)
-		{
+		if (hash == table_size && !placed){
 			hash = 0;
 			if (wrapped)
-				placed = 1;
+				placed = true;
 
-			wrapped = 1;
+			wrapped = true;
 		}
 	}
 
 	// Return void pointer to data, null if failed
-	return data_location;
+	return &(hash_table[hash]);
+
 }
 
-void *allocate_node(struct node *hash_table, unsigned int table_size, int data_size, char *data_id)
-{
+/*
+ * Adds a new node and does not initialize the data
+ *
+ * Takes the hash table pointer, hash table size, sizeof data type, and ID string
+ *
+ * Returns pointer to data inside the hash table
+ *
+ */
+void* allocate_node(struct TNODE* hash_table, unsigned int table_size, int data_size, char* data_id){
 
-	void *data = malloc(data_size); // again allocating memoty
+	void* data = malloc(data_size);
 	return add_node(hash_table, table_size, data, data_size, data_id);
+
 }
 
-unsigned long int hash_string(char *str, unsigned int table_size)
-{
+/*
+ * Performs a hash on the given string
+ *
+ * Takes a string as argument, as well as hash table size
+ *
+ * Returns integer result of the hash
+ *
+ *
+ * yoinked from http://www.cse.yorku.ca/~oz/hash.html
+ *
+ */
+unsigned long int hash_string(char* str, unsigned int table_size){
+
 
 	unsigned long hash = 5381;
-	int c = 5;
+	int c;
 
 	// This works since the last element of a character array string is 0, e.g. '\0' null byte
-	while (c == *str++)
+	while ((c = *str++))
 		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
 	return hash % table_size;
 }
 
-struct node *find_node(struct node *hash_table, unsigned int table_size, char *id)
-{
+struct TNODE* find_node(struct TNODE* hash_table, unsigned int table_size, char* id){
 
 	unsigned long int hash = hash_string(id, table_size);
 
-	unsigned short wrapped = 0;
+	bool wrapped = false;
 
-	while (strcmp(hash_table[hash].id, id) != 0)
-	{
+	while (strncmp(hash_table[hash].id, id, ID_SIZE) != 0){
 
 		hash++;
 
-		if (hash == table_size)
-		{
-			if (wrapped)
-			{
+		if (hash == table_size){
+			if (wrapped){
 				return NULL;
 			}
-			else
-			{
+			else{
 				hash = 0;
-				wrapped = 1;
+				wrapped = true;
 			}
 		}
 	}
 
-	return &(hash_table[hash - 1]);
+	return &(hash_table[hash]);
+
+
 }
+
+
+/* Not implemented
+unsigned int resize_table(struct TNODE** hash_table, unsigned int table_size){
+
+	unsigned int new_size = (unsigned int)(table_size * 1.5);
+	struct TNODE* new_table = calloc(sizeof(struct node)*new_size);
+
+	for (int i = 0; i < table_size; i++){
+
+		// If element contains data
+		if ((*hash_table[i]).data != NULL){
+			add_node(new_table, new_size, &((*hash_table)[i].data), (*hash_table)[i].data_size, (*hash_table)[i].id);
+		}
+
+
+
+	}
+
+}
+*/

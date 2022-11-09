@@ -17,20 +17,11 @@ It has e as loop input and u at loop output  */
 // Defining global variables
 // PID tuning parameters
 
-double e = 0; // Error = (SetPoint - Feedback)
-double e1 = 0;
-double e2 = 0;
-double e3 = 0;
-double e4 = 0;
-double e5 = 0;
-double C_output = 0.0;
-double prev_output = 1.5;
 double prev_output0 = 1.5;
 double prev_output1 = 1.5;
 double C_output0 = 0.0;
 double C_output1 = 0.0;
 
-float thermRead = 0.0;
 float thermRead0 = 0.0; // System output temperature in voltage for Tec 0
 float thermRead1 = 0.0; // System output temperature in voltage for Tec 1
 float thermRead2 = 0.0; // System output temperature in voltage for Tec 2

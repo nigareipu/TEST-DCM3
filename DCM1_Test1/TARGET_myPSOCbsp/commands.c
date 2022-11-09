@@ -7,8 +7,6 @@
 
 #include "commands.h"
 
-char *command;
-
 /*
  * @desc Command that sets the length of time modes run for
  * @returns nothing
@@ -247,9 +245,9 @@ void SetCounters()
 
 void check_countTime()
 {
-	if (*countTime>5000)  //MAX Counting loop delay is 5000 millisecond
+	if (*countTime>*maxcountTime)  //MAX Counting loop delay is 5000 millisecond
 	{
-		countLoopDelay=5000;
+		countLoopDelay=*maxcountTime;
 	}
 	else
 	{
