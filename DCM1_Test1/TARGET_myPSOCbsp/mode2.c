@@ -11,7 +11,8 @@ void mode2program()
 {
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to COINCIDENCE COUNTING\r\n");
-	printThermalInfo = 1;
+
+	printThermalInfo = *InitialTempInfo;
 
 	/*****************************Test values for printing*************************/
 	if (*printMessageFlag == 1)

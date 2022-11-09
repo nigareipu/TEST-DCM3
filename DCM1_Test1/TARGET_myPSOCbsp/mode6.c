@@ -4,7 +4,7 @@
 
 void mode6program()
 {
-	printThermalInfo = 1;
+	printThermalInfo = *InitialTempInfo;
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to Thermal Annealing\r\n");
 
 	// CODE FOR RUNNING  MODE

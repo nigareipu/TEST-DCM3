@@ -83,7 +83,7 @@ cyhal_timer_t timer_obj;
 uint16_t *countTime, *maxcountTime;
 uint8_t *mode, *DetSt, *DetEd, *AnDET,  *RTime, *CoWin;
 float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs, *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *DthrEd, *DthrSt,*TempSt, *TempEd, *VoltSt, *VoltEd, *kp, *ki, *kd;
-bool *targetTECFlag1, *targetTECFlag0, *printMessageFlag, *printThermalFlag, *Exit, *mode5Calibration;
+bool *targetTECFlag1, *targetTECFlag0, *printMessageFlag, *printThermalFlag, *Exit, *mode5Calibration, *InitialTempInfo;
 /*****************End of hash table variables declaration*****************************/
 
 //Local flags used in functions

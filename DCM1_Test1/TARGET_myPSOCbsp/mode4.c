@@ -11,7 +11,7 @@ void mode4program()
 {
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to SINGLE SIDE COINCIDENCE COUNTING\r\n");
-	printThermalInfo = 1;
+	printThermalInfo = *InitialTempInfo;
 
 	/*****************************Test Printing*************************/
 	if (*printMessageFlag == 1)
