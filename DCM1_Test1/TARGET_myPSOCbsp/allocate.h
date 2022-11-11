@@ -46,7 +46,7 @@ extern float *VoltSt, *VoltEd;
 extern float *kp; // PID Proportional Gain
 extern float *ki; // PID Integral Gain
 extern float *kd;
-extern bool *targetTECFlag0, *targetTECFlag1, *printMessageFlag,*mode5Calibration, *printThermalFlag, *Exit;
+extern bool *targetTECFlag0, *targetTECFlag1, *printMessageFlag,*mode5Calibration, *printThermalFlag, *Exit, *InitialTempInfo;
 
 void default_hashtable();
 

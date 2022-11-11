@@ -16,7 +16,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "mode");
 	mode = n_node->data; 				                              // Probably define this globally
-	*mode = 5; 							                              	// Set variable like this
+	*mode = 2; 							                              	// Set variable like this
 	n_node->is_array = false; 			                              	// Only set true if this node is an array, make sure to be careful about pointers if doing this
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -297,7 +297,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "printMessageFlag");
 	printMessageFlag = n_node->data;
-	*printMessageFlag = true;
+	*printMessageFlag = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -307,6 +307,15 @@ void default_hashtable()
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "printThermalFlag");
 	printThermalFlag = n_node->data;
 	*printThermalFlag = false;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = true;
+	n_node->executable = false;
+	n_node->data_type = T_BOOLEAN;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "InitialTempInfo");
+	InitialTempInfo = n_node->data;
+	*InitialTempInfo = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
