@@ -306,7 +306,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "printThermalFlag");
 	printThermalFlag = n_node->data;
-	*printThermalFlag = true;
+	*printThermalFlag = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;

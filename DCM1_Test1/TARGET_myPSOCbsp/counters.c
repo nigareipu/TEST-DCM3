@@ -24,11 +24,8 @@ uint32_t Coincidence3_CountRate;
  */
 void SinglesCounter0_Init(void)
 {
-
-	cy_en_tcpwm_status_t SinglesCounter0_Status;
-
-	// Initialize Singles_0 created in PDL, see code in device configurator for appropriate values*/
-	SinglesCounter0_Status = Cy_TCPWM_Counter_Init(Singles_0_HW, Singles_0_NUM, &Singles_0_config);
+    // Initialize Singles_0 created in PDL, see code in device configurator for appropriate values*/
+	Cy_TCPWM_Counter_Init(Singles_0_HW, Singles_0_NUM, &Singles_0_config);
 	Cy_TCPWM_Counter_Enable(Singles_0_HW, Singles_0_NUM);
 
 	/*Start counter*/
@@ -41,10 +38,8 @@ void SinglesCounter0_Init(void)
  */
 void SinglesCounter1_Init(void)
 {
-
-	cy_en_tcpwm_status_t SinglesCounter1_Status;
 	/*Initialize Singles_0 created in PDL, see code in device configurator for appropriate values*/
-	SinglesCounter1_Status = Cy_TCPWM_Counter_Init(Singles_1_HW, Singles_1_NUM, &Singles_1_config);
+	Cy_TCPWM_Counter_Init(Singles_1_HW, Singles_1_NUM, &Singles_1_config);
 	Cy_TCPWM_Counter_Enable(Singles_1_HW, Singles_1_NUM);
 
 	/*Start counter*/
@@ -57,9 +52,9 @@ void SinglesCounter1_Init(void)
  */
 void SinglesCounter2_Init(void)
 {
-	cy_en_tcpwm_status_t SinglesCounter2_Status;
+
 	/*Initialize Singles_1 created in PDL, see code in device configurator for appropriate values*/
-	SinglesCounter2_Status = Cy_TCPWM_Counter_Init(Singles_2_HW, Singles_2_NUM, &Singles_2_config);
+	Cy_TCPWM_Counter_Init(Singles_2_HW, Singles_2_NUM, &Singles_2_config);
 	Cy_TCPWM_Counter_Enable(Singles_2_HW, Singles_2_NUM);
 
 	/*Start counter*/
@@ -72,9 +67,8 @@ void SinglesCounter2_Init(void)
  */
 void SinglesCounter3_Init(void)
 {
-	cy_en_tcpwm_status_t SinglesCounter3_Status;
 	/*Initialize Singles_1 created in PDL, see code in device configurator for appropriate values*/
-	SinglesCounter3_Status = Cy_TCPWM_Counter_Init(Singles_3_HW, Singles_3_NUM, &Singles_3_config);
+	Cy_TCPWM_Counter_Init(Singles_3_HW, Singles_3_NUM, &Singles_3_config);
 	Cy_TCPWM_Counter_Enable(Singles_3_HW, Singles_3_NUM);
 
 	/*Start counter*/
@@ -87,11 +81,8 @@ void SinglesCounter3_Init(void)
  */
 void CoincidenceCounter0_Init(void)
 {
-
-	cy_en_tcpwm_status_t CoincidenceCounter0_Status;
-
 	/*Initialize Coincidence counter created in PDL, see code in device configurator for appropriate values*/
-	CoincidenceCounter0_Status = Cy_TCPWM_Counter_Init(Coinc_0_HW, Coinc_0_NUM, &Coinc_0_config);
+	Cy_TCPWM_Counter_Init(Coinc_0_HW, Coinc_0_NUM, &Coinc_0_config);
 	Cy_TCPWM_Counter_Enable(Coinc_0_HW, Coinc_0_NUM);
 
 	/*Start counter*/
@@ -104,10 +95,8 @@ void CoincidenceCounter0_Init(void)
  */
 void CoincidenceCounter1_Init(void)
 {
-	cy_en_tcpwm_status_t CoincidenceCounter1_Status;
-
 	/*Initialize Coincidence counter created in PDL, see code in device configurator for appropriate values*/
-	CoincidenceCounter1_Status = Cy_TCPWM_Counter_Init(Coinc_1_HW, Coinc_1_NUM, &Coinc_1_config);
+	Cy_TCPWM_Counter_Init(Coinc_1_HW, Coinc_1_NUM, &Coinc_1_config);
 	Cy_TCPWM_Counter_Enable(Coinc_1_HW, Coinc_1_NUM);
 
 	/*Start counter*/
@@ -120,10 +109,8 @@ void CoincidenceCounter1_Init(void)
  */
 void CoincidenceCounter2_Init(void)
 {
-	cy_en_tcpwm_status_t CoincidenceCounter2_Status;
-
 	/*Initialize Coincidence counter created in PDL, see code in device configurator for appropriate values*/
-	CoincidenceCounter2_Status = Cy_TCPWM_Counter_Init(Coinc_2_HW, Coinc_2_NUM, &Coinc_2_config);
+	Cy_TCPWM_Counter_Init(Coinc_2_HW, Coinc_2_NUM, &Coinc_2_config);
 	Cy_TCPWM_Counter_Enable(Coinc_2_HW, Coinc_2_NUM);
 
 	/*Start counter*/
@@ -136,10 +123,8 @@ void CoincidenceCounter2_Init(void)
  */
 void CoincidenceCounter3_Init(void)
 {
-	cy_en_tcpwm_status_t CoincidenceCounter3_Status;
-
 	/*Initialize Coincidence counter created in PDL, see code in device configurator for appropriate values*/
-	CoincidenceCounter3_Status = Cy_TCPWM_Counter_Init(Coinc_3_HW, Coinc_3_NUM, &Coinc_3_config);
+	Cy_TCPWM_Counter_Init(Coinc_3_HW, Coinc_3_NUM, &Coinc_3_config);
 	Cy_TCPWM_Counter_Enable(Coinc_3_HW, Coinc_3_NUM);
 
 	/*Start counter*/

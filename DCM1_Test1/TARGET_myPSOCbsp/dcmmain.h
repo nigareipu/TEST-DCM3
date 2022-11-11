@@ -32,9 +32,9 @@
 #include "timerInterrupt.h"
 
 /************************  FUNCTION DECLARATIONS  *********************************/
-uint8_t rxBuffer[32];
+uint8_t rxBuffer[32]={0};
 uint8_t sendBuffer[32];
-char storeBuffer[BUF_LEN];
+char storeBuffer[200];
 char *commandBuffer;
 char *valueBuffer;
 char confirmValue[200];

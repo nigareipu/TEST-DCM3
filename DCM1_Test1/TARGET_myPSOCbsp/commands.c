@@ -255,6 +255,44 @@ void check_countTime()
 	}
 }
 
+void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, char* buffer)
+{
+	struct TNODE* new_node;
+
+	char* readBuffer;
+	readBuffer=buffer;
+	int read_int;
+	float read_float;
+	new_node = find_node(hash_table, table_size, id);
+	printf("inside Update node\n\r");
+
+	if(new_node->data_type == T_FLOAT){
+		read_float=atof(readBuffer);
+		printf("inside Update node, printing float: %f\n\r",read_float);
+		float* new_data=new_node->data;
+		*new_data=read_float;
+	}
+	else if(new_node->data_type == T_UINT8){
+		read_int=atoi(readBuffer);
+		printf("inside Update node, printing int: %i\n\r",read_int);
+		int* new_data=new_node->data;
+		*new_data=read_int;
+	}
+	else if(new_node->data_type == T_BOOLEAN){
+		bool* new_bool=new_node->data;
+			if (strncmp(readBuffer, "true",4)==0){
+			*new_bool=true;
+			}
+			else {
+				*new_bool=false;
+			}
+		printf("address of Boolean: %p\n\r", new_bool);
+		printf("inside Update node, printing Boolean: %d\n\r", *new_bool);
+
+	}
+
+}
+
 
 void printFloat(float message)
 {

@@ -20,7 +20,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 	// First TEC controller
 	if (PID_Select == 0)
 	{
-		if (printThermalInfo == 1)
+		if (printThermalInfo == *printThermalFlag)
 		{
 			Therm0_Read();
 			Therm1_Read();
