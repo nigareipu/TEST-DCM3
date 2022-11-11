@@ -27,8 +27,7 @@ float thermRead1 = 0.0; // System output temperature in voltage for Tec 1
 float thermRead2 = 0.0; // System output temperature in voltage for Tec 2
 float thermRead3 = 0.0;
 
-float ITEC0_V, ITEC1_V, ITEC0, ITEC1;
-
+float ITEC0_V, ITEC1_V;
 void TEC_Driver0_Init(uint8 status)
 {
 	// Function initializing TEC Driver 0
@@ -151,11 +150,14 @@ void TEC_SW3_Status(uint8 status)
 void monitorITEC0()
 {
 	ITEC0_Read();
-	ITEC0 = (ITEC0_V - 1.5) / (8 * 0.05);
+	float I1 = (ITEC0_V - 1.5) / (8 * 0.05);
+	*ITEC0 = 3;
+
 }
 
 void monitorITEC1()
 {
 	ITEC1_Read();
-	ITEC1 = (ITEC1_V - 1.5) / (8 * 0.05);
+	float I2 = (ITEC1_V - 1.5) / (8 * 0.05);
+	*ITEC1 = 2;
 }

@@ -16,6 +16,7 @@
 #include "dac.h"
 #include "spi.h"
 #include "adc.h"
+#include "allocate.h"
 
 // declaration of global PID Coeficients
 // extern float  k1, k2, k3;
@@ -30,7 +31,7 @@ extern double prev_output0, prev_output1, C_output0, C_output1;
 extern float thermRead0, thermRead1, thermRead2, thermRead3;
 
 extern float ITEC0_V, ITEC1_V; // Current Reading as voltage for TEC Driver 0 and 1
-extern float ITEC0, ITEC1;     // TEC Driver 0 and 1 Current = (ITEC#_V-REF)/(8*R_SENSE),  Center point 1.5V = REF (no current)
+//extern float *ITEC0, *ITEC1;     // TEC Driver 0 and 1 Current = (ITEC#_V-REF)/(8*R_SENSE),  Center point 1.5V = REF (no current)
 
 extern uint32_t dacDataPacket;
 extern uint16_t dacValue;

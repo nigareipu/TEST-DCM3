@@ -185,7 +185,7 @@ void setDetectorBias()
 	HV0_Monitor();
 	cyhal_system_delay_ms(3000);
 	HV3_Monitor();
-	sprintf(confirmValue, "\r\nHV0, HV3: %.3f, %.3f", HVMoni0, HVMoni3);
+	sprintf(confirmValue, "\r\nHV0, HV3: %.3f, %.3f", *HVMoni0, *HVMoni3);
 	Cy_SCB_UART_PutString(UART_HW, confirmValue);
 }
 

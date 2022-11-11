@@ -1,9 +1,3 @@
-/*
- * adc.h
- *
- *  Created on: Apr. 28, 2022
- *      Author: jkrynski1
- */
 
 #ifndef TARGET_MYPSOCBSP_ADC_H_
 #define TARGET_MYPSOCBSP_ADC_H_
@@ -26,14 +20,15 @@
 
 // Globals
 
-extern float HVMoni0;
+/*extern float HVMoni0;
 extern float HVMoni3;
 extern float ThermRead0;
 extern float ThermRead1;
 extern float ThermRead2;
-extern float ThermRead3;
+extern float ThermRead3;*/
 extern float ITEC0_V;
 extern float ITEC1_V;
+extern float *HVMoni0, *HVMoni3, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1;
 
 extern cy_stc_scb_uart_context_t uartContext;
 

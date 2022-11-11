@@ -30,7 +30,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 			monitorITEC1();
 
 			sprintf(confirmValue, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: %.5f, %.5f, %.5f, %.5f,%.5f, %.5f\n\r",
-					ThermRead0, ThermRead1, ThermRead2, ThermRead3, ITEC0, ITEC1);
+					*ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1);
 			Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 		}
 
@@ -128,12 +128,12 @@ void PID_loop0()
 	if (*targetTECFlag0 == 0)
 	{
 		tempSet = *TDET0;
-		thermRead0 = ThermRead0;
+		thermRead0 = *ThermRead0;
 	}
 	else
 	{
 		tempSet = *TDET1;
-		thermRead0 = ThermRead1;
+		thermRead0 = *ThermRead1;
 	}
 
 	if (thermRead0 < 0)
@@ -172,12 +172,12 @@ void PID_loop1()
 	if (*targetTECFlag1 == 0)
 	{
 		tempSet = *TDET2;
-		thermRead1 = ThermRead2;
+		thermRead1 = *ThermRead2;
 	}
 	else
 	{
 		tempSet = *TDET3;
-		thermRead1 = ThermRead3;
+		thermRead1 = *ThermRead3;
 	}
 
 	if (thermRead1 < 0)

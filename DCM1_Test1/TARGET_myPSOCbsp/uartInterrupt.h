@@ -15,7 +15,6 @@
 #include "string.h"
 #include <stdlib.h>
 #include "allocate.h"
-
 #include "serialUART.h"
 
 void UART_Isr(void);

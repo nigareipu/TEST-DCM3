@@ -15,13 +15,13 @@ int16_t THERM2;
 int16_t THERM3;
 float HVMoni0Volts;
 float HVMoni3Volts;
-float ThermRead;
-float HVMoni0;
+//float ThermRead;
+/*float HVMoni0;
 float HVMoni3;
 float ThermRead0;
 float ThermRead1;
 float ThermRead2;
-float ThermRead3;
+float ThermRead3;*/
 
 // Functions
 
@@ -55,7 +55,7 @@ void HV0_Monitor(void)
 		HVMoni0Counts = Cy_SAR_GetResult16(SAR_ADC_HW, hvmoni0channel);
 		HVMoni0Volts = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, hvmoni0channel, HVMoni0Counts);
 		// This accounts for voltage divider, will print actual high voltage
-		HVMoni0 = HVMoni0Volts * 10039.2 / 39.2;
+		*HVMoni0 = HVMoni0Volts * 10039.2 / 39.2;
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
@@ -73,7 +73,7 @@ void HV3_Monitor(void)
 		HVMoni3Counts = Cy_SAR_GetResult16(SAR_ADC_HW, hvmoni3channel);
 		HVMoni3Volts = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, hvmoni3channel, HVMoni3Counts);
 		// This accounts for voltage divider, will print actual high voltage
-		HVMoni3 = HVMoni3Volts * 10039.2 / 39.2;
+		*HVMoni3 = HVMoni3Volts * 10039.2 / 39.2;
 	}
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
@@ -86,7 +86,7 @@ void Therm0_Read(void)
 {
 	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
 	THERM0 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread0channel);
-	ThermRead0 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread0channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread0channel));
+	*ThermRead0 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread0channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread0channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
 
@@ -98,7 +98,7 @@ void Therm1_Read(void)
 {
 	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
 	THERM1 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel);
-	ThermRead1 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread1channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel));
+	*ThermRead1 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread1channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
 
@@ -110,7 +110,7 @@ void Therm2_Read(void)
 {
 	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
 	THERM2 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread2channel);
-	ThermRead2 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread2channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread2channel));
+	*ThermRead2 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread2channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread2channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
 
@@ -122,7 +122,7 @@ void Therm3_Read(void)
 {
 	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
 	THERM3 = Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel);
-	ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
+	*ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
 
@@ -130,7 +130,7 @@ void Therm3_Read(void)
  * @desc Gets the voltage reading of all thermistors
  * @returns Nothing
  */
-void GetAllThermRead(void)
+/*void GetAllThermRead(void)
 {
 
 	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
@@ -139,7 +139,7 @@ void GetAllThermRead(void)
 	ThermRead2 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread2channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread2channel));
 	ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
-}
+}*/
 
 /*
  * @desc Gets current for TEC 0

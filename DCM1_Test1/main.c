@@ -107,7 +107,6 @@ int main(void)
 
 			else
 			{
-				//mode1program();
 				Cy_SCB_UART_PutString(UART_HW, "\r\n Not valid input\r\n");
 				uartRxCompleteFlag = 0;
 				count = 0;

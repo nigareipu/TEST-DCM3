@@ -349,6 +349,80 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_UINT16;
 
+	/******************Telemetry variable******************/
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead0");
+	ThermRead0 = n_node->data;
+	*ThermRead0=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead1");
+	ThermRead1 = n_node->data;
+	*ThermRead1=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead2");
+	ThermRead2 = n_node->data;
+	*ThermRead2=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead3");
+	ThermRead3 = n_node->data;
+	*ThermRead3=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ITEC0");
+	ITEC0 = n_node->data;
+	*ITEC0=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ITEC1");
+	ITEC1 = n_node->data;
+	*ITEC1=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "HVMoni0");
+	HVMoni0 = n_node->data;
+	*HVMoni0=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "HVMoni3");
+	HVMoni3 = n_node->data;
+	*HVMoni3=0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_FLOAT;
+
 }
 
 
