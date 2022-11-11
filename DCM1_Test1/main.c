@@ -51,7 +51,6 @@ int main(void)
 
 	/************Set default values*********************/
 	default_hashtable();
-
 	mode1program();
 
 	for (;;)
@@ -59,14 +58,18 @@ int main(void)
 
 		if (uartRxCompleteFlag == 1)
 		{
-			//echoInput();
+			echoInput();
 			// If the user starts a new line, process the command
-			/*if (*rxBuffer == '\n' || *rxBuffer == '\r')
+			if (*rxBuffer == '\n' || *rxBuffer == '\r')
 			{
 				// Divide incoming buffer into command and value sections (ex. first 4 bits are for command and last 4 are for value)
 				// Will only work with terminal connected to it, although without it all default values should still go through
 				commandBuffer = strtok(storeBuffer, ";");
-				valueBuffer = strtok(NULL, ";");*/
+				valueBuffer = strtok(NULL, ";");
+				sprintf(confirmValue, "\r\ncommandbuffer, valueBuffer: %s %s", commandBuffer, valueBuffer);
+				Cy_SCB_UART_PutString(UART_HW, confirmValue);
+				update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
+
 
 			if (*mode == 1)
 			{
@@ -114,10 +117,10 @@ int main(void)
 		}
 
 		// If user types something other than newline or return, put the chars into the buffer
-		/*else
+		else
 			{
 				fillBuffer();
 			}
-		}*/
+		}
 	}
 }

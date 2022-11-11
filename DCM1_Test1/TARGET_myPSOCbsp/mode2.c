@@ -52,6 +52,7 @@ void mode2program()
 
 
 	printThermalInfo = *printThermalFlag;
+	cyhal_system_delay_ms(*TempStabilizationDlay);
 
 	for (int k = 0; k < *RTime; k++)
 	{

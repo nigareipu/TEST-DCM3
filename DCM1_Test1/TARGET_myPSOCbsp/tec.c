@@ -150,14 +150,13 @@ void TEC_SW3_Status(uint8 status)
 void monitorITEC0()
 {
 	ITEC0_Read();
-	float I1 = (ITEC0_V - 1.5) / (8 * 0.05);
-	*ITEC0 = 3;
+	*ITEC0 = (ITEC0_V - 1.5) / (8 * 0.05);
 
 }
 
 void monitorITEC1()
 {
 	ITEC1_Read();
-	float I2 = (ITEC1_V - 1.5) / (8 * 0.05);
-	*ITEC1 = 2;
+	*ITEC1 = (ITEC1_V - 1.5) / (8 * 0.05);
+
 }

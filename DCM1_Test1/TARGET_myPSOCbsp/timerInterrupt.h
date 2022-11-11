@@ -9,6 +9,8 @@
 #define TARGET_MYPSOCBSP_TIMERINTERRUPT_H_
 
 #include "uartInterrupt.h"
+#include "adc.h"
+#include "det_bias.h"
 #include "modes.h"
 
 void isr_timer(void *callback_arg, cyhal_timer_event_t event);

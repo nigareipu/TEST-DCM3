@@ -5,8 +5,8 @@
  *      Author: n6sultan
  */
 #include "timerInterrupt.h"
-#include "adc.h"
-#include "det_bias.h"
+//#define DEBUG
+
 
 double e_0 = 0; // Error = (SetPoint - Feedback)
 double e1_0 = 0;
@@ -20,23 +20,28 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 	// First TEC controller
 	if (PID_Select == 0)
 	{
-		if (printThermalInfo == *printThermalFlag)
-		{
-			Therm0_Read();
-			Therm1_Read();
-			Therm2_Read();
-			Therm3_Read();
-			monitorITEC0();
-			monitorITEC1();
+		Therm0_Read();
+		Therm1_Read();
+		Therm2_Read();
+		Therm3_Read();
+		monitorITEC0();
+		monitorITEC1();
+		HV0_Monitor();
+		HV3_Monitor();
+
+
+
+if(*InitialTempInfo==true){
 
 			sprintf(confirmValue, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: %.5f, %.5f, %.5f, %.5f,%.5f, %.5f\n\r",
 					*ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1);
 			Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
-		}
+}
+
 
 		PID_Select = 1;
 
-		if (TEC_controller0ActiveFlag == 1)
+		if (TEC_controller0ActiveFlag == true)
 		{
 			PID_loop0();
 		}
@@ -61,7 +66,7 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 		PID_Select = 0;
 
 		// Second TEC controller
-		if (TEC_controller1ActiveFlag == 1)
+		if (TEC_controller1ActiveFlag == true)
 		{
 			PID_loop1();
 		}
@@ -84,14 +89,14 @@ void cyhal_timer_event_interrupt()
 
 {
 	cyhal_timer_cfg_t timer_cfg =
-		{
+	{
 			.compare_value = 0,				 // Timer compare value, not used
 			.period = 4999,					 // Defines the timer period
 			.direction = CYHAL_TIMER_DIR_UP, // Timer counts up
 			.is_compare = false,			 // Don't use compare mode
 			.is_continuous = true,			 // Run the timer indefinitely
 			.value = 0						 // Initial value of counter
-		};
+	};
 
 	// Initialize the timer object. Does not use pin output ('pin' is NC) and does not use a
 	// pre-configured clock source ('clk' is NULL).

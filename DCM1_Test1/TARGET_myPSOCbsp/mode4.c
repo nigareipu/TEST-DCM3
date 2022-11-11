@@ -55,6 +55,7 @@ void mode4program()
 	setDetectorBias();
 
 	printThermalInfo = *printThermalFlag;
+	cyhal_system_delay_ms(*TempStabilizationDlay);
 
 	// Starts counting
 

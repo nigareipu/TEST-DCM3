@@ -72,6 +72,8 @@ void mode6program()
 		return;
 	}
 
+	cyhal_system_delay_ms(*TempStabilizationDlay);
+
 	for (int k = 0; k < *RTime; k++)
 	{
 

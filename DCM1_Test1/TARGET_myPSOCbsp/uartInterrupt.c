@@ -13,33 +13,9 @@ void UART_Interrupt_Callback(uint32_t event)
 	switch (event)
 	{
 	case CY_SCB_UART_RECEIVE_NOT_EMTPY:
-
-		/* Check Receive Data */
-		//rx_num = Cy_SCB_UART_GetNumInRxFifo(UART_HW);
-		if (rx_num != 0ul)
-			//uint8_t uart_in_data[128];
-		rx_num = Cy_SCB_UART_GetArray(UART_HW, rxBuffer, rx_num); //take input at the Rx buffer
-		Cy_SCB_UART_PutArray(UART_HW, rxBuffer, rx_num); //echo at the emulator
-
-		for(uint32_t i=0; i<rx_num; i++)
-		{
-		storeBuffer[i] = rxBuffer[i];
-		//storeBuffer[count] = '\0';
-		}
-
-		if (rxBuffer[rx_num-1] == '\n' || rxBuffer[rx_num-1] == '\r')
-		{
-			// Divide incoming buffer into command and value sections (ex. first 4 bits are for command and last 4 are for value)
-			// Will only work with terminal connected to it, although without it all default values should still go through
-
-			uartRxCompleteFlag = 1;
-			commandBuffer = strtok(storeBuffer, ";");
-			valueBuffer = strtok(NULL, ";");
-			update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
-			break;
-		}
-		//Cy_SCB_UART_GetArray(UART_HW, rxBuffer, 32);
-
+		uartRxCompleteFlag = 1;
+		Cy_SCB_UART_GetArray(UART_HW, rxBuffer, 32);
+		break;
 
 	}
 }

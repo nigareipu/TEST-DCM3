@@ -15,13 +15,13 @@ void default_hashtable()
 
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "mode");
-	mode = n_node->data; 				                              // Probably define this globally
-	*mode = 2; 							                              	// Set variable like this
-	n_node->is_array = false; 			                              	// Only set true if this node is an array, make sure to be careful about pointers if doing this
+	mode = n_node->data;
+	*mode = 2;
+	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
-	n_node->executable = false; 		                              	// We have a feature to call functions if a table entry is read/written to. Let me know if you want to use. Set to false if not using that.
-	n_node->data_type = T_UINT8; 		                              	// Specify data type, see table.h.
+	n_node->executable = false;
+	n_node->data_type = T_UINT8;
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "DThrs");
 	DThrs = n_node->data;
@@ -112,6 +112,15 @@ void default_hashtable()
 	n_node->writeable = true;
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TempStabilizationDlay");//need before each counting
+	TempStabilizationDlay = n_node->data;
+	*TempStabilizationDlay = 10000;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = true;
+	n_node->executable = false;
+	n_node->data_type = T_UINT16;
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "RTime");
 	RTime = n_node->data;
@@ -315,7 +324,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "InitialTempInfo");
 	InitialTempInfo = n_node->data;
-	*InitialTempInfo = false;
+	*InitialTempInfo = true;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;

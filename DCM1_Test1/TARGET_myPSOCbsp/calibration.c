@@ -59,7 +59,7 @@ void calibrateBreakdownvTemp()
 			/***************************************************************************
 			 * *******************This is required to settle temperature before counting*************
 			 **************************************************************************/
-			cyhal_system_delay_ms(30000);
+			cyhal_system_delay_ms(*TempStabilizationDlay);
 
 			if (*Exit == 1)
 			{

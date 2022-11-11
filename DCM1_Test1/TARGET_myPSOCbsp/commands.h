@@ -20,6 +20,7 @@
 #include "tec.h"
 #include "discr.h"
 #include "modes.h"
+#include "allocate.h"
 
 
 extern float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
@@ -33,7 +34,6 @@ void setDelay2Command(int DelayValue);
 void setDelay3Command(int DelayValue);
 void startSinglesCounting();
 void startCoincidenceCounting();
-void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, char* buffer);
 void printFloat(float message);
 void setParameters();
 void setDetectorBias();

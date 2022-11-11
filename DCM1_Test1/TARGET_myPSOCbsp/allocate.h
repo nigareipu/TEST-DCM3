@@ -35,7 +35,7 @@ extern struct TNODE table[TABLE_SIZE];
 extern volatile int count;
 extern char confirmValue[200];
 extern uint8_t *mode, *RTime, *DetSt, *DetEd, *CoWin, *AnDET;
-extern uint16_t *maxcountTime, *countTime;
+extern uint16_t *maxcountTime, *countTime,*TempStabilizationDlay;
 extern float *VDET0;
 extern float *VDET1;
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs;
