@@ -58,7 +58,7 @@ int main(void)
 
 		if (uartRxCompleteFlag == 1)
 		{
-			echoInput();
+			/*echoInput();
 			// If the user starts a new line, process the command
 			if (*rxBuffer == '\n' || *rxBuffer == '\r')
 			{
@@ -68,7 +68,7 @@ int main(void)
 				valueBuffer = strtok(NULL, ";");
 				sprintf(confirmValue, "\r\ncommandbuffer, valueBuffer: %s %s", commandBuffer, valueBuffer);
 				Cy_SCB_UART_PutString(UART_HW, confirmValue);
-				update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
+				update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);*/
 
 
 			if (*mode == 1)
@@ -117,10 +117,10 @@ int main(void)
 		}
 
 		// If user types something other than newline or return, put the chars into the buffer
-		else
+		/*else
 			{
 				fillBuffer();
-			}
-		}
+			}*/
+		//}
 	}
 }

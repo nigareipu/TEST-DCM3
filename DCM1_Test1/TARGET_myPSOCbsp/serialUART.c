@@ -16,12 +16,11 @@ void echoInput()
 	Cy_SCB_UART_Transmit(UART_HW, sendBuffer, strlen(sendBuffer), &uartContext);
 }
 
-void fillBuffer()
-{
+void fillBuffer(char* char_buff){
 
-	uartRxCompleteFlag = 0; // reset the flag
-	storeBuffer[count++] = *rxBuffer;
-	storeBuffer[count] = '\0';
+		  //uartRxCompleteFlag= 0; //reset the flag
+		  storeBuffer[count++] = *char_buff;
+		  storeBuffer[count] = '\0';
 }
 
 void UART_Init()

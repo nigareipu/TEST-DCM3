@@ -27,7 +27,7 @@ extern uint8_t rxBuffer[32], sendBuffer[32];
 extern char storeBuffer[BUF_LEN], *commandBuffer, *valueBuffer;
 
 void echoInput();
-void fillBuffer();
+void fillBuffer(char* char_buff);
 void UART_Init();
 
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_SERIALUART_H_ */

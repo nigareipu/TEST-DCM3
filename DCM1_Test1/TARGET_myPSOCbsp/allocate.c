@@ -124,7 +124,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "RTime");
 	RTime = n_node->data;
-	*RTime = 10;
+	*RTime = 100;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -323,8 +323,8 @@ void default_hashtable()
 	n_node->data_type = T_BOOLEAN;
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "InitialTempInfo");
-	InitialTempInfo = n_node->data;
-	*InitialTempInfo = true;
+	InitialTempInfo = n_node->data;								//print thermal info after boot
+	*InitialTempInfo = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;

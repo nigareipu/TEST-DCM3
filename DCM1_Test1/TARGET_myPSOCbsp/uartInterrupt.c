@@ -7,7 +7,7 @@ void UART_Isr(void)
 	Cy_SCB_UART_Interrupt(UART_HW, &uartContext);
 }
 
-void UART_Interrupt_Callback(uint32_t event)
+/*void UART_Interrupt_Callback(uint32_t event)
 {
 	uint32_t   rx_num;
 	switch (event)
@@ -18,7 +18,44 @@ void UART_Interrupt_Callback(uint32_t event)
 		break;
 
 	}
+}*/
+
+void UART_Interrupt_Callback(uint32_t event) //test callback
+{
+	uint32_t character;
+		char c_char;
+		switch(event)
+		{
+			case CY_SCB_UART_RECEIVE_NOT_EMTPY:
+				// Get single character
+				character = Cy_SCB_UART_Get(UART_HW);
+				// Get all characters in buffer
+				while (character != CY_SCB_UART_RX_NO_DATA)
+				{
+					// Cast int return to char
+					c_char = (char) character;
+					// Echo character
+					Cy_SCB_UART_Put(UART_HW, character);
+					// If end of command, set flag
+					if (c_char == '\n' || c_char == '\r')
+					{
+						//uartRxCompleteFlag = true;
+						commandBuffer = strtok(storeBuffer, ";");
+						valueBuffer = strtok(NULL, ";");
+						sprintf(confirmValue, "\r\ncommandbuffer, valueBuffer: %s %s", commandBuffer, valueBuffer);
+						Cy_SCB_UART_PutString(UART_HW, confirmValue);
+						update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
+					}
+					// Push character to buffer
+					fillBuffer(&c_char);
+
+					character = Cy_SCB_UART_Get(UART_HW);
+				}
+				break;
+		}
 }
+
+
 
 void configureUART_Isr()
 {
