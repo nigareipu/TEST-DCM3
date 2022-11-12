@@ -124,7 +124,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "RTime");
 	RTime = n_node->data;
-	*RTime = 100;
+	*RTime = 10;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -333,7 +333,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "Exit");
 	Exit = n_node->data;
-	*Exit = 0;
+	*Exit = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;

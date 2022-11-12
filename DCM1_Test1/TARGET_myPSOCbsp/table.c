@@ -20,7 +20,7 @@ struct TNODE* initialize_table(int table_size){
 }
 
 
- /*
+/*
  * Adds a new node and initializes its data
  *
  * Takes the hash table pointer, hash table size, pointer to data, sizeof data type, and ID string
@@ -161,7 +161,7 @@ unsigned int resize_table(struct TNODE** hash_table, unsigned int table_size){
 	}
 
 }
-*/
+ */
 
 void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, char* buffer)
 {
@@ -172,30 +172,29 @@ void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, ch
 	int read_int;
 	float read_float;
 	new_node = find_node(hash_table, table_size, id);
-	//printf("inside Update node\n\r");
+
 
 	if(new_node->data_type == T_FLOAT){
 		read_float=atof(readBuffer);
-		//printf("inside Update node, printing float: %f\n\r",read_float);
 		float* new_data=new_node->data;
 		*new_data=read_float;
 	}
 	else if(new_node->data_type == T_UINT8){
 		read_int=atoi(readBuffer);
-		//printf("inside Update node, printing int: %i\n\r",read_int);
 		int* new_data=new_node->data;
 		*new_data=read_int;
 	}
 	else if(new_node->data_type == T_BOOLEAN){
 		bool* new_bool=new_node->data;
-			if (strncmp(readBuffer, "true",4)==0){
+		if (strncmp(readBuffer, "true",4)==0){
 			*new_bool=true;
-			}
-			else {
-				*new_bool=false;
-			}
-		//printf("address of Boolean: %p\n\r", new_bool);
-		//printf("inside Update node, printing Boolean: %d\n\r", *new_bool);
+		}
+		else {
+			*new_bool=false;
+		}
+	/*else if(new_node==NULL) {
+
+	}*/
 
 	}
 

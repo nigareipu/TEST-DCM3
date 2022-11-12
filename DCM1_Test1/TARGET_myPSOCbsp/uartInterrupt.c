@@ -39,12 +39,14 @@ void UART_Interrupt_Callback(uint32_t event) //test callback
 					// If end of command, set flag
 					if (c_char == '\n' || c_char == '\r')
 					{
-						//uartRxCompleteFlag = true;
+						uartRxCompleteFlag = true;
 						commandBuffer = strtok(storeBuffer, ";");
 						valueBuffer = strtok(NULL, ";");
 						sprintf(confirmValue, "\r\ncommandbuffer, valueBuffer: %s %s", commandBuffer, valueBuffer);
 						Cy_SCB_UART_PutString(UART_HW, confirmValue);
 						update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
+						Cy_SCB_UART_PutString(UART_HW, "\r\n");
+						count = 0;
 					}
 					// Push character to buffer
 					fillBuffer(&c_char);
@@ -65,7 +67,7 @@ void configureUART_Isr()
 	cy_stc_sysint_t uartIntrConfig =
 	{
 			.intrSrc = UART_IRQ,
-			.intrPriority = 6u,
+			.intrPriority = 6u,//was 6u
 	};
 
 	// Hook interrupt service routine and enable interrupt */

@@ -60,7 +60,7 @@ void mode3program()
 	// Starts counting
 	for (int k = 0; k < *RTime; k++)
 	{
-		if (*Exit == 1)
+		if (*Exit == true)
 		{
 			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
