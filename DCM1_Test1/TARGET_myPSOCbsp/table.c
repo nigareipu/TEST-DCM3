@@ -173,7 +173,8 @@ void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, ch
 	float read_float;
 	new_node = find_node(hash_table, table_size, id);
 
-
+if(new_node!= NULL)
+{
 	if(new_node->data_type == T_FLOAT){
 		read_float=atof(readBuffer);
 		float* new_data=new_node->data;
@@ -192,6 +193,8 @@ void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, ch
 		else {
 			*new_bool=false;
 		}
+	}
+
 	/*else if(new_node==NULL) {
 
 	}*/

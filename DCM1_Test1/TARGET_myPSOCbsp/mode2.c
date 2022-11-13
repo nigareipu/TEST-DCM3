@@ -46,13 +46,13 @@ void mode2program()
 
 	//check if countTime is acceptable
 	check_countTime();
-	SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
-	setParameters();
-	setDetectorBias();
-
-
-	printThermalInfo = *printThermalFlag;
-	cyhal_system_delay_ms(*TempStabilizationDlay);
+	if(*Exit== false){
+		SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
+		setParameters();
+		setDetectorBias();
+		printThermalInfo = *printThermalFlag;
+		cyhal_system_delay_ms(*TempStabilizationDlay);
+	}
 
 	for (int k = 0; k < *RTime; k++)
 	{
@@ -68,8 +68,8 @@ void mode2program()
 		SetCounters();
 
 		sprintf(confirmValue, "\n\rClockStamp, S0, S1, S2, S3, C01, C12, C03, C23 : %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu",
-		ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
-		Coincidence2_CountRate, Coincidence3_CountRate);
+				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
+				Coincidence2_CountRate, Coincidence3_CountRate);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 
 		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec

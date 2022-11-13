@@ -175,12 +175,6 @@ void setDetectorBias()
 		SetDetectorVoltage(DET[i], DET_bias[i]);
 	}
 
-	if (*Exit == 1)
-	{
-		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
-		return;
-	}
-
 	cyhal_system_delay_ms(3000);
 	HV0_Monitor();
 	cyhal_system_delay_ms(3000);

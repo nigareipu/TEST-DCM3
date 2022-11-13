@@ -55,72 +55,41 @@ int main(void)
 
 	for (;;)
 	{
-
-		if (uartRxCompleteFlag == 1)
+		if (*mode == 1)
 		{
-			/*echoInput();
-			// If the user starts a new line, process the command
-			if (*rxBuffer == '\n' || *rxBuffer == '\r')
-			{
-				// Divide incoming buffer into command and value sections (ex. first 4 bits are for command and last 4 are for value)
-				// Will only work with terminal connected to it, although without it all default values should still go through
-				commandBuffer = strtok(storeBuffer, ";");
-				valueBuffer = strtok(NULL, ";");
-				sprintf(confirmValue, "\r\ncommandbuffer, valueBuffer: %s %s", commandBuffer, valueBuffer);
-				Cy_SCB_UART_PutString(UART_HW, confirmValue);
-				update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);*/
-
-
-			if (*mode == 1)
-			{
-				// CODE RUNNING IDLE MODE
-				mode1program();
-			}
-			else if (*mode == 2)
-			{
-				// CODE RUNNING TWO SIDE COINCIDENCE COUNTING MODE
-				mode2program();
-			}
-			else if (*mode == 3)
-			{
-				Cy_SCB_UART_PutString(UART_HW, "\r\nIn mode 3");
-				// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
-				mode3program();
-			}
-			else if (*mode == 4)
-			{
-				// CODE RUNNING SET MODE to SINGLE SIDE COINCIDENCE COUNTING
-				mode4program();
-			}
-			else if (*mode == 5)
-			{
-				// CODE RUNNING SET MODE to CALIBRATION MODE
-				mode5program();
-			}
-			else if (*mode == 6)
-			{
-				// CODE RUNNING SET MODE to THERMAL ANNEALING
-				mode6program();
-			}
-			else if (*mode == 7)
-			{
-				// CODE RUNNING SET MODE to LASER ANNEALING
-				mode7program();
-			}
-
-			else
-			{
-				Cy_SCB_UART_PutString(UART_HW, "\r\n");
-				uartRxCompleteFlag = 0;
-				count = 0;
-			}
+			// CODE RUNNING IDLE MODE
+			mode1program();
+		}
+		else if (*mode == 2)
+		{
+			// CODE RUNNING TWO SIDE COINCIDENCE COUNTING MODE
+			mode2program();
+		}
+		else if (*mode == 3)
+		{
+			// CODE RUNNING SET MODE to ACCIDENTAL COUNTING
+			mode3program();
+		}
+		else if (*mode == 4)
+		{
+			// CODE RUNNING SET MODE to SINGLE SIDE COINCIDENCE COUNTING
+			mode4program();
+		}
+		else if (*mode == 5)
+		{
+			// CODE RUNNING SET MODE to CALIBRATION MODE
+			mode5program();
+		}
+		else if (*mode == 6)
+		{
+			// CODE RUNNING SET MODE to THERMAL ANNEALING
+			mode6program();
+		}
+		else if (*mode == 7)
+		{
+			// CODE RUNNING SET MODE to LASER ANNEALING
+			mode7program();
 		}
 
-		// If user types something other than newline or return, put the chars into the buffer
-		/*else
-			{
-				fillBuffer();
-			}*/
-		//}
 	}
 }
