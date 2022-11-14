@@ -8,8 +8,6 @@
 #ifndef TARGET_MYPSOCBSP_DELAYS_H_
 #define TARGET_MYPSOCBSP_DELAYS_H_
 
-extern volatile bool delay0SetFlag, delay1SetFlag, delay2SetFlag, delay3SetFlag;
-
 //Functions
 void Delays_Init();
 void Delay0_Set(bool Delay0Bit1, bool Delay0Bit2);

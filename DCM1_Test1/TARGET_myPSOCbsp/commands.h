@@ -23,7 +23,6 @@
 
 
 extern float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
-extern volatile bool delay0SetFlag, delay1SetFlag, delay2SetFlag, delay3SetFlag;
 
 void Init_Hardware();
 void setCoincidenceWindowCommand(int ConcidanceWindow);

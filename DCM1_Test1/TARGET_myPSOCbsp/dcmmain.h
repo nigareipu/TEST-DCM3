@@ -84,9 +84,8 @@ bool *mode5Calibration;					//Select calibration sub mode: mode5Calibration = 0 
 bool *InitialTempInfo;
 /*****************End of hash table variables declaration*****************************/
 
-//Local flags used in functions
-volatile bool delay0SetFlag = 0, delay1SetFlag = 0, delay2SetFlag = 0,delay3SetFlag = 0;
-float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
+//Local Variables
+float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage; //Local voltage variables in mode 1
 int countLoopDelay;
 
 #endif /* MAINHEADER_H_ */

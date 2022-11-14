@@ -62,7 +62,6 @@ void Delay0_Set(bool Delay0Bit1, bool Delay0Bit2)
 	// initialize GPIO for second bit of Delay setting
 	cyhal_gpio_write(P11_4, Delay0Bit2);
 
-	delay0SetFlag = 1;
 }
 
 /*
@@ -73,8 +72,6 @@ void Delay0_Set(bool Delay0Bit1, bool Delay0Bit2)
  */
 void Delay1_Set(bool Delay1Bit1, bool Delay1Bit2)
 {
-
-	delay1SetFlag = 1;
 
 	cyhal_gpio_write(P0_0, Delay1Bit1); // change last value to 0 or 1
 	cyhal_gpio_write(P0_1, Delay1Bit2); // change last value to 0 or 1
@@ -89,8 +86,6 @@ void Delay1_Set(bool Delay1Bit1, bool Delay1Bit2)
 void Delay2_Set(bool Delay2Bit1, bool Delay2Bit2)
 {
 
-	delay2SetFlag = 1;
-
 	cyhal_gpio_write(P2_2, Delay2Bit1); // change last value to 0 or 1
 	cyhal_gpio_write(P2_3, Delay2Bit2); // change last value to 0 or 1
 }
@@ -103,8 +98,6 @@ void Delay2_Set(bool Delay2Bit1, bool Delay2Bit2)
  */
 void Delay3_Set(bool Delay3Bit1, bool Delay3Bit2)
 {
-
-	delay3SetFlag = 1;
 
 	cyhal_gpio_write(P0_4, Delay3Bit1); // change last value to 0 or 1
 	cyhal_gpio_write(P2_1, Delay3Bit2); // change last value to 0 or 1
