@@ -16,7 +16,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "mode");
 	mode = n_node->data;
-	*mode = 2;
+	*mode = 1;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -43,7 +43,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET0");
 	VDET0 = n_node->data;
-	*VDET0 = 1;
+	*VDET0 = 294;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -52,7 +52,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET1");
 	VDET1 = n_node->data;
-	*VDET1 = 1;
+	*VDET1 = 290;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -61,7 +61,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET2");
 	VDET2 = n_node->data;
-	*VDET2 = 1;
+	*VDET2 = 295;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -70,7 +70,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET3");
 	VDET3 = n_node->data;
-	*VDET3 = 1;
+	*VDET3 = 310;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -97,7 +97,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TDET2");
 	TDET2 = n_node->data;
-	*TDET2 = 0.95;
+	*TDET2 = 0.85;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -106,7 +106,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TDET3");
 	TDET3 = n_node->data;
-	*TDET3 = 0.95;
+	*TDET3 = 0.85;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -115,7 +115,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "TempStabilizationDlay");//need before each counting
 	TempStabilizationDlay = n_node->data;
-	*TempStabilizationDlay = 10000;
+	*TempStabilizationDlay = 30000; //ms
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -124,7 +124,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "RTime");
 	RTime = n_node->data;
-	*RTime = 10;
+	*RTime = 60; //seconds
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -169,7 +169,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "CoWin");
 	CoWin = n_node->data;
-	*CoWin = 0;
+	*CoWin = 3;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -243,7 +243,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VoltSt");
 	VoltSt = n_node->data;
-	*VoltSt = 350;
+	*VoltSt = 260;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -252,7 +252,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VoltEd");
 	VoltEd = n_node->data;
-	*VoltEd = 360;
+	*VoltEd = 370;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -313,14 +313,6 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_BOOLEAN;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "printTelemetryFlag");
-	printTelemetryFlag = n_node->data;								//print thermal info after boot
-	*printTelemetryFlag = false;
-	n_node->is_array = false;
-	n_node->readable = true;
-	n_node->writeable = true;
-	n_node->executable = false;
-	n_node->data_type = T_BOOLEAN;
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "Exit");
 	Exit = n_node->data;
@@ -333,7 +325,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "countTime");
 	countTime = n_node->data;
-	*countTime = 1000;
+	*countTime = 1000; //ms
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -342,7 +334,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "maxcountTime");
 	maxcountTime = n_node->data;
-	*maxcountTime = 5000;
+	*maxcountTime = 5000; //ms
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;

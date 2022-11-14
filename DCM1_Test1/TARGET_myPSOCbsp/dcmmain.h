@@ -66,7 +66,6 @@ uint16_t *countTime; 					//set delay between each counting
 uint16_t *maxcountTime;					//set upper limit for *countTime
 uint16_t *TempStabilizationDlay;		// time for thermal stabilization before each counting mode
 uint8_t *mode; 							//set mode
-uint8_t *mode5Calibration;					//Select calibration sub mode: mode5Calibration = 0 -> BreakdownvsTemp, mode5Calibration = 1 -> CountsvDiscThresh and BiasTempvsCounts
 uint8_t *DetSt, *DetEd;					//choose number of detectors to calibrate
 uint8_t *AnDET;							//choose the detector to be annealed
 uint8_t *RTime;							//Choose number of loop to execute during each counting mode
@@ -78,9 +77,11 @@ float *DthrSt, *DthrEd, *TempSt, *TempEd, *VoltSt, *VoltEd;  // set range of dis
 float *kp, *ki, *kd;					//set PID coefficient kp, ki, kd
 float *HVMoni0, *HVMoni3, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1; //keep high voltage, thermistor  voltage and current info
 bool *targetTECFlag0, *targetTECFlag1;  // choose thermistor feedback for PID loops. targetTECFlag0->thermistor0 or thermistor1, targetTECFlag1->thermistor2 or thermistor3
-bool *printMessageFlag;					//turn on/off intro mode debug messages
+bool *printMessageFlag;					//turn on/off intro debug value messages
+bool *printThermalFlag ;
 bool *Exit; 							//for exiting any mode
-bool *printTelemetryFlag;
+uint8_t *mode5Calibration;					//Select calibration sub mode: mode5Calibration = 0 -> BreakdownvsTemp, mode5Calibration = 1 -> CountsvDiscThresh and BiasTempvsCounts
+bool *InitialTempInfo;
 /*****************End of hash table variables declaration*****************************/
 
 //Local Variables
