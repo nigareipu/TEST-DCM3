@@ -85,6 +85,6 @@ bool *InitialTempInfo;
 /*****************End of hash table variables declaration*****************************/
 
 //Local Variables
-int countLoopDelay;
+int countLoopDelay;						//checked loop delay used in the modes
 
 #endif /* MAINHEADER_H_ */
