@@ -85,7 +85,6 @@ bool *InitialTempInfo;
 /*****************End of hash table variables declaration*****************************/
 
 //Local Variables
-float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage; //Local voltage variables in mode 1
 int countLoopDelay;
 
 #endif /* MAINHEADER_H_ */

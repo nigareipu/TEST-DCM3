@@ -22,8 +22,6 @@
 #include "allocate.h"
 
 
-extern float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
-
 void Init_Hardware();
 void setCoincidenceWindowCommand(int ConcidanceWindow);
 void setDelay0Command(int DelayValue);

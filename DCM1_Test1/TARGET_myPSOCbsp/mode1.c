@@ -7,6 +7,7 @@
 
 #include "modes.h"
 
+float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage; //Local voltage variables in mode 1
 
 void mode1program()
 {
