@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include "string.h"
 #include <stdlib.h>
-#include "serialUART.h"
 #include "det_bias.h"
 #include "coin_window.h"
 #include "tec.h"

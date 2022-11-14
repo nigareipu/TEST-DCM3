@@ -50,7 +50,4 @@ void mode1program()
 
 	*Exit = false;
 	*mode = 0;
-
-	uartRxCompleteFlag = 0;
-	//count = 0;
 }

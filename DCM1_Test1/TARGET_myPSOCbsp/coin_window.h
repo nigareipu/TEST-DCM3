@@ -16,7 +16,6 @@
 #include "string.h"
 #include <stdlib.h>
 
-extern volatile bool coincWindowSetFlag;
 
 // Functions
 void CoincidenceWindow_Init();

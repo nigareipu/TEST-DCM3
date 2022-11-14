@@ -47,8 +47,6 @@ void CoincidenceWindow_Init()
  */
 void CoincidenceWindow_Set(bool Bit1, bool Bit2)
 {
-
-	coincWindowSetFlag = 1;
 	cyhal_gpio_write(P2_4, Bit1);
 	cy_rslt_t setWindowBit2;
 	cyhal_gpio_write(P11_5, Bit2);

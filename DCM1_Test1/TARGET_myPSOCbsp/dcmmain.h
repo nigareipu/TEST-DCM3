@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include "string.h"
 #include <stdlib.h>
-#include "serialUART.h"
 #include "uartInterrupt.h"
 #include "AD56x8.h"
 #include "dac.h"
@@ -42,56 +41,50 @@ char *commandBuffer;
 char *valueBuffer;
 char confirmValue[200];
 
-volatile int count;
-volatile bool uartRxCompleteFlag; // flag for notifying that the rx buffer is not empty
+volatile int count_uartbuffer; //uart buffer index
 volatile bool printThermalInfo = 1;	  // option to print all thermread data
-volatile bool TEC_controller0ActiveFlag;	  // flag for timer interrupt
-volatile bool TEC_controller1ActiveFlag;
+volatile bool TEC_controller0ActiveFlag;	  // flag for choosing PIDloop0() in timer interrupt
+volatile bool TEC_controller1ActiveFlag;	// flag for choosing PIDloop1() in timer interrupt
 volatile bool PID_Select = 0; // flag for alternating PID loops
-float tecDriver0StatusFlag;
-float tecDriver1StatusFlag;
+float tecDriver0StatusFlag; // flag used in initializing TEC Driver 0
+float tecDriver1StatusFlag; // flag used in initializing TEC Driver 1
 
 cyhal_spi_t DiscrDAC_obj;
 cyhal_spi_t HVDAC_obj;
 uint8_t spi_buf[SPI_BUFFER_SIZE];
 uint32_t dacDataPacket;
 uint16_t dacValue;
-uint32_t ClockStamp, ClockStamp0, ClockStamp1, ClockStamp2, ClockStamp3;
+uint32_t ClockStamp0; //read sys_clock
 
 cy_stc_scb_uart_context_t uartContext;
 cyhal_timer_t timer_obj;
 
 
 /*****************hash table variables************************************************/
-/* Integer parameters include:
- * setting the mode
- * choosing the number of detectors to calibrate using DetST and DetEd
- * setting the delay time between each counting using countTime
- * choosing the upper limit for delay time to be set (default value is 5000ms)
- * choosing the detector via AnDET to be annealed
- * Choosing loop time using RTime
- * setting coincidence window size by setting CoWin
- * Setting the Bias voltage and Temperature for each detector using VDET0-3 and TDET0-3
- * selecting the discriminator threshhold using DThrs
- * setting the path delay for each detector using DlayDET0-3
- * setting the discriminator threshhold, voltage and temperature range for calibration using DthrEd, DthrSt, VoltSt, VoltEd, TempSt, TempEd.
- * setting PID coefficient kp, ki, kd
- * setting targetTECFlag0 = 0 sets TEC 0 as master, setting targetTECFlag0 = 1 sets TEC 1 as master for the TEC Driver 0
- * setting targetTECFlag1 = 0 sets TEC 0 as master, setting targetTECFlag1 = 1 sets TEC 1 as master for the TEC Driver 1
- * Turning feedback off by setting printMessageFlag = 0, On by setting printMessageFlag = 1
- * Get thermal information by setting printThermalFlag = 1 otherwise 0
- * Selecting calibration sub mode: mode5Calibration = 0 -> BreakdownvsTemp or mode5Calibration = 1 -> CountsvDiscThresh and BiasTempvsCounts
- * Exit mode by setting Exit = 1, default value is 0
- */
-uint16_t *countTime, *maxcountTime, *TempStabilizationDlay;
-uint8_t *mode, *DetSt, *DetEd, *AnDET,  *RTime, *CoWin;
-float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs, *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3, *DthrEd, *DthrSt,*TempSt, *TempEd, *VoltSt, *VoltEd, *kp, *ki, *kd;
-float *HVMoni0, *HVMoni3, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1; //keep telemetry info
-bool *targetTECFlag1, *targetTECFlag0, *printMessageFlag, *printThermalFlag, *Exit, *mode5Calibration, *InitialTempInfo;
+
+uint16_t *countTime; 					//set delay between each counting
+uint16_t *maxcountTime;					//set upper limit for *countTime
+uint16_t *TempStabilizationDlay;		// time for thermal stabilization before each counting mode
+uint8_t *mode; 							//set mode
+uint8_t *DetSt, *DetEd;					//choose number of detectors to calibrate
+uint8_t *AnDET;							//choose the detector to be annealed
+uint8_t *RTime;							//Choose number of loop to execute during each counting mode
+uint8_t *CoWin; 						//set coincidence window size
+float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3;  //Set the Bias voltage and Temperature for each detector
+float *DThrs; 							//select discriminator threshhold
+float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;  //set path delay for each detector
+float *DthrSt, *DthrEd, *TempSt, *TempEd, *VoltSt, *VoltEd;  // set range of discriminator threshhold, voltage and temperature for calibration
+float *kp, *ki, *kd;					//set PID coefficient kp, ki, kd
+float *HVMoni0, *HVMoni3, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1; //keep high voltage, thermistor  voltage and current info
+bool *targetTECFlag0, *targetTECFlag1;  // choose thermistor feedback for PID loops. targetTECFlag0->thermistor0 or thermistor1, targetTECFlag1->thermistor2 or thermistor3
+bool *printMessageFlag;					//turn on/off intro debug value messages
+bool *printThermalFlag;
+bool *Exit; 							//for exiting any mode
+bool *mode5Calibration;					//Select calibration sub mode: mode5Calibration = 0 -> BreakdownvsTemp, mode5Calibration = 1 -> CountsvDiscThresh and BiasTempvsCounts
+bool *InitialTempInfo;
 /*****************End of hash table variables declaration*****************************/
 
 //Local flags used in functions
-volatile bool coincWindowSetFlag = 0;
 volatile bool delay0SetFlag = 0, delay1SetFlag = 0, delay2SetFlag = 0,delay3SetFlag = 0;
 float DET0_voltage, DET1_voltage, DET2_voltage, DET3_voltage;
 int countLoopDelay;

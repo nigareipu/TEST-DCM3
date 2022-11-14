@@ -163,7 +163,7 @@ unsigned int resize_table(struct TNODE** hash_table, unsigned int table_size){
 }
  */
 
-void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, char* buffer)
+void edit_or_read_node(struct TNODE* hash_table, unsigned int table_size, char* id, char* buffer)
 {
 	struct TNODE* new_node;
 
@@ -176,13 +176,13 @@ void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, ch
 if(new_node!= NULL)
 {
 	if(new_node->data_type == T_FLOAT){
-		read_float=atof(readBuffer);
 		float* new_data=new_node->data;
+		read_float=atof(readBuffer);
 		*new_data=read_float;
 	}
 	else if(new_node->data_type == T_UINT8){
-		read_int=atoi(readBuffer);
 		int* new_data=new_node->data;
+		read_int=atoi(readBuffer);
 		*new_data=read_int;
 	}
 	else if(new_node->data_type == T_BOOLEAN){
@@ -194,10 +194,6 @@ if(new_node!= NULL)
 			*new_bool=false;
 		}
 	}
-
-	/*else if(new_node==NULL) {
-
-	}*/
 
 	}
 

@@ -31,8 +31,6 @@
 #define TABLE_SIZE 200
 extern struct TNODE table[TABLE_SIZE];
 
-//extern volatile bool coincWindowSetFlag, uartRxCompleteFlag, warningFlag, printfeedbackFlag;
-extern volatile int count;
 extern char confirmValue[200];
 extern uint8_t *mode, *RTime, *DetSt, *DetEd, *CoWin, *AnDET;
 extern uint16_t *maxcountTime, *countTime,*TempStabilizationDlay;

@@ -15,7 +15,7 @@
 void Init_Hardware()
 {
 	cy_rslt_t rslt;
-	count = 0;
+	count_uartbuffer = 0;
 	rslt = cybsp_init();
 	if (rslt != CY_RSLT_SUCCESS)
 	{

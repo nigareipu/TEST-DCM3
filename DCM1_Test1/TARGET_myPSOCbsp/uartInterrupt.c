@@ -2,23 +2,21 @@
 
 #include "uartInterrupt.h"
 
+void UART_Init()
+{
+
+	cy_stc_scb_uart_context_t uartContext;
+	(void)Cy_SCB_UART_Init(UART_HW, &UART_config, &uartContext);
+
+	configureUART_Isr();
+	// Enable UART to operate //
+	Cy_SCB_UART_Enable(UART_HW);
+}
+
 void UART_Isr(void)
 {
 	Cy_SCB_UART_Interrupt(UART_HW, &uartContext);
 }
-
-/*void UART_Interrupt_Callback(uint32_t event)
-{
-	uint32_t   rx_num;
-	switch (event)
-	{
-	case CY_SCB_UART_RECEIVE_NOT_EMTPY:
-		uartRxCompleteFlag = 1;
-		Cy_SCB_UART_GetArray(UART_HW, rxBuffer, 32);
-		break;
-
-	}
-}*/
 
 void UART_Interrupt_Callback(uint32_t event) //test callback
 {
@@ -37,34 +35,22 @@ void UART_Interrupt_Callback(uint32_t event) //test callback
 			// Echo character
 			Cy_SCB_UART_Put(UART_HW, character);
 			// If end of command, set flag
-			if ( c_char == '\n' || c_char == '\r') //
+			if ( c_char == '\n' || c_char == '\r')
 			{
-				uartRxCompleteFlag = true;
 				commandBuffer = strtok(storeBuffer, ";");
-				//int length_cb = strlen(commandBuffer);
-				//sprintf(confirmValue, "\r\n storeBuffer, commandbuffer, valueBuffer : %s %s %s\n\r", storeBuffer, commandBuffer, valueBuffer);
-								//Cy_SCB_UART_PutString(UART_HW, confirmValue);
-
 				valueBuffer = strtok(NULL, ";");
 				//sprintf(confirmValue, "\r\n storeBuffer, commandbuffer, valueBuffer : %s %s %s\n\r", storeBuffer, commandBuffer, valueBuffer);
 				//Cy_SCB_UART_PutString(UART_HW, confirmValue);
 				//if(strlen(commandBuffer)>0 && strlen(valueBuffer)>0)
-
-				update_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
-
-				//Cy_SCB_UART_PutString(UART_HW, "\r\n");
-				count = 0;
-
+				edit_or_read_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
+				count_uartbuffer = 0;
 			}
 			else{
 				// Push character to buffer
-				//fillBuffer(&c_char);
 				char* char_buff=&c_char;
-				storeBuffer[count++] = *char_buff;
-				storeBuffer[count] = '\0';
+				storeBuffer[count_uartbuffer++] = *char_buff;
+				storeBuffer[count_uartbuffer] = '\0';
 			}
-
-
 			character = Cy_SCB_UART_Get(UART_HW);
 		}
 		break;

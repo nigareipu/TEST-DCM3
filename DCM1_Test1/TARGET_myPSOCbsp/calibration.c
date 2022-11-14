@@ -83,8 +83,6 @@ void calibrateBreakdownvTemp()
 	// Turn off TECs
 	turnOFF_TECs();
 	mode1program();
-	uartRxCompleteFlag = 0;
-	count = 0;
 }
 /*
  * @desc At -20c and 20v above breakdown, prints counts for a range of discr thresh

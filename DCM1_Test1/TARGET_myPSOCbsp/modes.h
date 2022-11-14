@@ -23,7 +23,6 @@
 #include "counters.h"
 #include "tec.h"
 #include "adc.h"
-#include "serialUART.h"
 #include "uartInterrupt.h"
 #include "AD56x8.h"
 #include "discr.h"
@@ -32,12 +31,12 @@
 #define OFF (0u)
 
 
-extern volatile bool uartRxCompleteFlag;
-extern volatile int count;
+//extern volatile bool uartRxCompleteFlag;
+//extern volatile int count;
 extern volatile bool TEC_controller0ActiveFlag;
 extern volatile bool TEC_controller1ActiveFlag;
 extern char confirmValue[200];
-extern uint32_t ClockStamp, ClockStamp0, ClockStamp1, ClockStamp2, ClockStamp3;
+extern uint32_t ClockStamp0;
 extern int countLoopDelay;
 
 void mode1program();

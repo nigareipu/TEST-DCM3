@@ -121,6 +121,7 @@ struct TNODE* find_node(struct TNODE* hash_table, unsigned int table_size, char 
 // Not implemented probably best to just
 //int resize_table(struct TNODE** hash_table, unsigned int table_size);
 
-void update_node(struct TNODE* hash_table, unsigned int table_size, char* id, char* buffer);
+//edit or read table variables
+void edit_or_read_node(struct TNODE* hash_table, unsigned int table_size, char* id, char* buffer);
 
 #endif /* TARGET_MYPSOCBSP_TABLE_H_ */
