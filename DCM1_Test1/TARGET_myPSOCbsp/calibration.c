@@ -8,7 +8,7 @@
 
 void calibrateBreakdownvTemp()
 {
-	printThermalInfo = 1;
+
 	float currentVoltage = 0;
 	setParameters();
 	// Turn on TECs
@@ -20,7 +20,7 @@ void calibrateBreakdownvTemp()
 
 		if (*Exit == 1)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
 
@@ -31,7 +31,7 @@ void calibrateBreakdownvTemp()
 
 			if (*Exit == 1)
 			{
-				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+				//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 				break;
 			}
 
@@ -59,11 +59,13 @@ void calibrateBreakdownvTemp()
 			/***************************************************************************
 			 * *******************This is required to settle temperature before counting*************
 			 **************************************************************************/
-			cyhal_system_delay_ms(*TempStabilizationDlay);
+			if(*Exit== false){
+				cyhal_system_delay_ms(*TempStabilizationDlay);
+			}
 
 			if (*Exit == 1)
 			{
-				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+				//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 				break;
 			}
 
@@ -82,7 +84,7 @@ void calibrateBreakdownvTemp()
 
 	// Turn off TECs
 	turnOFF_TECs();
-	mode1program();
+	//mode1program();
 }
 /*
  * @desc At -20c and 20v above breakdown, prints counts for a range of discr thresh
@@ -91,38 +93,31 @@ void calibrateBreakdownvTemp()
 
 void calibrateCountsvDiscThresh()
 {
-	printThermalInfo = 1;
-	// Set temp and stabilize
 	turnON_TECs();
-	// StabilizeAllTemp(*TDET0);
-
 	if (*Exit == 1)
 	{
-		Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+		//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 		return;
 	}
-
-	// Set voltage of detectors gradually
-	setDetectorBias();
+	check_countTime();
+	if(*Exit== false){
+		// Set voltage of detectors gradually
+		setDetectorBias();
+	}
 
 	// Threshold less than 0.14 V can lead to double counting noisy falling edge of avalanche.
 	for (float thresh = *DthrSt; thresh < *DthrEd; thresh = thresh + 0.01)
 	{
-
 		if (*Exit == 1)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
-
-
-		check_countTime();
 		// Set discriminator thresholds
 		setDiscr0Thresh(thresh);
 		setDiscr1Thresh(thresh);
 		setDiscr2Thresh(thresh);
 		setDiscr3Thresh(thresh);
-		printThermalInfo = *printThermalFlag;
 
 		// Single counts for each detector information
 
@@ -131,7 +126,7 @@ void calibrateCountsvDiscThresh()
 		{
 			if (*Exit == 1)
 			{
-				Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+				//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 				break;
 			}
 			ClockStamp0 = Cy_SysTick_GetValue();
@@ -144,5 +139,5 @@ void calibrateCountsvDiscThresh()
 	}
 	// Turn off TECs
 	turnOFF_TECs();
-	mode1program();
+	//mode1program();
 }

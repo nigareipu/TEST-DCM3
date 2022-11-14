@@ -32,7 +32,7 @@
 extern struct TNODE table[TABLE_SIZE];
 
 extern char confirmValue[200];
-extern uint8_t *mode, *RTime, *DetSt, *DetEd, *CoWin, *AnDET;
+extern uint8_t *mode, *RTime, *DetSt, *DetEd, *CoWin, *AnDET, *mode5Calibration;
 extern uint16_t *maxcountTime, *countTime,*TempStabilizationDlay;
 extern float *VDET0;
 extern float *VDET1;
@@ -45,7 +45,7 @@ extern float *kp; // PID Proportional Gain
 extern float *ki; // PID Integral Gain
 extern float *kd;
 extern float *HVMoni0, *HVMoni3, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1;
-extern bool *targetTECFlag0, *targetTECFlag1, *printMessageFlag,*mode5Calibration, *printThermalFlag, *Exit, *InitialTempInfo;
+extern bool *targetTECFlag0, *targetTECFlag1, *printMessageFlag, *Exit, *printTelemetryFlag;
 
 void default_hashtable();
 

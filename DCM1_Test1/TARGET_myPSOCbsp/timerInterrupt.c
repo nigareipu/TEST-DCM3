@@ -29,14 +29,12 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 		HV0_Monitor();
 		HV3_Monitor();
 
+		if(*printTelemetryFlag==true){
 
-
-if(printThermalInfo==*InitialTempInfo){
-
-			sprintf(confirmValue, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1: %.5f, %.5f, %.5f, %.5f,%.5f, %.5f\n\r",
-					*ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1);
+			sprintf(confirmValue, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1, HVMoni0, HVMoni3: %.5f, %.5f, %.5f, %.5f,%.5f, %.5f, %.2f, %.2f\n\r",
+					*ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1, *HVMoni0,*HVMoni3);
 			Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
-}
+		}
 
 
 		PID_Select = 1;

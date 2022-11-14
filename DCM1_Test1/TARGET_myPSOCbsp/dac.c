@@ -13,9 +13,6 @@
  */
 void setDiscrDACInternalRef(void)
 {
-
-	cy_rslt_t result;
-
 	/*Define placehold variable to receive */
 	uint8_t receive_data[4];
 
@@ -28,7 +25,7 @@ void setDiscrDACInternalRef(void)
 
 	for (int i = 0; i < 1; i++)
 	{
-		result = cyhal_spi_transfer(&DiscrDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
+		cyhal_spi_transfer(&DiscrDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
 
 	}
 }
@@ -39,14 +36,6 @@ void setDiscrDACInternalRef(void)
  */
 void setHVDACInternalRef(void)
 {
-	char confirmValue[8];
-
-	uint16_t error_code;
-
-	char error_codeArray[10];
-
-	cy_rslt_t result;
-
 	/*Define placehold variable to receive */
 	uint8_t receive_data[4];
 
@@ -57,7 +46,7 @@ void setHVDACInternalRef(void)
 
 	for (int i = 0; i < 1; i++)
 	{
-		result = cyhal_spi_transfer(&HVDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
+		cyhal_spi_transfer(&HVDAC_obj, spi_buf, 4u, receive_data, 4u, 0XFF);
 
 	}
 }
@@ -74,7 +63,6 @@ uint16_t convertHighVoltagetoDACVoltage(float inputVoltage)
 	int32_t tempDacValue;
 	uint16_t dacValue;
 	float voltageDividerFactor = 0.003904693601084;
-	char confirmdacValue[32];
 
 	tempDacValue = 0;
 	dacValue = 0;
@@ -109,12 +97,9 @@ uint16_t convertHighVoltagetoDACVoltage(float inputVoltage)
 uint16_t convertDiscrThreshtoDACVoltage(float inputVoltage)
 {
 
-	float inputVoltageConverted;
+	//float inputVoltageConverted;
 	int32_t tempDacValue;
 	uint16_t dacValue;
-
-	char confirmdacValue[32];
-
 	tempDacValue = 0;
 	dacValue = 0;
 
@@ -150,8 +135,6 @@ uint16_t convertTempSetVoltagetoDACVoltage(float inputVoltage)
 	float inputVoltageConverted;
 	int32_t tempDacValue;
 	uint16_t dacValue;
-
-	char confirmdacValue[32];
 
 	tempDacValue = 0;
 	dacValue = 0;
@@ -190,7 +173,6 @@ uint32_t prepareDACDataPacket(uint16_t data, uint16_t channel, uint16_t command)
 
 	uint32_t tempDACPacket;
 	uint32_t dacDataPacket;
-	char confirmdacValue[32];
 
 	dacDataPacket = 0;
 

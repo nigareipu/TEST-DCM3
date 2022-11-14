@@ -34,16 +34,15 @@ void UART_Interrupt_Callback(uint32_t event) //test callback
 			c_char = (char) character;
 			// Echo character
 			Cy_SCB_UART_Put(UART_HW, character);
+
 			// If end of command, set flag
 			if ( c_char == '\n' || c_char == '\r')
 			{
 				commandBuffer = strtok(storeBuffer, ";");
 				valueBuffer = strtok(NULL, ";");
-				//sprintf(confirmValue, "\r\n storeBuffer, commandbuffer, valueBuffer : %s %s %s\n\r", storeBuffer, commandBuffer, valueBuffer);
-				//Cy_SCB_UART_PutString(UART_HW, confirmValue);
-				//if(strlen(commandBuffer)>0 && strlen(valueBuffer)>0)
 				edit_or_read_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
 				count_uartbuffer = 0;
+				Cy_SCB_UART_PutString(UART_HW, "\n\r");
 			}
 			else{
 				// Push character to buffer

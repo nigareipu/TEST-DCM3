@@ -12,7 +12,6 @@ void mode3program()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to ACCIDENTAL COUNTING\r\n");
 
-	printThermalInfo = *InitialTempInfo;
 
 	/*****************************Test Printing*************************/
 	if (*printMessageFlag == 1)
@@ -40,8 +39,9 @@ void mode3program()
 	}
 
 	/*****************************TEst printing***************************/
-
+	//check if countTime is acceptable
 	check_countTime();
+	if(*Exit== false){
 	// sets coincidence channel, window and delay
 	SingleSide_Set(1, 1); // sets coin0-> 0&1 and coin1->2&3; but Want 12, 01, 23, 03
 	setCoincidenceWindowCommand(*CoWin);
@@ -49,20 +49,18 @@ void mode3program()
 	setDelay1Command(*DlayDET1);
 	setDelay2Command(*DlayDET2);
 	setDelay3Command(*DlayDET3);
-
 	// sets discriminator threshold, turns on switches and bias voltages
 	setParameters();
 	setDetectorBias();
-
-	printThermalInfo = *printThermalFlag;
 	cyhal_system_delay_ms(*TempStabilizationDlay);
+	}
 
 	// Starts counting
 	for (int k = 0; k < *RTime; k++)
 	{
 		if (*Exit == true)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
 		ClockStamp0 = Cy_SysTick_GetValue();

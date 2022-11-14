@@ -14,8 +14,6 @@ void mode1program()
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to IDLE\r\n");
 
 	// SETTINGS FOR RUNNING IDLE MODE
-	printThermalInfo = *InitialTempInfo;
-
 
 
 	TEC_controller0ActiveFlag = 0;

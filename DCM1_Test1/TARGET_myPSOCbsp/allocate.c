@@ -23,7 +23,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_UINT8;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "DThrs");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "DThrs");
 	DThrs = n_node->data;
 	*DThrs = 0.05;
 	n_node->is_array = false;
@@ -32,50 +32,50 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "mode5Calibration");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "mode5Calibration");
 	mode5Calibration = n_node->data;
-	*mode5Calibration = 0;
+	*mode5Calibration = 2;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_BOOLEAN;
+	n_node->data_type = T_UINT8;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "VDET0");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET0");
 	VDET0 = n_node->data;
 	*VDET0 = 1;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "VDET1");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET1");
 	VDET1 = n_node->data;
 	*VDET1 = 1;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "VDET2");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET2");
 	VDET2 = n_node->data;
 	*VDET2 = 1;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "VDET3");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET3");
 	VDET3 = n_node->data;
 	*VDET3 = 1;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TDET0");
 	TDET0 = n_node->data;
@@ -113,7 +113,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TempStabilizationDlay");//need before each counting
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "TempStabilizationDlay");//need before each counting
 	TempStabilizationDlay = n_node->data;
 	*TempStabilizationDlay = 10000;
 	n_node->is_array = false;
@@ -204,60 +204,60 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_BOOLEAN;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "DthrSt");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "DthrSt");
 	DthrSt = n_node->data;
 	*DthrSt = 0.02;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT ;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "DthrEd");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "DthrEd");
 	DthrEd = n_node->data;
 	*DthrEd = 1.3;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "TempSt");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TempSt");
 	TempSt = n_node->data;
 	*TempSt = 0.85;;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "TempEd");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TempEd");
 	TempEd = n_node->data;
 	*TempEd = 1.36;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "VoltSt");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VoltSt");
 	VoltSt = n_node->data;
 	*VoltSt = 350;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "VoltEd");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VoltEd");
 	VoltEd = n_node->data;
 	*VoltEd = 360;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_FLOAT;
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "DetSt");
 	DetSt = n_node->data;
@@ -313,18 +313,9 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_BOOLEAN;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "printThermalFlag");
-	printThermalFlag = n_node->data;
-	*printThermalFlag = false;
-	n_node->is_array = false;
-	n_node->readable = true;
-	n_node->writeable = true;
-	n_node->executable = false;
-	n_node->data_type = T_BOOLEAN;
-
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "InitialTempInfo");
-	InitialTempInfo = n_node->data;								//print thermal info after boot
-	*InitialTempInfo = false;
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "printTelemetryFlag");
+	printTelemetryFlag = n_node->data;								//print thermal info after boot
+	*printTelemetryFlag = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -360,7 +351,7 @@ void default_hashtable()
 
 	/******************Telemetry variable******************/
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead0");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "ThermRead0");
 	ThermRead0 = n_node->data;
 	*ThermRead0=0;
 	n_node->is_array = false;
@@ -369,7 +360,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead1");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "ThermRead1");
 	ThermRead1 = n_node->data;
 	*ThermRead1=0;
 	n_node->is_array = false;
@@ -378,7 +369,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead2");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "ThermRead2");
 	ThermRead2 = n_node->data;
 	*ThermRead2=0;
 	n_node->is_array = false;
@@ -387,7 +378,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ThermRead3");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "ThermRead3");
 	ThermRead3 = n_node->data;
 	*ThermRead3=0;
 	n_node->is_array = false;
@@ -396,7 +387,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ITEC0");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "ITEC0");
 	ITEC0 = n_node->data;
 	*ITEC0=0;
 	n_node->is_array = false;
@@ -405,7 +396,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "ITEC1");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "ITEC1");
 	ITEC1 = n_node->data;
 	*ITEC1=0;
 	n_node->is_array = false;
@@ -414,7 +405,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "HVMoni0");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "HVMoni0");
 	HVMoni0 = n_node->data;
 	*HVMoni0=0;
 	n_node->is_array = false;
@@ -423,7 +414,7 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "HVMoni3");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "HVMoni3");
 	HVMoni3 = n_node->data;
 	*HVMoni3=0;
 	n_node->is_array = false;

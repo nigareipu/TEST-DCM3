@@ -64,15 +64,13 @@ void SetDetectorVoltage(uint16_t detector, float voltage)
  */
 void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float temp)
 {
-
-	printThermalInfo = *printThermalFlag;
-
+	check_countTime();
 	// Voltage scan loop for each temperature
 	for (float voltage = startVoltage; voltage < endVoltage + 0.5; voltage = voltage + 0.5)
 	{
 		if (*Exit == 1)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
 
@@ -110,7 +108,7 @@ void VoltageScan(uint16_t detector, float startVoltage, float endVoltage, float 
 				Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			}
 			SetCounters();
-			cyhal_system_delay_ms(*countTime);
+			cyhal_system_delay_ms(countLoopDelay);
 		}
 	}
 }

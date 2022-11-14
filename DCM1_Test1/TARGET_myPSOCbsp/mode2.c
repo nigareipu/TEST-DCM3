@@ -12,7 +12,6 @@ void mode2program()
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to COINCIDENCE COUNTING\r\n");
 
-	printThermalInfo = *InitialTempInfo;
 
 	/*****************************Test values for printing*************************/
 	if (*printMessageFlag == 1)
@@ -50,7 +49,6 @@ void mode2program()
 		SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 		setParameters();
 		setDetectorBias();
-		printThermalInfo = *printThermalFlag;
 		cyhal_system_delay_ms(*TempStabilizationDlay);
 	}
 
@@ -58,7 +56,7 @@ void mode2program()
 	{
 		if (*Exit == 1)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
 
@@ -75,6 +73,5 @@ void mode2program()
 		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
 
 	}
-
 	mode1program();
 }

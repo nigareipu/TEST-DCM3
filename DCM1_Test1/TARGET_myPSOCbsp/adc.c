@@ -30,10 +30,7 @@ float ThermRead3;*/
  */
 void ADC_Init()
 {
-
-	cy_en_sysanalog_status_t status_aref;
-
-	status_aref = Cy_SysAnalog_Init(&Cy_SysAnalog_Fast_Local);
+	Cy_SysAnalog_Init(&Cy_SysAnalog_Fast_Local);
 	Cy_SysAnalog_Enable();
 	// ADC Settings
 	Cy_SAR_Init(SAR_ADC_HW, &SAR_ADC_config);
@@ -125,22 +122,6 @@ void Therm3_Read(void)
 	*ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
 	Cy_SAR_StopConvert(SAR_ADC_HW);
 }
-
-/*
- * @desc Gets the voltage reading of all thermistors
- * @returns Nothing
- */
-/*void GetAllThermRead(void)
-{
-
-	Cy_SAR_StartConvert(SAR_ADC_HW, CY_SAR_START_CONVERT_SINGLE_SHOT);
-	ThermRead0 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread0channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread0channel));
-	ThermRead1 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread1channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread1channel));
-	ThermRead2 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread2channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread2channel));
-	ThermRead3 = Cy_SAR_CountsTo_Volts(SAR_ADC_HW, thermread3channel, Cy_SAR_GetResult16(SAR_ADC_HW, thermread3channel));
-	Cy_SAR_StopConvert(SAR_ADC_HW);
-}*/
-
 /*
  * @desc Gets current for TEC 0
  * @returns Nothing

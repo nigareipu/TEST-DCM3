@@ -11,7 +11,6 @@ void mode4program()
 {
 
 	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to SINGLE SIDE COINCIDENCE COUNTING\r\n");
-	printThermalInfo = *InitialTempInfo;
 
 	/*****************************Test Printing*************************/
 	if (*printMessageFlag == 1)
@@ -38,10 +37,10 @@ void mode4program()
 		printFloat(*DThrs);
 	}
 
-
 	/*****************************TEst printing done ***************************/
 
 	check_countTime();
+	if(*Exit== false){
 	// sets coincidence channel, window and delay
 	SingleSide_Set(0, 0); // sets coin0-> 0&2 and coin1->1&2; but // Want coin between 0&2 and 1&3
 	setCoincidenceWindowCommand(*CoWin);
@@ -49,13 +48,11 @@ void mode4program()
 	setDelay1Command(*DlayDET1);
 	setDelay2Command(*DlayDET2);
 	setDelay3Command(*DlayDET3);
-
 	// sets discriminator threshold, turns on switches and bias voltages
 	setParameters();
 	setDetectorBias();
-
-	printThermalInfo = *printThermalFlag;
 	cyhal_system_delay_ms(*TempStabilizationDlay);
+	}
 
 	// Starts counting
 
@@ -64,7 +61,7 @@ void mode4program()
 
 		if (*Exit == 1)
 		{
-			Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
+			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
 		}
 		ClockStamp0 = Cy_SysTick_GetValue();
