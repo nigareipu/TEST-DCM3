@@ -45,7 +45,7 @@ extern float *kp; // PID Proportional Gain
 extern float *ki; // PID Integral Gain
 extern float *kd;
 extern float *HVMoni0, *HVMoni3, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1;
-extern bool *targetTECFlag0, *targetTECFlag1, *printMessageFlag, *Exit, *printThermalFlag;
+extern bool *targetTECFlag0, *targetTECFlag1, *printMessageFlag, *Exit, *printTelemetryFlag;
 
 void default_hashtable();
 
