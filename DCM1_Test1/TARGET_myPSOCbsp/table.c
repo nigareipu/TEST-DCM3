@@ -5,7 +5,6 @@
  *      Author: Noura Bayat
  */
 #include "table.h"
-#include "modes.h"
 
 /*
  * Initializes table
@@ -177,55 +176,24 @@ void edit_or_read_node(struct TNODE* hash_table, unsigned int table_size, char* 
 if(new_node!= NULL)
 {
 	if(new_node->data_type == T_FLOAT){
-			float* new_data=new_node->data;
-
-			if(strncmp(buffer,"get",3)==0)
-			{
-			sprintf(confirmValue, "%s is %f\n\r", id, *new_data);
-			Cy_SCB_UART_PutString(UART_HW, confirmValue);
-
-			}
-			else if(strncmp(buffer,"get",3)!=0 && new_node->writeable == true)
-			{
-			read_float=atof(readBuffer);
-			*new_data=read_float;
-			}
+		float* new_data=new_node->data;
+		read_float=atof(readBuffer);
+		*new_data=read_float;
+	}
+	else if(new_node->data_type == T_UINT8){
+		int* new_data=new_node->data;
+		read_int=atoi(readBuffer);
+		*new_data=read_int;
+	}
+	else if(new_node->data_type == T_BOOLEAN){
+		bool* new_bool=new_node->data;
+		if (strncmp(readBuffer, "true",4)==0){
+			*new_bool=true;
 		}
-		else if(new_node->data_type == T_UINT8){
-			int* new_data=new_node->data;
-
-			if(strncmp(buffer,"get",3)==0)
-			{
-			sprintf(confirmValue, "%s is %d\n\r", id, *new_data);
-			Cy_SCB_UART_PutString(UART_HW, confirmValue);
-			}
-			else if(strncmp(buffer,"get",3)!=0  && new_node->writeable == true)
-			{
-			read_int=atoi(readBuffer);
-			//printf("printing int: %i\n\r",read_int);
-			*new_data=read_int;
-			}
+		else {
+			*new_bool=false;
 		}
-		else if(new_node->data_type == T_BOOLEAN){
-			bool* new_bool=new_node->data;
-
-			if(strncmp(buffer,"get",3)==0)
-			{
-			sprintf(confirmValue, "%s is %d\n\r", id, *new_bool);
-			Cy_SCB_UART_PutString(UART_HW, confirmValue);
-			}
-			else if(strncmp(buffer,"get",3)!=0 && new_node->writeable == true)
-			{
-				if (strncmp(readBuffer, "true",4)==0){
-				*new_bool=true;
-				}
-				else {
-					*new_bool=false;
-				}
-			//printf("printing Boolean: %d\n\r", *new_bool);
-			}
-
-		}
+	}
 
 	}
 

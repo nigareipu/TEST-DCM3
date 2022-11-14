@@ -84,6 +84,6 @@ bool *printTelemetryFlag;
 /*****************End of hash table variables declaration*****************************/
 
 //Local Variables
-int countLoopDelay;						//checked loop delay used in the modes
+int countLoopDelay;
 
 #endif /* MAINHEADER_H_ */
