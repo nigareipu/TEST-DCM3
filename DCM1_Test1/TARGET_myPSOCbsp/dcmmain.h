@@ -71,6 +71,8 @@ uint8_t *DetSt, *DetEd;					//choose number of detectors to calibrate
 uint8_t *AnDET;							//choose the detector to be annealed
 uint8_t *RTime;							//Choose number of loop to execute during each counting mode
 uint8_t *CoWin; 						//set coincidence window size
+uint32_t *count_timerInterruptEvent;	//track number of times the timer interrupt is called. its to estimate the systick  variable in timer interrup
+uint32_t *timer_sysclock;				//keep sysclock time
 float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3;  //Set the Bias voltage and Temperature for each detector
 float *DThrs; 							//select discriminator threshhold
 float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;  //set path delay for each detector
@@ -81,6 +83,7 @@ bool *targetTECFlag0, *targetTECFlag1;  // choose thermistor feedback for PID lo
 bool *printMessageFlag;					//turn on/off intro mode debug messages
 bool *Exit; 							//for exiting any mode
 bool *printTelemetryFlag;
+bool *echo_uartmessageFlag;				//turn ON/OFF echo at the terminal
 /*****************End of hash table variables declaration*****************************/
 
 //Local Variables

@@ -14,6 +14,7 @@ double e2_0 = 0;
 double e_1 = 0;
 double e1_1 = 0;
 double e2_1 = 0;
+uint32_t count_timerevents=0;
 
 void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 {
@@ -28,11 +29,15 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 		monitorITEC1();
 		HV0_Monitor();
 		HV3_Monitor();
+		*timer_sysclock = Cy_SysTick_GetValue();
+		count_timerevents++;
+		*count_timerInterruptEvent=count_timerevents;
+
 
 		if(*printTelemetryFlag==true){
 
-			sprintf(confirmValue, "\n\rTherm0, Therm1, Therm2, Therm3, ITEC0, ITEC1, HVMoni0, HVMoni3: %.5f, %.5f, %.5f, %.5f,%.5f, %.5f, %.2f, %.2f\n\r",
-					*ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1, *HVMoni0,*HVMoni3);
+			sprintf(confirmValue, "\n\rclock, Timercount, Therm0, Therm1, Therm2, Therm3, ITEC0, ITEC1, HVMoni0, HVMoni3: %ld, %ld, %.5f, %.5f, %.5f, %.5f,%.5f, %.5f, %.2f, %.2f\n\r",
+					*timer_sysclock, *count_timerInterruptEvent, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1, *HVMoni0,*HVMoni3);
 			Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 		}
 

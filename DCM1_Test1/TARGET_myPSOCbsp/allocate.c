@@ -322,6 +322,15 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_BOOLEAN;
 
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "echo_uartmessageFlag");
+	echo_uartmessageFlag = n_node->data;								//print thermal info after boot
+	*echo_uartmessageFlag = false;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = true;
+	n_node->executable = false;
+	n_node->data_type = T_BOOLEAN;
+
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "Exit");
 	Exit = n_node->data;
 	*Exit = false;
@@ -348,6 +357,8 @@ void default_hashtable()
 	n_node->writeable = true;
 	n_node->executable = false;
 	n_node->data_type = T_UINT16;
+
+
 
 	/******************Telemetry variable******************/
 
@@ -422,6 +433,24 @@ void default_hashtable()
 	n_node->writeable = false;
 	n_node->executable = false;
 	n_node->data_type = T_FLOAT;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint32_t), "count_timerInterruptEvent");
+	count_timerInterruptEvent = n_node->data;
+	*count_timerInterruptEvent = 0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_UINT32;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint32_t), "timer_sysclock");
+	timer_sysclock = n_node->data;
+	*timer_sysclock = 0;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_UINT32;
 
 }
 

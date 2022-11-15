@@ -33,9 +33,11 @@ void UART_Interrupt_Callback(uint32_t event) //test callback
 			// Cast int return to char
 			c_char = (char) character;
 			// Echo character
+			if(*echo_uartmessageFlag==true){
 			Cy_SCB_UART_Put(UART_HW, character);
+			}
 
-			// If end of command, set flag
+			// check for end of line
 			if ( c_char == '\n' || c_char == '\r')
 			{
 				commandBuffer = strtok(storeBuffer, ";");
