@@ -122,7 +122,7 @@ void calibrateCountsvDiscThresh()
 		// Single counts for each detector information
 
 		// Print out singles counts for all detectors
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			if (*Exit == 1)
 			{

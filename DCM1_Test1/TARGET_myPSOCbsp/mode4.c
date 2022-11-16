@@ -71,7 +71,7 @@ void mode4program()
 		Coincidence3_CountRate = Cy_TCPWM_Counter_GetCounter(Coinc_3_HW, Coinc_3_NUM);
 		SetCounters();
 
-		sprintf(confirmValue, "\n\rClk, S0, S1, S2, S3, C02, C13: %lu, %lu, %lu, %lu, %lu, %lu, %lu\r\n ",
+		sprintf(confirmValue, "\n\rClk, S0, S1, S2, S3, C02, C13: %lu, %lu, %lu, %lu, %lu, %lu, %lu",
 				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate,
 				Coincidence3_CountRate);
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
