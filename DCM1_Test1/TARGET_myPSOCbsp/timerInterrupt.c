@@ -36,8 +36,8 @@ void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 
 		if(*printTelemetryFlag==true){
 
-			sprintf(confirmValue, "\n\rclock, Timercount, Therm0, Therm1, Therm2, Therm3, ITEC0, ITEC1, HVMoni0, HVMoni3: %ld, %ld, %.5f, %.5f, %.5f, %.5f,%.5f, %.5f, %.2f, %.2f\n\r",
-					*timer_sysclock, *count_timerInterruptEvent, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1, *HVMoni0,*HVMoni3);
+			sprintf(confirmValue, "\n\rclk, #Tmr, T0, T1, T2, T3, IT0, IT1: %ld, %ld, %.4f, %.4f, %.4f, %.4f,%.4f, %.4f",
+					*timer_sysclock, *count_timerInterruptEvent, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1);
 			Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 		}
 
@@ -133,7 +133,7 @@ void PID_loop0()
 	Therm0_Read();
 	Therm1_Read();
 
-	if (*targetTECFlag0 == 0)
+	if (*targetTECFlag0 == false)
 	{
 		tempSet = *TDET0;
 		thermRead0 = *ThermRead0;
@@ -177,7 +177,7 @@ void PID_loop1()
 	Therm2_Read();
 	Therm3_Read();
 
-	if (*targetTECFlag1 == 0)
+	if (*targetTECFlag1 == false)
 	{
 		tempSet = *TDET2;
 		thermRead1 = *ThermRead2;

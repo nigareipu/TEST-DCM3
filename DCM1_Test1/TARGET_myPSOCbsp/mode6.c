@@ -4,28 +4,11 @@
 
 void mode6program()
 {
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to Thermal Annealing\r\n");
+	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to Thermal Annealing");
 
 	// CODE FOR RUNNING  MODE
 	turnOFF_TECs();
-
-	// Confirm selected TEC is on and set to anneal to the temperature
-	if (*printMessageFlag == 1)
-	{
-		Cy_SCB_UART_PutString(UART_HW, "Thermoelectric cooler number ");
-
-		sprintf(confirmValue, "%i", *AnDET);
-
-		Cy_SCB_UART_PutString(UART_HW, " is ON and set to anneal to temperature ");
-		sprintf(confirmValue, "%f", *TDET0);
-		Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
-		Cy_SCB_UART_PutString(UART_HW, " for ");
-
-		sprintf(confirmValue, "%i", *RTime);
-
-		Cy_SCB_UART_PutArray(UART_HW, confirmValue, sizeof(confirmValue));
-		Cy_SCB_UART_PutString(UART_HW, " seconds:\r\n");
-	}
+	*printTelemetryFlag=true;
 
 	// Annealing the selected detector to 91 C for the selected time
 
@@ -40,7 +23,6 @@ void mode6program()
 
 	else if (*AnDET == 1)
 	{
-
 		TEC_controller0ActiveFlag = 1;
 		TEC_controller1ActiveFlag = 0;
 		TEC_SW1_Status(ON);
@@ -63,7 +45,7 @@ void mode6program()
 	}
 	else
 	{
-		Cy_SCB_UART_PutString(UART_HW, "Wrong anneal detector- Exit\r\n");
+		Cy_SCB_UART_PutString(UART_HW, "\r\nWrong anneal detector- Exit");
 		mode1program();
 		return;
 	}
@@ -76,7 +58,7 @@ void mode6program()
 	for (int k = 0; k < *RTime; k++)
 	{
 
-		if (*Exit == 1)
+		if (*Exit == true)
 		{
 			//Cy_SCB_UART_PutString(UART_HW, "Exiting\r\n");
 			break;
@@ -85,5 +67,7 @@ void mode6program()
 		cyhal_system_delay_ms(countLoopDelay); // Must be kept for accumulating counts/sec
 	}
 	turnOFF_TECs();
+	*printTelemetryFlag=false;
+	*AnDET=5;
 	mode1program();
 }

@@ -15,7 +15,7 @@ void calibrateBreakdownvTemp()
 
 	unsigned int DET[] = {DET0, DET1, DET2, DET3};
 
-	for (int d = *DetSt; d < *DetEd; d++)
+	for (int d = *DetSt; d <= *DetEd; d++)
 	{
 
 		if (*Exit == 1)
@@ -26,7 +26,7 @@ void calibrateBreakdownvTemp()
 
 		// Set temperature loop.. make sure to print also what the temperature is.
 		// Range should be 0.9-1.36 corresponds to 16 degrees to -20 degrees (celsius)
-		for (float temp = *TempSt; temp <= *TempEd; temp = temp + 0.1)
+		for (float temp = *TempSt; temp <= *TempEd+ 0.01; temp = temp + 0.1)
 		{
 
 			if (*Exit == 1)
@@ -39,22 +39,22 @@ void calibrateBreakdownvTemp()
 			if (d == 0)
 			{
 				*TDET0 = temp;
-				*targetTECFlag0 = 0;
+				*targetTECFlag0 = false;
 			}
 			else if (d == 1)
 			{
 				*TDET1 = temp;
-				*targetTECFlag0 = 1;
+				*targetTECFlag0 = true;
 			}
 			else if (d == 2)
 			{
 				*TDET2 = temp;
-				*targetTECFlag1 = 0;
+				*targetTECFlag1 = false;
 			}
 			else if (d == 3)
 			{
 				*TDET3 = temp;
-				*targetTECFlag1 = 1;
+				*targetTECFlag1 = true;
 			}
 			/***************************************************************************
 			 * *******************This is required to settle temperature before counting*************
@@ -132,7 +132,7 @@ void calibrateCountsvDiscThresh()
 			ClockStamp0 = Cy_SysTick_GetValue();
 			startSinglesCounting();
 			SetCounters();
-			sprintf(confirmValue, "\n\rClockStamp, DThrs, S0, S1, S2, S3:  %lu, %.2f, %lu, %lu, %lu, %lu\n\r", ClockStamp0, thresh, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate);
+			sprintf(confirmValue, "\n\rClk, DThrs, S0, S1, S2, S3:  %lu, %.2f, %lu, %lu, %lu, %lu\n\r", ClockStamp0, thresh, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate);
 			Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			cyhal_system_delay_ms(countLoopDelay);
 		}

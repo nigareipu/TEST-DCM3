@@ -48,5 +48,6 @@ void mode1program()
 	Delay3_Set(0, 0);
 
 	*Exit = false;
+	*count_timerInterruptEvent=0;
 	*mode = 0;
 }

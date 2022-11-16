@@ -188,7 +188,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "targetTECFlag0");
 	targetTECFlag0 = n_node->data;
-	*targetTECFlag0 = true;
+	*targetTECFlag0 = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -197,7 +197,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "targetTECFlag1");
 	targetTECFlag1 = n_node->data;
-	*targetTECFlag1 = true;
+	*targetTECFlag1 = false;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -225,7 +225,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "TempSt");
 	TempSt = n_node->data;
-	*TempSt = 0.85;;
+	*TempSt = 0.85;
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;

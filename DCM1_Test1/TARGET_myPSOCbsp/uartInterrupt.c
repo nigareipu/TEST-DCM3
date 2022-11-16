@@ -44,7 +44,7 @@ void UART_Interrupt_Callback(uint32_t event) //test callback
 				valueBuffer = strtok(NULL, ";");
 				edit_or_read_node(table, TABLE_SIZE, commandBuffer, valueBuffer);
 				count_uartbuffer = 0;
-				Cy_SCB_UART_PutString(UART_HW, "\n\r");
+				//Cy_SCB_UART_PutString(UART_HW, "\n\r");
 			}
 			else{
 				// Push character to buffer
