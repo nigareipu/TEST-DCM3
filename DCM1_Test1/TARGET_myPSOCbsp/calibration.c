@@ -106,7 +106,7 @@ void calibrateCountsvDiscThresh()
 	}
 
 	// Threshold less than 0.14 V can lead to double counting noisy falling edge of avalanche.
-	for (float thresh = *DthrSt; thresh < *DthrEd; thresh = thresh + 0.01)
+	for (float thresh = *DthrSt; thresh <= *DthrEd; thresh = thresh + 0.01)
 	{
 		if (*Exit == 1)
 		{
@@ -132,7 +132,7 @@ void calibrateCountsvDiscThresh()
 			ClockStamp0 = Cy_SysTick_GetValue();
 			startSinglesCounting();
 			SetCounters();
-			sprintf(confirmValue, "\n\rClk, DThrs, S0, S1, S2, S3:  %lu, %.2f, %lu, %lu, %lu, %lu\n\r", ClockStamp0, thresh, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate);
+			sprintf(confirmValue, "\n\rClk, DThrs, S0, S1, S2, S3:  %lu, %.2f, %lu, %lu, %lu, %lu", ClockStamp0, thresh, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate);
 			Cy_SCB_UART_PutString(UART_HW, confirmValue);
 			cyhal_system_delay_ms(countLoopDelay);
 		}
