@@ -15,7 +15,7 @@ void mode1program()
 
 	// SETTINGS FOR RUNNING IDLE MODE
 
-
+	*printTelemetryFlag=false;
 	TEC_controller0ActiveFlag = 0;
 	TEC_controller1ActiveFlag = 0;
 

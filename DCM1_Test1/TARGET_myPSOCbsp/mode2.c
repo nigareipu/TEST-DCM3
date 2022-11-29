@@ -10,7 +10,7 @@
 void mode2program()
 {
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to COINCIDENCE COUNTING");
+	Cy_SCB_UART_PutString(UART_HW, "SET MODE to COINCIDENCE COUNTING");
 
 
 	/*****************************Test values for printing*************************/

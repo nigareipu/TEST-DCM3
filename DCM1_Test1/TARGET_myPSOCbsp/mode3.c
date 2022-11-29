@@ -10,7 +10,7 @@
 void mode3program()
 {
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to ACCIDENTAL COUNTING");
+	Cy_SCB_UART_PutString(UART_HW, "SET MODE to ACCIDENTAL COUNTING");
 
 
 	/*****************************Test Printing*************************/

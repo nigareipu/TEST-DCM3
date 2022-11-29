@@ -10,7 +10,7 @@
 void mode5program()
 {
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to CALIBRATION");
+	Cy_SCB_UART_PutString(UART_HW, "SET MODE to CALIBRATION");
 
 	if (*mode5Calibration == 0)
 	{

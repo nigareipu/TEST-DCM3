@@ -4,7 +4,7 @@
 
 void mode6program()
 {
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to Thermal Annealing");
+	Cy_SCB_UART_PutString(UART_HW, "SET MODE to Thermal Annealing");
 
 	// CODE FOR RUNNING  MODE
 	turnOFF_TECs();
@@ -18,7 +18,7 @@ void mode6program()
 		TEC_controller1ActiveFlag = 0;
 		TEC_SW0_Status(ON);
 		TEC_Driver0_Status(ON);
-		// also set *targetTECFlag0 == 0;
+		*targetTECFlag0 =false;
 	}
 
 	else if (*AnDET == 1)
@@ -27,6 +27,7 @@ void mode6program()
 		TEC_controller1ActiveFlag = 0;
 		TEC_SW1_Status(ON);
 		TEC_Driver0_Status(ON);
+		*targetTECFlag0=true;
 	}
 	else if (*AnDET == 2)
 	{
@@ -35,6 +36,7 @@ void mode6program()
 		TEC_controller1ActiveFlag = 1;
 		TEC_SW2_Status(ON);
 		TEC_Driver1_Status(ON);
+		*targetTECFlag1=false;
 	}
 	else if (*AnDET == 3)
 	{
@@ -42,10 +44,12 @@ void mode6program()
 		TEC_controller1ActiveFlag = 1;
 		TEC_SW3_Status(ON);
 		TEC_Driver1_Status(ON);
+		*targetTECFlag1=true;
 	}
 	else
 	{
 		Cy_SCB_UART_PutString(UART_HW, "\r\nWrong anneal detector- Exit");
+		//*printTelemetryFlag=false;
 		mode1program();
 		return;
 	}

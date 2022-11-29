@@ -10,7 +10,7 @@
 void mode4program()
 {
 
-	Cy_SCB_UART_PutString(UART_HW, "\r\nSET MODE to SINGLE SIDE COINCIDENCE COUNTING");
+	Cy_SCB_UART_PutString(UART_HW, "SET MODE to SINGLE SIDE COINCIDENCE COUNTING");
 
 	/*****************************Test Printing*************************/
 	if (*printMessageFlag == 1)

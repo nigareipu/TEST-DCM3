@@ -69,7 +69,7 @@ uint8_t *mode; 							//set mode
 uint8_t *mode5Calibration;					//Select calibration sub mode: mode5Calibration = 0 -> BreakdownvsTemp, mode5Calibration = 1 -> CountsvDiscThresh and BiasTempvsCounts
 uint8_t *DetSt, *DetEd;					//choose number of detectors to calibrate
 uint8_t *AnDET;							//choose the detector to be annealed
-uint8_t *RTime;							//Choose number of loop to execute during each counting mode
+uint32_t *RTime;							//Choose number of loop to execute during each counting mode
 uint8_t *CoWin; 						//set coincidence window size
 uint32_t *count_timerInterruptEvent;	//track number of times the timer interrupt is called. its to estimate the systick  variable in timer interrup
 uint32_t *timer_sysclock;				//keep sysclock time

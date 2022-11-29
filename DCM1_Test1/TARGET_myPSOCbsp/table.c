@@ -191,7 +191,7 @@ void edit_or_read_node(struct TNODE* hash_table, unsigned int table_size, char* 
 				*new_data=read_float;
 			}
 		}
-		else if(new_node->data_type == T_UINT8 || new_node->data_type == T_UINT16){
+		else if(new_node->data_type == T_UINT8 || new_node->data_type == T_UINT16 || new_node->data_type == T_UINT32){
 			int* new_data=new_node->data;
 
 			if(strncmp(buffer,"get",3)==0)

@@ -122,14 +122,14 @@ void default_hashtable()
 	n_node->executable = false;
 	n_node->data_type = T_UINT16;
 
-	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "RTime");
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint32_t), "RTime");
 	RTime = n_node->data;
 	*RTime = 60;  //seconds
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
 	n_node->executable = false;
-	n_node->data_type = T_UINT8;
+	n_node->data_type = T_UINT32;
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint8_t), "DlayDET0");
 	DlayDET0 = n_node->data;
