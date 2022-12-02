@@ -41,18 +41,20 @@ void mode3program()
 	/*****************************TEst printing***************************/
 	//check if countTime is acceptable
 	check_countTime();
+	//check if tec starts locally
+	check_mode_tec_start();
+
+
 	if(*Exit== false){
-	// sets coincidence channel, window and delay
-	SingleSide_Set(1, 1); // sets coin0-> 0&1 and coin1->2&3; but Want 12, 01, 23, 03
-	setCoincidenceWindowCommand(*CoWin);
-	setDelay0Command(*DlayDET0);
-	setDelay1Command(*DlayDET1);
-	setDelay2Command(*DlayDET2);
-	setDelay3Command(*DlayDET3);
-	// sets discriminator threshold, turns on switches and bias voltages
-	setParameters();
-	setDetectorBias();
-	cyhal_system_delay_ms(*TempStabilizationDlay);
+		// sets coincidence channel, window and delay
+		SingleSide_Set(1, 1); // sets coin0-> 0&1 and coin1->2&3; but Want 12, 01, 23, 03
+		setCoincidenceWindowCommand(*CoWin);
+		setDelay0Command(*DlayDET0);
+		setDelay1Command(*DlayDET1);
+		setDelay2Command(*DlayDET2);
+		setDelay3Command(*DlayDET3);
+		// sets bias voltages
+		setDetectorBias();
 	}
 
 	// Starts counting
@@ -76,5 +78,8 @@ void mode3program()
 
 		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
 	}
+	//check if TEC to turn off
+	check_mode_tec_end();
 	mode1program();
+	//*printTelemetryFlag=true;
 }

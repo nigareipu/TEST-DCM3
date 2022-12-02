@@ -115,7 +115,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "TempStabilizationDlay");//need before each counting
 	TempStabilizationDlay = n_node->data;
-	*TempStabilizationDlay = 30000; //ms
+	*TempStabilizationDlay = 15000; //ms
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -357,6 +357,24 @@ void default_hashtable()
 	n_node->writeable = true;
 	n_node->executable = false;
 	n_node->data_type = T_UINT16;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "tec_enableFlag");
+	tec_enableFlag = n_node->data;
+	*tec_enableFlag = false;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = true;
+	n_node->executable = false;
+	n_node->data_type = T_BOOLEAN;
+
+	n_node = allocate_node(table, TABLE_SIZE, sizeof(_Bool), "tec_is_stabileFlag");
+	tec_is_stabileFlag = n_node->data;
+	*tec_is_stabileFlag = false;
+	n_node->is_array = false;
+	n_node->readable = true;
+	n_node->writeable = false;
+	n_node->executable = false;
+	n_node->data_type = T_BOOLEAN;
 
 
 

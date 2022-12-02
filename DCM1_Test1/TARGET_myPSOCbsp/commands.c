@@ -145,8 +145,8 @@ void setParameters()
 	setDiscr3Thresh(*DThrs);
 
 	// Turns on TEC driver and switches
-	TEC_controller0ActiveFlag = 1;
-	TEC_controller1ActiveFlag = 1;
+	TEC_controller0ActiveFlag = true;
+	TEC_controller1ActiveFlag = true;
 
 	TEC_SW0_Status(ON);
 	TEC_SW1_Status(ON);
@@ -183,10 +183,22 @@ void setDetectorBias()
 	Cy_SCB_UART_PutString(UART_HW, confirmValue);
 }
 
+void turnON_TECs()
+{
+	TEC_controller0ActiveFlag = true;
+	TEC_controller1ActiveFlag = true;
+	TEC_SW0_Status(ON);
+	TEC_SW1_Status(ON);
+	TEC_SW2_Status(ON);
+	TEC_SW3_Status(ON);
+	TEC_Driver0_Status(ON); // 0 OFF, 1 ON; changes status of tecStatusFlag
+	TEC_Driver1_Status(ON);
+}
+
 void turnOFF_TECs()
 {
-	TEC_controller0ActiveFlag = 0;
-	TEC_controller1ActiveFlag = 0;
+	TEC_controller0ActiveFlag = false;
+	TEC_controller1ActiveFlag = false;
 	TEC_SW0_Status(OFF);
 	TEC_SW1_Status(OFF);
 	TEC_SW2_Status(OFF);
@@ -196,17 +208,7 @@ void turnOFF_TECs()
 	TEC_Driver1_Status(OFF);
 }
 
-void turnON_TECs()
-{
-	TEC_controller0ActiveFlag = 1;
-	TEC_controller1ActiveFlag = 1;
-	TEC_SW0_Status(ON);
-	TEC_SW1_Status(ON);
-	TEC_SW2_Status(ON);
-	TEC_SW3_Status(ON);
-	TEC_Driver0_Status(ON); // 0 OFF, 1 ON; changes status of tecStatusFlag
-	TEC_Driver1_Status(ON);
-}
+
 void startSinglesCounting()
 {
 	Singles0_CountRate = Cy_TCPWM_Counter_GetCounter(Singles_0_HW, Singles_0_NUM);
@@ -246,6 +248,57 @@ void check_countTime()
 	else
 	{
 		countLoopDelay=*countTime;
+	}
+}
+
+void check_mode_tec_start()
+{
+	//Cy_SCB_UART_PutString(UART_HW, "checking check_mode_tec_start");
+	if (*tec_enableFlag == false){
+		// Enable the TECs
+		turnON_TECs();
+		//Cy_SCB_UART_PutString(UART_HW, "started to execute if");
+		//*tec_enableFlag = true;
+		*tec_is_stabileFlag = false;
+		tec_started_locally = true;
+		cyhal_system_delay_ms(*TempStabilizationDlay);
+	}
+	while (*tec_is_stabileFlag == false)
+	{
+		if (abs(*ThermRead0-*TDET0)<0.008 || abs(*ThermRead1-*TDET1)<0.008)
+		{
+			//*tec_is_stabileFlag = true;
+			break;
+		}
+
+		// wait a bit, timeout after some number of loops, so we don't get stuck here
+		count_tec_stabile_loop++;
+		if(count_tec_stabile_loop==10)
+		{
+			*tec_is_stabileFlag = true;
+			break;
+		}
+		cyhal_system_delay_ms(1000); //we need to wait at least for a while.
+
+	}
+
+}
+
+void check_mode_tec_end()
+{
+	//tec_enableFlag = false;
+	if (tec_started_locally == true)
+	{
+		turnOFF_TECs();
+	}
+	tec_started_locally = false;
+	*tec_is_stabileFlag = false;
+}
+
+void transition_modes_if_tec_start_global(){
+	if (*tec_enableFlag==true){
+		turnON_TECs();
+		cyhal_system_delay_ms(*TempStabilizationDlay);
 	}
 }
 

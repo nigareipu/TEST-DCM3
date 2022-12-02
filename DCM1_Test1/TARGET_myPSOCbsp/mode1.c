@@ -16,8 +16,8 @@ void mode1program()
 	// SETTINGS FOR RUNNING IDLE MODE
 
 	*printTelemetryFlag=false;
-	TEC_controller0ActiveFlag = 0;
-	TEC_controller1ActiveFlag = 0;
+//	TEC_controller0ActiveFlag = 0;
+//	TEC_controller1ActiveFlag = 0;
 
 	setDiscr0Thresh(*DThrs);
 	setDiscr1Thresh(*DThrs);
@@ -34,12 +34,12 @@ void mode1program()
 	SetDetectorVoltage(DET2, DET2_voltage);
 	SetDetectorVoltage(DET3, DET3_voltage);
 
-	TEC_Driver0_Status(OFF);
-	TEC_Driver1_Status(OFF);
-	TEC_SW0_Status(OFF);
-	TEC_SW1_Status(OFF);
-	TEC_SW2_Status(OFF);
-	TEC_SW3_Status(OFF);
+//	TEC_Driver0_Status(OFF);
+//	TEC_Driver1_Status(OFF);
+//	TEC_SW0_Status(OFF);
+//	TEC_SW1_Status(OFF);
+//	TEC_SW2_Status(OFF);
+//	TEC_SW3_Status(OFF);
 
 	CoincidenceWindow_Set(0, 0);
 	Delay0_Set(0, 0);

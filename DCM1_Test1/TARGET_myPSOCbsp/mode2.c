@@ -45,11 +45,11 @@ void mode2program()
 
 	//check if countTime is acceptable
 	check_countTime();
+	//check if tec starts locally
+	check_mode_tec_start();
 	if(*Exit== false){
 		SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
-		setParameters();
 		setDetectorBias();
-		cyhal_system_delay_ms(*TempStabilizationDlay);
 	}
 
 	for (int k = 0; k < *RTime; k++)
@@ -73,5 +73,7 @@ void mode2program()
 		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
 
 	}
+	check_mode_tec_end();
 	mode1program();
+	*printTelemetryFlag=true;
 }

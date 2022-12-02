@@ -51,6 +51,7 @@ void mode6program()
 		Cy_SCB_UART_PutString(UART_HW, "\r\nWrong anneal detector- Exit");
 		//*printTelemetryFlag=false;
 		mode1program();
+		transition_modes_if_tec_start_global();
 		return;
 	}
 
@@ -71,7 +72,8 @@ void mode6program()
 		cyhal_system_delay_ms(countLoopDelay); // Must be kept for accumulating counts/sec
 	}
 	turnOFF_TECs();
-	*printTelemetryFlag=false;
+	*printTelemetryFlag=true;
 	*AnDET=5;
 	mode1program();
+	transition_modes_if_tec_start_global();
 }

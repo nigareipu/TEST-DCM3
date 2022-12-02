@@ -10,6 +10,7 @@
 void mode7program()
 {
 	Cy_SCB_UART_PutString(UART_HW, "SET MODE to OPTICAL ANNEALING");
+	turnOFF_TECs();
 	*printTelemetryFlag=true;
 	check_countTime();
 	for (int t = 0; t < *RTime; t++)
@@ -24,4 +25,5 @@ void mode7program()
 	}
 	*printTelemetryFlag=false;
 	mode1program();
+	transition_modes_if_tec_start_global();
 }

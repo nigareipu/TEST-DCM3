@@ -83,10 +83,13 @@ bool *targetTECFlag0, *targetTECFlag1;  // choose thermistor feedback for PID lo
 bool *printMessageFlag;					//turn on/off intro mode debug messages
 bool *Exit; 							//for exiting any mode
 bool *printTelemetryFlag;
-bool *echo_uartmessageFlag;				//turn ON/OFF echo at the terminal
+bool *echo_uartmessageFlag;				//turn ON/OFF uart echo at the terminal
+bool *tec_enableFlag, *tec_is_stabileFlag; // control TEC stabilization inside/outside modes
 /*****************End of hash table variables declaration*****************************/
 
 //Local Variables
 int countLoopDelay;
+bool tec_started_locally = false;
+int count_tec_stabile_loop=0;
 
 #endif /* MAINHEADER_H_ */

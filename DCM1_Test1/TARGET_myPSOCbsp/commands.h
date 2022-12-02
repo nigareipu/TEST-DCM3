@@ -37,5 +37,8 @@ void turnON_TECs();
 void turnOFF_TECs();
 void SetCounters();
 void check_countTime();
+void check_mode_tec_start();
+void check_mode_tec_end();
+void transition_modes_if_tec_start_global();
 
 #endif /* LIBS_TARGET_CY8CPROTO_062S3_4343W_COMMANDS_H_ */

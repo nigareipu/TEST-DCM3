@@ -11,7 +11,7 @@ void mode5program()
 {
 
 	Cy_SCB_UART_PutString(UART_HW, "SET MODE to CALIBRATION");
-
+	turnOFF_TECs();
 	if (*mode5Calibration == 0)
 	{
 		Cy_SCB_UART_PutString(UART_HW, "\r\nDET_Vb vs T");
@@ -32,4 +32,5 @@ void mode5program()
 		calibrateCountsvDiscThresh();
 	}
 	mode1program();
+	transition_modes_if_tec_start_global();
 }
