@@ -59,7 +59,7 @@ int main(void)
 	{
 		// loop will run only once when *tec_enableFlag=true
 		if (*tec_enableFlag==true && count_global_loop<1){
-			Cy_SCB_UART_PutString(UART_HW, "\n\rstarted global TEC ON");
+			//Cy_SCB_UART_PutString(UART_HW, "\n\rstarted global TEC ON");
 			turnON_TECs();
 			cyhal_system_delay_ms(*TempStabilizationDlay);
 			count_global_loop++;

@@ -75,7 +75,7 @@ uint32_t *count_timerInterruptEvent;	//track number of times the timer interrupt
 uint32_t *timer_sysclock;				//keep sysclock time
 float *VDET0, *VDET1, *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3;  //Set the Bias voltage and Temperature for each detector
 float *DThrs; 							//select discriminator threshhold
-float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;  //set path delay for each detector
+uint8_t *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;  //set path delay for each detector
 float *DthrSt, *DthrEd, *TempSt, *TempEd, *VoltSt, *VoltEd;  // set range of discriminator threshhold, voltage and temperature for calibration
 float *kp, *ki, *kd;					//set PID coefficient kp, ki, kd
 float *HVMoni0, *HVMoni3, *ThermRead0, *ThermRead1, *ThermRead2, *ThermRead3, *ITEC0, *ITEC1; //keep high voltage, thermistor  voltage and current info

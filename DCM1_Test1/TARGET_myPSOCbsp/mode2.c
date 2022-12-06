@@ -75,5 +75,5 @@ void mode2program()
 	}
 	check_mode_tec_end();
 	mode1program();
-	*printTelemetryFlag=true;
+	//*printTelemetryFlag=true;
 }

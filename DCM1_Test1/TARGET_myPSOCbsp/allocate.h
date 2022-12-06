@@ -38,7 +38,7 @@ extern uint32_t *count_timerInterruptEvent, *RTime, *timer_sysclock;
 extern float *VDET0;
 extern float *VDET1;
 extern float *VDET2, *VDET3, *TDET0, *TDET1, *TDET2, *TDET3, *DThrs;
-extern float *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;
+extern uint8_t *DlayDET0, *DlayDET1, *DlayDET2, *DlayDET3;
 extern float *DthrEd, *DthrSt;
 extern float *TempSt, *TempEd;
 extern float *VoltSt, *VoltEd;

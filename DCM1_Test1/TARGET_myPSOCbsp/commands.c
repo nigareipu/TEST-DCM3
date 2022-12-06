@@ -65,6 +65,7 @@ void setDelay0Command(int DelayValue)
 	else if (DelayValue == 1)
 	{
 		Delay0_Set(0, 1);
+
 	}
 	else if (DelayValue == 2)
 	{
@@ -265,7 +266,7 @@ void check_mode_tec_start()
 	}
 	while (*tec_is_stabileFlag == false)
 	{
-		if (abs(*ThermRead0-*TDET0)<0.008 || abs(*ThermRead1-*TDET1)<0.008)
+		if (abs(*ThermRead0-*TDET0)<0.001 || abs(*ThermRead1-*TDET1)<0.001)
 		{
 			//*tec_is_stabileFlag = true;
 			break;

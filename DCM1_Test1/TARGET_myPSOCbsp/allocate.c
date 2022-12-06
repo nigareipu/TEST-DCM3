@@ -43,7 +43,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET0");
 	VDET0 = n_node->data;
-	*VDET0 = 294;
+	*VDET0 = 294;//312;//294
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -52,7 +52,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET1");
 	VDET1 = n_node->data;
-	*VDET1 = 290;
+	*VDET1 = 290;//337;//290
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -61,7 +61,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET2");
 	VDET2 = n_node->data;
-	*VDET2 = 295;
+	*VDET2 = 295;//376;//295
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -70,7 +70,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(float), "VDET3");
 	VDET3 = n_node->data;
-	*VDET3 = 310;
+	*VDET3 = 310;//373;//310
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
@@ -124,7 +124,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint32_t), "RTime");
 	RTime = n_node->data;
-	*RTime = 60;  //seconds
+	*RTime = 1000;  //seconds
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;

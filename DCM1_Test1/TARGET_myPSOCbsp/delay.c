@@ -61,7 +61,6 @@ void Delay0_Set(bool Delay0Bit1, bool Delay0Bit2)
 
 	// initialize GPIO for second bit of Delay setting
 	cyhal_gpio_write(P11_4, Delay0Bit2);
-
 }
 
 /*
