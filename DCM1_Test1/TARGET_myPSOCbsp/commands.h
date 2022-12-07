@@ -1,9 +1,4 @@
-/*
- * commands.h
- *
- *  Created on: May 19, 2022
- *      Author: jkrynski1
- */
+
 
 #ifndef LIBS_TARGET_CY8CPROTO_062S3_4343W_COMMANDS_H_
 #define LIBS_TARGET_CY8CPROTO_062S3_4343W_COMMANDS_H_
@@ -37,7 +32,7 @@ void turnON_TECs();
 void turnOFF_TECs();
 void SetCounters();
 void check_countTime();
-void check_mode_tec_start();
+void check_inside_mode_tec_start();
 void check_mode_tec_end();
 void transition_modes_if_tec_start_global();
 

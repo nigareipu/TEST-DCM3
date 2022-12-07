@@ -42,7 +42,7 @@ void mode3program()
 	//check if countTime is acceptable
 	check_countTime();
 	//check if tec starts locally
-	check_mode_tec_start();
+	check_inside_mode_tec_start();
 
 
 	if(*Exit== false){

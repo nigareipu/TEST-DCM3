@@ -41,7 +41,7 @@ void mode4program()
 
 	check_countTime();
 	//check if tec starts locally
-	check_mode_tec_start();
+	check_inside_mode_tec_start();
 	if(*Exit== false){
 		// sets coincidence channel, window and delay
 		SingleSide_Set(0, 0); // sets coin0-> 0&2 and coin1->1&2; but // Want coin between 0&2 and 1&3

@@ -252,35 +252,36 @@ void check_countTime()
 	}
 }
 
-void check_mode_tec_start()
+void check_inside_mode_tec_start()
 {
 	//Cy_SCB_UART_PutString(UART_HW, "checking check_mode_tec_start");
+	int count_while_loop=0;
 	if (*tec_enableFlag == false){
 		// Enable the TECs
 		turnON_TECs();
-		//Cy_SCB_UART_PutString(UART_HW, "started to execute if");
 		//*tec_enableFlag = true;
 		*tec_is_stabileFlag = false;
 		tec_started_locally = true;
-		cyhal_system_delay_ms(*TempStabilizationDlay);
+		//cyhal_system_delay_ms(*TempStabilizationDlay);
 	}
 	while (*tec_is_stabileFlag == false)
 	{
+		count_while_loop++;
 		if (abs(*ThermRead0-*TDET0)<0.001 || abs(*ThermRead1-*TDET1)<0.001)
 		{
-			//*tec_is_stabileFlag = true;
-			break;
-		}
-
-		// wait a bit, timeout after some number of loops, so we don't get stuck here
-		count_tec_stabile_loop++;
-		if(count_tec_stabile_loop==10)
+			count_tec_stabile_loop++;
+			if (count_tec_stabile_loop==300)
+			{
+				count_tec_stabile_loop=0;
+				break;
+			}
+					}
+		if (count_while_loop==3000)
 		{
-			*tec_is_stabileFlag = true;
 			break;
 		}
-		cyhal_system_delay_ms(1000); //we need to wait at least for a while.
-
+		*tec_is_stabileFlag = true;
+		cyhal_system_delay_ms(10);
 	}
 
 }

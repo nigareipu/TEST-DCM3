@@ -46,7 +46,7 @@ void mode2program()
 	//check if countTime is acceptable
 	check_countTime();
 	//check if tec starts locally
-	check_mode_tec_start();
+	check_inside_mode_tec_start();
 	if(*Exit== false){
 		SingleSide_Set(1, 1); //sets coin0-> 0&1 and coin1->2&3; but  Want 12, 01, 23, 03
 		setDetectorBias();

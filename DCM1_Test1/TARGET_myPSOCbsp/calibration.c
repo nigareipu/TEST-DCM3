@@ -10,6 +10,7 @@ void calibrateBreakdownvTemp()
 {
 
 	float currentVoltage = 0;
+	int count_while_loop=0;
 	setParameters();
 	// Turn on TECs
 
@@ -60,7 +61,27 @@ void calibrateBreakdownvTemp()
 			 * *******************This is required to settle temperature before counting*************
 			 **************************************************************************/
 			if(*Exit== false){
-				cyhal_system_delay_ms(*TempStabilizationDlay);
+				//cyhal_system_delay_ms(*TempStabilizationDlay);
+				while (*tec_is_stabileFlag == false)
+					{
+						count_while_loop++;
+						if (abs(*ThermRead0-*TDET0)<0.001 || abs(*ThermRead1-*TDET1)<0.001)
+						{
+							count_tec_stabile_loop++;
+							if (count_tec_stabile_loop==100)
+							{
+								count_tec_stabile_loop=0;
+								break;
+							}
+									}
+						if (count_while_loop==3000)
+						{
+							count_while_loop=0;
+							break;
+						}
+						*tec_is_stabileFlag = true;
+						cyhal_system_delay_ms(10);
+					}
 			}
 
 			if (*Exit == 1)
