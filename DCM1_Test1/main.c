@@ -64,7 +64,7 @@ int main(void)
 			//cyhal_system_delay_ms(*TempStabilizationDlay);
 			count_global_loop++;
 		}
-		else if (*tec_enableFlag==false && count_global_loop==1){
+		else if (*tec_enableFlag==false && count_global_loop>0){
 			turnOFF_TECs();
 			count_global_loop=0;
 		}
