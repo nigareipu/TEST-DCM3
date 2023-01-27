@@ -7,6 +7,7 @@
 #include "cyhal.h"
 #include "cybsp.h"
 #include <stdio.h>
+#include "modes.h"
 
 // ADC channels
 #define hvmoni0channel 0UL

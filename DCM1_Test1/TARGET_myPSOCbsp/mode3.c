@@ -66,9 +66,12 @@ void mode3program()
 			break;
 		}
 		ClockStamp0 = Cy_SysTick_GetValue();
+
+		SetCounters();
+		cyhal_system_delay_ms(*msTime);//change it by a variable
+
 		startSinglesCounting();
 		startCoincidenceCounting();
-		SetCounters();
 
 		sprintf(confirmValue, "\n\rClk, S0, S1, S2, S3, C01, C12, C03, C23: %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu, %lu",
 				ClockStamp0, Singles0_CountRate, Singles1_CountRate, Singles2_CountRate, Singles3_CountRate, Coincidence0_CountRate, Coincidence1_CountRate,
@@ -76,7 +79,7 @@ void mode3program()
 		Cy_SCB_UART_PutArray(UART_HW, confirmValue, strlen(confirmValue));
 
 
-		cyhal_system_delay_ms(countLoopDelay);//Must be kept for accumulating counts/sec
+		cyhal_system_delay_ms(countLoopDelay-*msTime);//Must be kept for accumulating counts/sec
 	}
 	//check if TEC to turn off
 	check_mode_tec_end();

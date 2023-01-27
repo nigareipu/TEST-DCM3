@@ -63,6 +63,7 @@ cyhal_timer_t timer_obj;
 /*****************hash table variables************************************************/
 
 uint16_t *countTime; 					//set delay between each counting
+uint16_t *msTime;						//set count time in ms
 uint16_t *maxcountTime;					//set upper limit for *countTime
 uint16_t *TempStabilizationDlay;		// time for thermal stabilization before each counting mode
 uint8_t *mode; 							//set mode
@@ -91,5 +92,7 @@ bool *tec_enableFlag, *tec_is_stabileFlag; // control TEC stabilization inside/o
 int countLoopDelay;
 bool tec_started_locally = false;
 int count_tec_stabile_loop=0;
+bool monitor_die_temp = false;
+
 
 #endif /* MAINHEADER_H_ */

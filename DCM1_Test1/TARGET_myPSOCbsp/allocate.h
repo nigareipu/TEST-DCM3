@@ -33,7 +33,7 @@ extern struct TNODE table[TABLE_SIZE];
 
 extern char confirmValue[200];
 extern uint8_t *mode, *DetSt, *DetEd, *CoWin, *AnDET, *mode5Calibration;
-extern uint16_t *maxcountTime, *countTime,*TempStabilizationDlay;
+extern uint16_t *maxcountTime, *countTime,*TempStabilizationDlay, *msTime;
 extern uint32_t *count_timerInterruptEvent, *RTime, *timer_sysclock;
 extern float *VDET0;
 extern float *VDET1;

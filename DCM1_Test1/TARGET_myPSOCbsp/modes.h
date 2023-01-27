@@ -40,6 +40,7 @@ extern uint32_t ClockStamp0;
 extern int countLoopDelay;
 extern bool tec_started_locally;
 extern int count_tec_stabile_loop;
+extern bool monitor_die_temp;
 
 void mode1program();
 void mode2program();
