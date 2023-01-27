@@ -351,7 +351,7 @@ void default_hashtable()
 
 	n_node = allocate_node(table, TABLE_SIZE, sizeof(uint16_t), "msTime");
 	msTime = n_node->data;
-	*msTime = 1; //ms
+	*msTime = 1000; //ms
 	n_node->is_array = false;
 	n_node->readable = true;
 	n_node->writeable = true;
